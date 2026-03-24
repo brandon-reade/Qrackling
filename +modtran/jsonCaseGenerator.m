@@ -116,6 +116,7 @@ classdef jsonCaseGenerator
                 word, visStr, json_name, out_csv);
         end
 
+        %% Formatting functions
         function token = formatVisibilityToken(visib_km)
             % If >=1 km: "10kmvis"
             % If <1 km : meters to avoid decimals (0.5 -> "500mvis")
@@ -173,7 +174,7 @@ classdef jsonCaseGenerator
             cloudsToken = modtran.jsonCaseGenerator.sanitizeToken(lower(string(clouds)));
             includeClouds = strlength(strtrim(cloudsToken)) > 0 && cloudsToken ~= "none";
 
-            % Wavelength tokens (nm only, always)
+            % Wavelength tokens (always nm for Qrackling)
             w1 = modtran.jsonCaseGenerator.formatNumericToken(wmin_nm);
             w2 = modtran.jsonCaseGenerator.formatNumericToken(wmax_nm);
             waveToken = w1 + "to" + w2;
@@ -190,6 +191,7 @@ classdef jsonCaseGenerator
         end
     end
 
+    %% Private functions
     methods (Static, Access = private)
 
         function s = formatNumericToken(x)
