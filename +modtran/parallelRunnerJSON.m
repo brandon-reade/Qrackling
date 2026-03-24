@@ -23,14 +23,19 @@ classdef parallelRunnerJSON
                 options.timeout_s (1,1) double = NaN
                 
                 % file options
-                options.outputMode (1,1) string {mustBeMember(options.outputMode,["per-case","shared"])} = "per-case"
+                options.outputMode (1,1) string {mustBeMember(options.outputMode,["per-case","shared"])} = "shared"     % shared for outputs being copied into a single location, otherwise per-case folders
                 options.collectDir (1,1) string = ""
                 options.collectGlob (1,:) string = strings(1,0)
+
+                % verification options
+                options.verifyCollect (1,1) logical = true                  % checks if the collection file has all the outputs expected
+                options.rerunMissing (1,1) logical = true                   % runs processes for missing collection files
+                options.dedupeCollect (1,1) logical = false                 % used to enable deletion of duplicate output files
                 
                 % other options
                 options.keepWorkdirs (1,1) logical = false
-                options.keepFailedWorkdirs (1,1) logical = true
-                options.resume (1,1) logical = true  % if true, skip cases with done marker
+                options.keepFailedWorkdirs (1,1) logical = false
+                options.resume (1,1) logical = true                         % if true, skip cases with the 'done' marker
             end
 
             cases_json = modtran.parallelRunnerJSON.mustBeFile(cases_json);
@@ -46,6 +51,9 @@ classdef parallelRunnerJSON
                 if isempty(options.collectGlob)
                     error("parallelRunnerJSON:collectGlob", "outputMode='shared' requires options.collectGlob.");
                 end
+            end
+            if (options.verifyCollect || options.rerunMissing || options.dedupeCollect) && options.outputMode ~= "shared"
+                error("parallelRunnerJSON:verifyMode", "verifyCollect/rerunMissing/dedupeCollect only make sense when outputMode='shared'.");
             end
 
             cases = modtran.parallelRunnerJSON.loadCases(cases_json);
@@ -76,7 +84,7 @@ classdef parallelRunnerJSON
                     1, ...                                                  % one output: result struct
                     cases(i), i, runs_dir, ...
                     modtran_exe, modtran_data_dir, ...
-                    options);
+                    options, false);                                        % forceRerun=false
             end
 
             results = repmat(struct(), nCases, 1);
@@ -107,13 +115,53 @@ classdef parallelRunnerJSON
 
             nFail = sum(arrayfun(@(x) ~x.skipped && x.returncode ~= 0, results));
             fprintf("Failures: %d/%d\n", nFail, nCases);
+
+             % verify output collection and optionally rerun missing cases
+            if options.outputMode == "shared" && (options.verifyCollect || options.rerunMissing)
+                [missingIdx, missingPatterns] = modtran.parallelRunnerJSON.findMissingCollectedCases( ...
+                    cases, results, options.collectDir, options.collectGlob);
+
+                if ~isempty(missingIdx)
+                    fprintf("\nMissing collected outputs for %d cases.\n", numel(missingIdx));
+                    if options.rerunMissing
+                        fprintf("Re-running missing cases (force rerun)...\n");
+
+                        for j = 1:numel(missingIdx)
+                            i = missingIdx(j);
+                            fprintf("  Re-run case %06d (missing patterns: %s)\n", i, strjoin(missingPatterns{j}, ", "));
+
+                            % Force rerun so it will run even if done.json exists
+                            rr = modtran.parallelRunnerJSON.runOneCase( ...
+                                cases(i), i, runs_dir, modtran_exe, modtran_data_dir, options, true);
+
+                            results(i) = rr;
+                        end
+
+                        % Re-write summary after reruns
+                        jsonText = jsonencode(results, "PrettyPrint", true);
+                        modtran.parallelRunnerJSON.writeText(summaryPath, jsonText);
+                        fprintf("Updated summary written: %s\n", summaryPath);
+                    else
+                        fprintf("verifyCollect enabled but rerunMissing disabled. No reruns performed.\n");
+                    end
+                else
+                    fprintf("\nNo missing collected outputs detected.\n");
+                end
+            end
+
+            % dedupe collected files
+            if options.outputMode == "shared" && options.dedupeCollect
+                fprintf("\nDe-duplicating collected outputs in: %s\n", options.collectDir);
+                removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
+                fprintf("Removed %d duplicate files.\n", removed);
+            end
         end
     end
 
     %% Private functions
     methods (Static, Access = private)
 
-        function r = runOneCase(caseObj, case_index, runs_dir, modtran_exe, modtran_data_dir, options)
+        function r = runOneCase(caseObj, case_index, runs_dir, modtran_exe, modtran_data_dir, options, forceRerun)
             tStart = tic;
 
             case_name = modtran.parallelRunnerJSON.tryGetCaseName(caseObj, case_index);
@@ -132,9 +180,9 @@ classdef parallelRunnerJSON
             r.skipped = false;
             r.skip_reason = "";
 
-            % If resume enabled and done marker exists, skip
+           % If resume enabled and done marker exists, skip
             doneMarker = fullfile(workdir, "done.json");
-            if options.resume && exist(doneMarker, "file")
+            if options.resume && ~forceRerun && exist(doneMarker, "file")
                 r.skipped = true;
                 r.skip_reason = "already_done";
                 r.returncode = 0;
@@ -227,6 +275,79 @@ classdef parallelRunnerJSON
             end
 
             r.elapsed_s = toc(tStart);
+        end
+
+        function [missingIdx, missingPatterns] = findMissingCollectedCases(cases, results, collectDir, collectGlob)
+            missingIdx = [];
+            missingPatterns = {};
+
+            for i = 1:numel(cases)
+                % Determine expected prefix based on case NAME (same logic as runOneCase)
+                case_name = modtran.parallelRunnerJSON.tryGetCaseName(cases(i), i);
+                safe_name = modtran.parallelRunnerJSON.sanitizeFilename(case_name);
+                prefix = sprintf("%06d_%s", i, safe_name);
+
+                patternsMissing = strings(0,1);
+                for g = collectGlob
+                    % we look for at least one match for this case and this glob
+                    q = fullfile(collectDir, prefix + "__" + string(g));
+                    m = dir(q);
+                    if isempty(m)
+                        patternsMissing(end+1,1) = string(g);
+                    end
+                end
+
+                if ~isempty(patternsMissing)
+                    missingIdx(end+1,1) = i;
+                    missingPatterns{end+1,1} = cellstr(patternsMissing);
+                end
+            end
+        end
+
+        function removed = dedupeCollectedFiles(collectDir)
+            removed = 0;
+
+            files = dir(fullfile(collectDir, "*"));
+            files = files(~[files.isdir]);
+
+            % Group by prefix = text before "__"
+            mp = containers.Map("KeyType","char","ValueType","any");
+
+            for k = 1:numel(files)
+                name = string(files(k).name);
+                parts = split(name, "__");
+                if numel(parts) < 2
+                    continue;
+                end
+                prefix = char(parts(1));
+                if ~isKey(mp, prefix)
+                    mp(prefix) = files(k);
+                else
+                    mp(prefix) = [mp(prefix), files(k)];
+                end
+            end
+
+            keysList = mp.keys;
+            for ki = 1:numel(keysList)
+                group = mp(keysList{ki});
+                if numel(group) <= 1
+                    continue;
+                end
+
+                % Keep newest file, remove the rest
+                [~, idxKeep] = max([group.datenum]);
+                for j = 1:numel(group)
+                    if j == idxKeep
+                        continue;
+                    end
+                    try
+                        delete(fullfile(group(j).folder, group(j).name));
+                        removed = removed + 1;
+                    catch
+                        % ignore delete errors
+                    end
+                end
+            end
         end
 
         function cases = loadCases(cases_json_path)
