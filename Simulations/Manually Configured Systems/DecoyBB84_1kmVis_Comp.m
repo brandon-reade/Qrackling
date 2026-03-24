@@ -1,6 +1,11 @@
 % Author: Brandon Reade
 % Date: 11/03/2026
+% Last update: 24/03/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
+
+% Current issues with MWIR:
+% - Detector dark count too high to be comparable with NIR
+% - Geometric losses are huge when FOV is tiny 
 
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
@@ -15,6 +20,7 @@ end
 addpath(fullfile(repo_root));                                               
 
 %% 1. Choose parameters
+plot_each_pass = true;
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 1;
@@ -68,6 +74,15 @@ for i = 1:nQKDSystems
     
     % Run simulation
     Results{i} = nodes.QkdPassSimulation(GS{i}, Sat{i}, protocol.decoyBB84);
+
+    if plot_each_pass
+        % Plot + rename the figure that the library creates
+        wl = QKDsystems(i).Wavelength;
+        fig = Results{i}.plot();                                                % capture returned figure handle
+        fig.Name = sprintf('Decoy-state BB84 Pass - %dnm', wl);
+        fig.NumberTitle = 'off';
+        fig.Tag = sprintf('Decoy-state BB84_%dnm', wl); 
+    end
 end
 
 
