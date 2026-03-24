@@ -1,0 +1,484 @@
+{
+  "MODTRAN": [
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - param_set 1, LOS zen 0.0 az 0.0",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_mod_volcanic_aged_zen0_azi0",
+        "DESCRIPTION": "Case 2 - param_set 2, LOS zen 0.0 az 0.0",
+        "CASE": 2,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_MODERATE_VOLCANIC_AGED",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_mod_volcanic_aged_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_high_volcanic_fresh_zen0_azi0",
+        "DESCRIPTION": "Case 3 - param_set 3, LOS zen 0.0 az 0.0",
+        "CASE": 3,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_HIGH_VOLCANIC_FRESH",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_high_volcanic_fresh_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_high_volcanic_aged_zen0_azi0",
+        "DESCRIPTION": "Case 4 - param_set 4, LOS zen 0.0 az 0.0",
+        "CASE": 4,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_HIGH_VOLCANIC_AGED",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_high_volcanic_aged_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_mod_volcanic_fresh_zen0_azi0",
+        "DESCRIPTION": "Case 5 - param_set 5, LOS zen 0.0 az 0.0",
+        "CASE": 5,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_MODERATE_VOLCANIC_FRESH",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_mod_volcanic_fresh_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_mod_volcanic_background_zen0_azi0",
+        "DESCRIPTION": "Case 6 - param_set 6, LOS zen 0.0 az 0.0",
+        "CASE": 6,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_MODERATE_VOLCANIC_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_mod_volcanic_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_high_volcanic_background_zen0_azi0",
+        "DESCRIPTION": "Case 7 - param_set 7, LOS zen 0.0 az 0.0",
+        "CASE": 7,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_HIGH_VOLCANIC_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_high_volcanic_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_loc1_23kmvis_none_urban_extreme_volcanic_fresh_zen0_azi0",
+        "DESCRIPTION": "Case 8 - param_set 8, LOS zen 0.0 az 0.0",
+        "CASE": 8,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0.0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0.0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_EXTREME_VOLCANIC_FRESH",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23.0
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.061,
+          "H2ALT": 0.0,
+          "OBSZEN": 0.0,
+          "HRANGE": 0.0,
+          "BETA": 0.0,
+          "BCKZEN": 0.0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 400.0,
+          "V2": 15000.0,
+          "DV": 1.0,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_loc1_23kmvis_none_urban_extreme_volcanic_fresh_zen0_azi0.csv"
+        }
+      }
+    }
+  ]
+}

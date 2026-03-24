@@ -1,0 +1,29 @@
+# exclude vim session files
+*Session.vim
+
+# exclude scripts for testing
+# /test scripts/
+**/SMARTS cache/*
+towards_a_quantum_internet/*
+
+html
+
+# exclude toolbox
+*.mltbx
+
+# matlab project files should be local
+#*.prj
+# as should any MATLAB autosave files
+*.asv
+# matlab likes to add a resources folder lets not push it
+resources/
+
+# exclude atmospherics .csv files.
+#these are redundant since they are reformatted into (smaller) .mat files
+**/orbit modelling resources/atmospheric transmittance/varying elevation MODTRAN data 3/**.csv
+
+#linux shell scripts
+*.sh
+
+# exclude anything sensitive
+*QEYSSAT*
