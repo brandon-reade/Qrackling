@@ -18,7 +18,7 @@ addpath(fullfile(repo_root));
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 1;
-Receiver_FOV                = 100E-6; %4.756E-3;                           % diffraction-limited "FOV" (acceptance angle)
+Receiver_FOV                = 37E-6; %4.756E-3;                             % diffraction-limited "FOV" (acceptance angle)
 Receiver_Jitter             = 10E-6;
 Rep_Rate                    = 1E8;
 Time_Gate_Width             = 2E-9;                                         % times in s
@@ -61,6 +61,10 @@ for i = 1:nQKDSystems
     GS{i} = createGroundStation(Det{i}, Receiver_Telescope_Diameter,...
         QKDsystems(i).Wavelength, Receiver_FOV, Receiver_Jitter, ...
         Env, [55.909723,-3.319995,10], 'Heriot-Watt');
+
+    tel = GS{i}.Telescope;
+    fprintf("(%dnm) Diff-limited FOV = %.3g urad, Receiver jitter = %.3g urad\n", ...
+        QKDsystems(i).Wavelength, tel.FOV*1e6, tel.Pointing_Jitter*1e6);
     
     % Run simulation
     Results{i} = nodes.QkdPassSimulation(GS{i}, Sat{i}, protocol.decoyBB84);

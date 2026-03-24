@@ -18,7 +18,7 @@ addpath(fullfile(repo_root));
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='100kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 1;
-Receiver_FOV                = 150E-6; %4.756E-3;                           % % diffraction-limited "FOV" (acceptance angle)
+Receiver_FOV                = 37E-6; %4.756E-3;                            % diffraction-limited "FOV" (acceptance angle)
 Receiver_Jitter             = 10E-6;
 Repe_Rate                   = 1E8;
 Time_Gate_Width             = 2E-9;                                         % times in s
