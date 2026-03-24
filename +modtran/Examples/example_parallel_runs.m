@@ -7,10 +7,13 @@
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');  
 addpath(fullfile(repo_root));  
 
+% set the file name
+filename = "HOGS_moon_Jan3_1am_500mvis_100to10000_zenstep10_azistep30";
+
 % set the json file to input into modtran
-cases_json = fullfile(repo_root, "Qrackling", "+modtran", "JSON_Cases", ...
-    "HOGS_sun_Jan3_1pm_10kmvis_100to10000_zenstep-1_azistep-1", ...
-    "HOGS_sun_Jan3_1pm_10kmvis_100to10000_zenstep-1_azistep-1.json");
+cases_json = fullfile(repo_root, "+modtran", "JSON_Cases", ...
+    filename, ...
+    filename+".json");
 
 % MODTRAN dirs
 runs_dir = "E:\MODTRAN_RESULTS\runs_tmp";                                   % choose where to place the results
