@@ -31,8 +31,8 @@ geom1.zen_inject_deg = [85 88];
 
 % Source (sun/moon/none)
 geom1.source = "sun";
-% geom1.lun_phase_deg = []; % can optionally for this if source="moon"
-                            % otherwise it is calculated
+% geom1.lun_phase_deg = [];                                                 % can optionally set this if source="moon"
+                                                                            % otherwise it is calculated
 
 % give it a label for file output naming
 geom1.location_label = "HOGS";
@@ -98,8 +98,7 @@ word = "Transm";
 zenStepForName = geom1.zen_step;
 aziStepForName = geom1.azi_step;
 
-% NOTE:
-% wmin/wmax are always in nm for your framework.
+% wmin/wmax are always in nm
 jsonBase1 = modtran.jsonCaseGenerator.makeJsonBaseName( ...
     geom1.location_label, geom1.source, utcDT, aer.visib_km, aer.clouds, spec.V1, spec.V2, zenStepForName, aziStepForName);
 
