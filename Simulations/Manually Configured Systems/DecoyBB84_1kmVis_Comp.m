@@ -20,7 +20,7 @@ end
 addpath(fullfile(repo_root));                                               
 
 %% 1. Choose parameters
-plot_each_pass = false;
+plot_each_pass = true;
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 1;
