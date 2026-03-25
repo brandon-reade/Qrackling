@@ -1,6 +1,6 @@
 % Author: Brandon Reade
 % Date: 11/03/2026
-% Last update: 24/03/2026
+% Last update: 25/03/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
 
 % Current issues with MWIR:
@@ -12,7 +12,7 @@ repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');
 modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
-    'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
+    'sun_jan3rd_2026_1pm_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full 
 if ~isfolder(modtran_dir)
     error('MODTRAN folder not found: %s', modtran_dir);
@@ -20,14 +20,14 @@ end
 addpath(fullfile(repo_root));                                               
 
 %% 1. Choose parameters
-plot_each_pass = true;
+plot_each_pass = false;
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 1;
 Receiver_FOV                = 37E-6; %4.756E-3;                             % diffraction-limited "FOV" (acceptance angle)
 Receiver_Jitter             = 10E-6;
-Rep_Rate                    = 1E8;
-Time_Gate_Width             = 2E-9;                                         % times in s
+Rep_Rate                    = 1E9;
+Time_Gate_Width             = 200E-12;                                         % times in s
 Spectral_Filter_Width       = 10;                                           % spectral width in nm
 
 % decoy state parameters
@@ -39,8 +39,10 @@ state_prep_error = 0.0025;
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
     'Wavelength', {850, 1550, 2140}, ...
-    'DetectorPreset', {'PerkinElmer', 'QuantumOpus1550_RoomTempAmplifier', ...
-                        'SNSPD_NbTiN_2um'} ...
+    'DetectorPreset', { 'PerkinElmer', ...
+                        'QuantumOpus1550_RoomTempAmplifier', ...
+                        'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
+    'rxFOV', {37E-6, 37E-6, 100E-6}...
                         );
 
 % Preallocate results and objects
@@ -65,7 +67,7 @@ for i = 1:nQKDSystems
     
     % Create ground station
     GS{i} = createGroundStation(Det{i}, Receiver_Telescope_Diameter,...
-        QKDsystems(i).Wavelength, Receiver_FOV, Receiver_Jitter, ...
+        QKDsystems(i).Wavelength, QKDsystems(i).rxFOV, Receiver_Jitter, ...
         Env, [55.909723,-3.319995,10], 'Heriot-Watt');
 
     tel = GS{i}.Telescope;
@@ -131,7 +133,7 @@ opts.titlePrefix = sprintf('Atmospheric Profile (azi=%d): ', azi);
 plots.TransmittanceRadiance(cases, opts);
 
 %% Plot Environment attenuation
-%Plot(Env,"spectral radiance");
+Plot(Env,"spectral radiance");
 
 %% Functions to build QKD Systems
 % Environments
