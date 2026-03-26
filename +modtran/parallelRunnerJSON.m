@@ -336,7 +336,7 @@ classdef parallelRunnerJSON
                 return;
             end
 
-            c = onCleanup(@() modtran.parallelRunnerJSON.releaseLockDir(lockDir)); %#ok<NASGU>
+            c = onCleanup(@() modtran.parallelRunnerJSON.releaseLockDir(lockDir));
 
             input_json = fullfile(workdir, "input.json");
             modtran.parallelRunnerJSON.writeCaseJson(caseObj, input_json);
