@@ -4,16 +4,15 @@
 
 %% Directories
 % Derive the repository root
-repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');  
+repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');
 addpath(fullfile(repo_root));  
 
 % set the file name
+json_root = "E:\MODTRAN_RESULTS\HOGS_moon_Jan3_1am_500mvis_100to10000_zenstep10_azistep30";
 filename = "HOGS_moon_Jan3_1am_500mvis_100to10000_zenstep10_azistep30";
 
 % set the json file to input into modtran
-cases_json = fullfile(repo_root, "+modtran", "JSON_Cases", ...
-    filename, ...
-    filename+".json");
+cases_json = fullfile(json_root, filename+".json");                         % using E: drive to try to subvert file permissions on C:
 
 % MODTRAN dirs
 runs_dir = "E:\MODTRAN_RESULTS\runs_tmp";                                   % choose where to place the results
@@ -21,7 +20,7 @@ modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";                     % ch
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";                                   % change to wherver the MODTRAN data files are (depends on install)
 
 % Optional shared collection
-collect_dir = "E:\MODTRAN_RESULTS\collect";                                 % choose where to collect the files of interest
+collect_dir = fullfile(runs_dir, "collect_" + filename);                    % choose where to collect the files of interest
 collect_glob = "*_scan.csv";                                                % set the files of interest to be the csv scan files
 
 %% Use the parallel runner
@@ -31,9 +30,12 @@ results = modtran.parallelRunnerJSON.runCasesParallel( ...
     outputMode="shared", ...                                                % outputs are copied into a shared location
     collectDir=collect_dir, ...                                             % dir for desired output files
     collectGlob=collect_glob, ...                                           % file of interest
-    keepFailedWorkdirs=false, ...                                           % delete directories of failed runs
-    keepWorkdirs=false, ...                                                 % delete directores of all runs
+    keepFailedWorkdirs=true, ...                                            % delete directories of failed runs
+    keepWorkdirs=true, ...                                                  % delete directores of all runs
     resume=true, ...                                                        % check for 'done' flag, go to next case if it has been 'done'
     verifyCollect=true,...                                                  % check that all output files are present as expected
     rerunMissing=true, ...                                                  % rerun missing cases if they are missing
-    dedupeCollect=true);                                                    % check and remove any duplicate output files
+    dedupeCollect=true, ...                                                 % check and remove any duplicate output files
+    printTotalElapsed=true, ...                                             % prints total elapsed time
+    collectPrefixMode="index_name", ...                                     % e.g. "000021_<caseName>__file.csv"
+    requireCollectedPerCase=1);                                             % require at least one match per glob per case (another duplicate check)
