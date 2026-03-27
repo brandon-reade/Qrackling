@@ -3,9 +3,6 @@
 % Last update: 27/03/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
 
-% Current issues with MWIR:
-% - Detector dark count too high to be comparable with NIR
-
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
@@ -21,18 +18,18 @@ end
 addpath(fullfile(repo_root));                                               
 
 %% 1. Choose parameters
+% as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 plot_each_pass = true;
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 0.7;
-Receiver_FOV                = 37E-6; %4.756E-3;                             % diffraction-limited "FOV" (acceptance angle)
 Receiver_Jitter             = 10E-6;
 Rep_Rate                    = 1E9;
 Time_Gate_Width             = 200E-12;                                         % times in s
 Spectral_Filter_Width       = 10;                                           % spectral width in nm
 
 % decoy state parameters
-% (as per https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776)
+% as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
 MPNs = [0.8,0.3,0];                                                         % mean photon numbers: signal, decoy, vacuum
 SPs = [0.7,0.2,0.1];                                                        % state probabilities
 state_prep_error = 0.0025;
@@ -43,7 +40,7 @@ QKDsystems = struct( ...
     'DetectorPreset', { 'PerkinElmer', ...
                         'QuantumOpus1550_RoomTempAmplifier', ...
                         'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'rxFOV', {37E-6, 37E-6, 37E-6}...
+    'rxFOV', {37E-6, 37E-6, 37E-6}...                                       % diffraction-limited "FOV" (acceptance angle)
                         );
 
 % Preallocate results and objects
