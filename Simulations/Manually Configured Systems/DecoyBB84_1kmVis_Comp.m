@@ -5,15 +5,16 @@
 
 % Current issues with MWIR:
 % - Detector dark count too high to be comparable with NIR
-% - Geometric losses are huge when FOV is tiny 
 
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
-    'sun_jan3rd_2026_1pm_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
+    'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full 
+                                                
+
 if ~isfolder(modtran_dir)
     error('MODTRAN folder not found: %s', modtran_dir);
 end
@@ -132,8 +133,8 @@ opts.useTwoPanels = true;
 opts.titlePrefix = sprintf('Atmospheric Profile (azi=%d): ', azi);
 plots.TransmittanceRadiance(cases, opts);
 
-%% Plot Environment attenuation
-Plot(Env,"spectral radiance");
+%% Plot Environment spectral radiance
+%Plot(Env,"spectral radiance");
 
 %% Functions to build QKD Systems
 % Environments
