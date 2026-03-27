@@ -24,13 +24,13 @@ Update (March 2026):
 
 Example usage
 python .\modtran6_parallel_runner.py `
-  --cases-json "E:\MODTRAN_RESULTS\PythonGeneratedCases\...\cases.json" `
+  --cases-json "E:\MODTRAN_RESULTS\PythonGeneratedCases\HOGSWinterClear-1kVisib\moon_jan3rd_2026_1am_800to3000nm_full\HOGSWinter1am_1kmVis_800to3000_zen0step10_azi0step30.json" `
   --runs-dir "E:\MODTRAN_RESULTS\runs_tmp" `
   --max-workers 8 `
   --modtran-exe "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe" `
   --modtran-data-dir "E:\MODTRAN\MOD6DATA" `
   --output-mode shared `
-  --collect-dir "E:\MODTRAN_RESULTS\collect" `
+  --collect-dir "E:\MODTRAN_RESULTS\PythonGeneratedCases\HOGSWinterClear-1kVisib\moon_jan3rd_2026_1am_800to3000nm_full" `
   --collect-glob "*_scan.csv" `
   --dedupe-collect `
   --verify-collect `
@@ -432,7 +432,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     p.add_argument("--keep-failed-workdirs", action="store_true")
     p.add_argument("--python-exe", default=sys.executable)
 
-    # New: naming / verification / repair
+    # naming / verification / repair
     p.add_argument("--collect-prefix-mode", choices=["index", "index_name"], default="index_name")
     p.add_argument("--dedupe-collect", action="store_true", help="Remove duplicate collected files (keeps newest).")
     p.add_argument("--verify-collect", action="store_true", help="Check for missing collected outputs after the run.")
