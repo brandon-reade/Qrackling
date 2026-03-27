@@ -52,6 +52,19 @@ classdef parallelRunnerJSON
 
                 % strict collection requirement per case
                 options.requireCollectedPerCase (1,1) double = 1            % require at least N collected files per case/glob (typically 1)
+
+                % define required outputs in the per-case workdir
+                % If MODTRAN returns rc==0 but these files are not present, we treat it as a failure and (optionally) rerun.
+                options.requiredWorkdirGlob (1,:) string = strings(1,0)
+
+                % when forceRerun==true, wipe the per-case workdir first (prevents "rc==0 but file missing" from stale state)
+                options.cleanWorkdirOnRerun (1,1) logical = true
+
+                % if requiredWorkdirGlob is missing after a run, automatically rerun (within the same call)
+                options.rerunIfMissingRequiredOutputs (1,1) logical = true
+
+                % maximum attempts per case for missing required outputs (total attempts = 1 + maxRerunsMissingRequiredOutputs)
+                options.maxRerunsMissingRequiredOutputs (1,1) double = 1
             end
 
             tTotal = tic;
@@ -115,6 +128,7 @@ classdef parallelRunnerJSON
                     disp(getReport(ME, "extended", "hyperlinks", "off"));
                     rethrow(ME);
                 end
+
                 results(idx) = r;
                 nDone = nDone + 1;
 
@@ -251,34 +265,34 @@ classdef parallelRunnerJSON
             %   prefix__example_scan__001.csv
             %
             % Keeps the newest file for each base-name group.
-        
+
             removed = 0;
-        
+
             files = dir(fullfile(collectDir, "*"));
             files = files(~[files.isdir]);
-        
+
             mp = containers.Map("KeyType","char","ValueType","any");
-        
+
             for k = 1:numel(files)
                 name = string(files(k).name);
-        
+
                 % remove trailing "__NNN" before the extension if present
                 key = modtran.parallelRunnerJSON.stripTrailingNumericSuffix(name);
-        
+
                 if ~isKey(mp, char(key))
                     mp(char(key)) = files(k);
                 else
-                    mp(char(key)) = [mp(char(key)), files(k)]; 
+                    mp(char(key)) = [mp(char(key)), files(k)];
                 end
             end
-        
+
             keysList = mp.keys;
             for ki = 1:numel(keysList)
                 group = mp(keysList{ki});
                 if numel(group) <= 1
                     continue;
                 end
-        
+
                 [~, idxKeep] = max([group.datenum]);
                 for j = 1:numel(group)
                     if j == idxKeep
@@ -325,6 +339,11 @@ classdef parallelRunnerJSON
                 mkdir(workdir);
             end
 
+            % If forceRerun and clean requested, wipe workdir contents
+            if forceRerun && options.cleanWorkdirOnRerun
+                modtran.parallelRunnerJSON.cleanWorkdir(workdir);
+            end
+
             % Dedup: acquire exclusive lock (directory based; no fopen('x') on network shares)
             lockDir = fullfile(workdir, "_lockdir");
             locked = modtran.parallelRunnerJSON.tryAcquireLockDir(lockDir);
@@ -336,25 +355,33 @@ classdef parallelRunnerJSON
                 return;
             end
 
-            c = onCleanup(@() modtran.parallelRunnerJSON.releaseLockDir(lockDir)); %#ok<NASGU>
+            c = onCleanup(@() modtran.parallelRunnerJSON.releaseLockDir(lockDir)); 
 
-            input_json = fullfile(workdir, "input.json");
-            modtran.parallelRunnerJSON.writeCaseJson(caseObj, input_json);
+            % Attempt loop: sometimes MODTRAN returns rc==0 but the expected CSV isn't produced.
+            % We treat "missing required outputs" as a failure and can rerun after cleaning the workdir.
+            attempt = 0;
+            maxAttempts = 1 + max(0, options.maxRerunsMissingRequiredOutputs);
 
-            stdout_path = fullfile(workdir, "stdout.txt");
-            stderr_path = fullfile(workdir, "stderr.txt");
-            command_txt = fullfile(workdir, "command.txt");
+            while true
+                attempt = attempt + 1;
 
-            args = sprintf('"%s" "%s" "%s" -workpath "%s"', ...
-                modtran_exe, input_json, modtran_data_dir, workdir);
+                input_json = fullfile(workdir, "input.json");
+                modtran.parallelRunnerJSON.writeCaseJson(caseObj, input_json);
 
-            modtran.parallelRunnerJSON.writeText(command_txt, ...
-                "MODE: mod6con" + newline + ...
-                "ARGS:" + newline + args + newline);
+                stdout_path = fullfile(workdir, "stdout.txt");
+                stderr_path = fullfile(workdir, "stderr.txt");
+                command_txt = fullfile(workdir, "command.txt");
 
-            % Run mod6con
-            try
-                if isnan(options.timeout_s)
+                args = sprintf('"%s" "%s" "%s" -workpath "%s"', ...
+                    modtran_exe, input_json, modtran_data_dir, workdir);
+
+                modtran.parallelRunnerJSON.writeText(command_txt, ...
+                    "MODE: mod6con" + newline + ...
+                    "ARGS:" + newline + args + newline + ...
+                    "ATTEMPT:" + newline + string(attempt) + newline);
+
+                % Run mod6con
+                try
                     exeDir = fileparts(modtran_exe);
 
                     % pushd/popd so relative DLL dependencies resolve
@@ -362,49 +389,69 @@ classdef parallelRunnerJSON
                     cleanupDir = onCleanup(@() cd(oldDir)); 
                     cd(exeDir);
 
-                    [rc, out] = system(args);
-                else
-                    exeDir = fileparts(modtran_exe);
-                    oldDir = pwd;
-                    cleanupDir = onCleanup(@() cd(oldDir)); 
-                    cd(exeDir);
-
-                    [rc, out] = modtran.parallelRunnerJSON.systemWithTimeout(args, options.timeout_s);
+                    if isnan(options.timeout_s)
+                        [rc, out] = system(args);
+                    else
+                        [rc, out] = modtran.parallelRunnerJSON.systemWithTimeout(args, options.timeout_s);
+                    end
+                catch ME
+                    rc = 999;
+                    out = getReport(ME, "extended", "hyperlinks", "off");
                 end
-            catch ME
-                rc = 999;
-                out = getReport(ME, "extended", "hyperlinks", "off");
-            end
 
-            % system() merges stdout/stderr; we'll write it to stdout.txt and leave stderr.txt for future enhancement
-            modtran.parallelRunnerJSON.writeText(stdout_path, out);
-            if ~exist(stderr_path, "file")
-                modtran.parallelRunnerJSON.writeText(stderr_path, "");
-            end
+                % system() merges stdout/stderr; we'll write it to stdout.txt and leave stderr.txt for future enhancement
+                modtran.parallelRunnerJSON.writeText(stdout_path, out);
+                if ~exist(stderr_path, "file")
+                    modtran.parallelRunnerJSON.writeText(stderr_path, "");
+                end
 
-            r.stdout_path = stdout_path;
-            r.stderr_path = stderr_path;
-            r.returncode = rc;
+                r.stdout_path = stdout_path;
+                r.stderr_path = stderr_path;
+                r.returncode = rc;
+
+                % If rc==0, verify required outputs exist in workdir (if configured).
+                % If missing, optionally clean and rerun.
+                missingReq = strings(0,1);
+                if rc == 0 && ~isempty(options.requiredWorkdirGlob)
+                    [okReq, missingReq] = modtran.parallelRunnerJSON.hasRequiredOutputs(workdir, options.requiredWorkdirGlob);
+                    if ~okReq
+                        % Mark as failure (even if MODTRAN says rc==0)
+                        r.returncode = 998;
+                        r.skip_reason = "missing_required_outputs";
+                        try
+                            modtran.parallelRunnerJSON.writeText(fullfile(workdir, "missing_outputs.txt"), ...
+                                "Missing required outputs:" + newline + strjoin(missingReq, newline));
+                        catch
+                        end
+
+                        if options.rerunIfMissingRequiredOutputs && attempt < maxAttempts
+                            % Clean and retry
+                            modtran.parallelRunnerJSON.cleanWorkdir(workdir);
+                            continue;
+                        end
+                    end
+                end
+
+                % Exit loop if either: rc != 0, or required outputs are present, or we exhausted attempts.
+                break;
+            end
 
             % Collect outputs (shared mode)
             collected = strings(0,1);
-            if options.outputMode == "shared" && rc == 0
+            if options.outputMode == "shared" && r.returncode == 0
                 prefix = modtran.parallelRunnerJSON.casePrefix(case_index, case_name, options.collectPrefixMode);
-
-                % Important: do NOT double-prefix.
-                % We copy as: <prefix>__<original_filename>
                 collected = modtran.parallelRunnerJSON.collectOutputs(workdir, options.collectGlob, options.collectDir, prefix);
             end
             r.collected_files = collected;
 
-            % Write done marker on success
-            if rc == 0
+            % Write done marker on success (only if required outputs are OK, too)
+            if r.returncode == 0
                 donePayload = struct("case_index", case_index, "case_name", case_name, "workdir", workdir, "timestamp", char(datetime("now")));
                 modtran.parallelRunnerJSON.writeText(doneMarker, jsonencode(donePayload, "PrettyPrint", true));
             end
 
             % Cleanup workdirs if requested
-            if rc == 0
+            if r.returncode == 0
                 if ~options.keepWorkdirs
                     % remove unless we need it for shared collection auditing
                     if options.outputMode ~= "shared"
@@ -682,6 +729,38 @@ classdef parallelRunnerJSON
             r.collected_files = strings(0,1);
             r.skipped = false;
             r.skip_reason = "";
+        end
+
+        function [ok, missingGlobs] = hasRequiredOutputs(workdir, globs)
+            ok = true;
+            missingGlobs = strings(0,1);
+            for g = globs
+                m = dir(fullfile(workdir, g));
+                if isempty(m)
+                    ok = false;
+                    missingGlobs(end+1,1) = string(g);
+                end
+            end
+        end
+
+        function cleanWorkdir(workdir)
+            if ~exist(workdir, "dir")
+                return;
+            end
+            d = dir(workdir);
+            for k = 1:numel(d)
+                nm = d(k).name;
+                if nm == "." || nm == ".."
+                    continue;
+                end
+                p = fullfile(d(k).folder, nm);
+                if d(k).isdir
+                    % safer to remove lockdir when forcing rerun
+                    try rmdir(p, "s"); catch, end
+                else
+                    try delete(p); catch, end
+                end
+            end
         end
     end
 end
