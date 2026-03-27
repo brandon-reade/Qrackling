@@ -11,7 +11,7 @@ repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');
 modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_WinterClear-10kVis',...
-    'sun_jan3rd_2026_1pm_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
+    'moon_jan3rd_2026_800to3000_1am_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_800to3000_1am_full 
                                                 
 
@@ -24,7 +24,7 @@ addpath(fullfile(repo_root));
 plot_each_pass = true;
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
-Receiver_Telescope_Diameter = 1;
+Receiver_Telescope_Diameter = 0.7;
 Receiver_FOV                = 37E-6; %4.756E-3;                             % diffraction-limited "FOV" (acceptance angle)
 Receiver_Jitter             = 10E-6;
 Rep_Rate                    = 1E9;
