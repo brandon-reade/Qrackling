@@ -330,7 +330,6 @@ function Env = buildEnvironment(env_dir)
             warning('Failed to generate environment from CSVs in %s: %s', env_dir, ME.message);
         end
     end
-
 end
 
 % Satellite
