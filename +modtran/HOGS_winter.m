@@ -22,11 +22,11 @@ utcDT = datetime(2026,1,3,1,0,0,"TimeZone","UTC");                          % (y
 geom1 = modtran.parameters.geometry(lat1, lon1, alt_m1, utcDT);
 
 % LOS sweep
-geom1.zen_min = 0;  geom1.zen_max = 90;  geom1.zen_step = 10;
-geom1.azi_min = 0;   geom1.azi_max = 330;  geom1.azi_step = 30;
+geom1.zen_min = 0;  geom1.zen_max = 90;  geom1.zen_step = 10;               % zen min and max
+geom1.azi_min = 0;   geom1.azi_max = 330;  geom1.azi_step = 30;             % azi min and max
 
 % zenith injections (extra samples)
-geom1.zen_inject_deg = [82 85 88];
+geom1.zen_inject_deg = [82 85 88];                                          % extra zeniths
 
 % Source (sun/moon/none)
 geom1.source = "moon";
@@ -38,7 +38,7 @@ geom1.location_label = "HOGS";
 
 %% 2) Aerosol / clouds parameters
 aer = modtran.parameters.aerosol();
-aer.visib_km = 0.5;
+aer.visib_km = 0.5;                                                         % visibility is given in MODTRAN as %2 contrast (not %5)
 aer.clouds = "none";
 aer.aerosol_model = "urban";
 aer.strato_model = "background";
@@ -55,7 +55,8 @@ surf = modtran.parameters.surface();
 surf.CSALB = "LAMB_URBAN";
 
 %% 5. RT options parameters
-rt = modtran.parameters.rt_options();
+rt = modtran.parameters.rt_options();                                       % depends on source
+rt.NSTR = 16;                                                               % set number of distort streams to 16 (8 gave negative scattering values)
 
 %% 6) Atmosphere parameters
 atm = modtran.parameters.atmosphere();
