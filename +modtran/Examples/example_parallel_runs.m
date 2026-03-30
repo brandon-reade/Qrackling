@@ -20,18 +20,18 @@ modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";                     % ch
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";                                   % change to wherver the MODTRAN data files are (depends on install)
 
 % Optional shared collection
-collect_dir = fullfile(runs_dir, "collect_" + filename);                    % choose where to collect the files of interest
+collect_dir = fullfile(json_root, "collect_" + filename);                    % choose where to collect the files of interest
 collect_glob = "*_scan.csv";                                                % set the files of interest to be the csv scan files
 
 %% Use the parallel runner
 results = modtran.parallelRunnerJSON.runCasesParallel( ...
     cases_json, runs_dir, modtran_exe, modtran_data_dir, ...                % configuring files and dirs
-    maxWorkers=10, ...                                                      % maximum workers   
+    maxWorkers=8, ...                                                       % maximum workers   
     outputMode="shared", ...                                                % outputs are copied into a shared location
     collectDir=collect_dir, ...                                             % dir for desired output files
     collectGlob=collect_glob, ...                                           % file of interest
-    keepFailedWorkdirs=true, ...                                            % delete directories of failed runs
-    keepWorkdirs=true, ...                                                  % delete directores of all runs
+    keepFailedWorkdirs=false, ...                                           % delete directories of failed runs
+    keepWorkdirs=false, ...                                                 % delete directores of all runs
     resume=true, ...                                                        % check for 'done' flag, go to next case if it has been 'done'
     verifyCollect=true,...                                                  % check that all output files are present as expected
     rerunMissing=true, ...                                                  % rerun missing cases if they are missing
