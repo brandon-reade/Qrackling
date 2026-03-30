@@ -1,2 +1,2 @@
 case_index,param_set,lat,lon,alt_m,hour,source,clouds,visib_km,aerosol_model,strato_model,name,los_zen_deg,los_az_deg,rel_az_deg,rel_zen_deg,body_topo_az_deg,body_topo_zen_deg,csv
-1,1,55.91450119018555,-3.3166000843048096,100.0,13.0,sun,none,10.0,urban,background,Transm_loc1_10kmvis_none_urban_background_zen30_azi40,30.0,40.0,329.2962063499733,105.24109348418453,189.9007287300232,79.21484975793432,Transm_loc1_10kmvis_none_urban_background_zen30_azi40.csv
+1,1,55.91450119018555,-3.3166000843048096,100.0,1.0,moon,none,0.65,urban,background,Transm_loc1_0.65kmvis_none_urban_background_zen0_azi0,0.0,0.0,118.82525074965051,30.9318445957585,208.8252507496505,30.9318445957585,Transm_loc1_0.65kmvis_none_urban_background_zen0_azi0.csv
