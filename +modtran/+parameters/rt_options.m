@@ -1,18 +1,19 @@
 classdef rt_options
     properties
-        MODTRN (1,1) string = "RT_CORRK_FAST"
-        LYMOLC (1,1) logical = false
-        T_BEST (1,1) logical = false
-        IMULT (1,1) string = "RT_DISORT_AT_OBS"
-        DISALB (1,1) logical = true
-        NSTR (1,1) double = 8
-        SOLCON (1,1) double = 0.0
+        MODTRN (1,1) string = "RT_CORRK_FAST"                               % radiative transfer algorithm
+        LYMOLC (1,1) logical = false                                        % when false do not include "Y" species with built-in model profiles
+        T_BEST (1,1) logical = false                                        % when false do not use benchmark numeric Voigt line transmittance integration.
+        IMULT (1,1) string = "RT_DISORT_AT_OBS"                             % multiple scattering algorithm
+        DISALB (1,1) logical = true                                         % if TRUE MODTRAN will generate an atmospheric correction data (<ROOTNAME>. acd) output file.
+        NSTR (1,1) double = 8                                               % number of distort streams
+        SOLCON (1,1) double = 0.0                                           % scaling of TOA (Top-Of-Atmosphere) solar irradiance (for none set to zero or omit)
     end
 
     methods
         function s = toStructForSource(obj, source)
             src = lower(strtrim(string(source)));
-
+            
+            % choosing RT mode option from source
             if startsWith(src,"sun")
                 iemsct = "RT_SOLAR_AND_THERMAL";
             elseif startsWith(src,"moon")
