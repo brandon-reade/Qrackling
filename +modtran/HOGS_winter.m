@@ -34,6 +34,7 @@ geom1.losOverrideMode = "zen0";                                             % ch
 geom1.forceLblAtZen0IfCorrelatedK = true;                                   % force line-by-line for zen=0 case
 %geom1.forceZenNonZero = true;                                               % force non-zero
 %geom1.zenEps_deg      = 1e-6;                                              % optionally choose epsilon (deg), 1e-9 did not work
+% geom1.capNstrAt8 = true;
 
 % Source (sun/moon/none)
 geom1.source = "moon";
