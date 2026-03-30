@@ -26,7 +26,14 @@ geom1.zen_min = 0;  geom1.zen_max = 90;  geom1.zen_step = 10;               % ze
 geom1.azi_min = 0;   geom1.azi_max = 330;  geom1.azi_step = 30;             % azi min and max
 
 % zenith injections (extra samples)
-geom1.zen_inject_deg = [82 85 88];                                          % extra zeniths
+%geom1.zen_inject_deg = [82 85 88];                                          % extra zeniths
+
+% make zen=0 use line-by-line to avoid errors
+geom1.enableLosOverrides = true;                                            % allow for overrides
+geom1.losOverrideMode = "zen0";                                             % choose zenith
+geom1.forceLblAtZen0IfCorrelatedK = true;                                   % force line-by-line for zen=0 case
+%geom1.forceZenNonZero = true;                                               % force non-zero
+%geom1.zenEps_deg      = 1e-6;                                              % optionally choose epsilon (deg), 1e-9 did not work
 
 % Source (sun/moon/none)
 geom1.source = "moon";
@@ -38,7 +45,7 @@ geom1.location_label = "HOGS";
 
 %% 2) Aerosol / clouds parameters
 aer = modtran.parameters.aerosol();
-aer.visib_km = 0.5;                                                         % visibility is given in MODTRAN as %2 contrast (not %5)
+aer.visib_km = 0.650;                                                         % visibility is given in MODTRAN as %2 contrast (not %5), 650m in MODTRAN is 500m common visibility
 aer.clouds = "none";
 aer.aerosol_model = "urban";
 aer.strato_model = "background";
@@ -84,4 +91,4 @@ out_csv_1   = jsonBase1 + "_summary.csv";
     word, json_name_1, out_csv_1, ...
     saveDir=saveDir, makeJsonFolder=true);
 
-disp(summarySep{1});
+disp(summaryTable1);
