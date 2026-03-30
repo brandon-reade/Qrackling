@@ -98,12 +98,12 @@ classdef jsonCaseGenerator
 
             for gi = 1:numel(geom)
                 c = geom(gi).buildGeometryCases();
-                allCases = [allCases, c]; %#ok<AGROW>
-                allGeomIdx = [allGeomIdx; repmat(gi, numel(c), 1)]; %#ok<AGROW>
+                allCases = [allCases, c];
+                allGeomIdx = [allGeomIdx; repmat(gi, numel(c), 1)];
             end
 
             % multi-location indexing
-            [locIdxPerCase, locKeyList] = modtran.jsonCaseGenerator.assignLocationIndices(allCases); %#ok<ASGLU>
+            [locIdxPerCase, locKeyList] = modtran.jsonCaseGenerator.assignLocationIndices(allCases);
 
             % apply saveDir behavior
             [json_name, out_csv] = modtran.jsonCaseGenerator.applySaveDir( ...
@@ -193,6 +193,62 @@ classdef jsonCaseGenerator
 
     %% Private functions
     methods (Static, Access = private)
+        % Overriding a defined LOS
+        function tf = losMatchesOverride(geomObj, meta)
+            if ~isprop(geomObj,"enableLosOverrides") || ~geomObj.enableLosOverrides
+                tf = false;
+                return;
+            end
+            tol = geomObj.losMatchTol_deg;
+            mode = string(geomObj.losOverrideMode);
+    
+            if mode == "zen0"
+                tf = abs(meta.los_zen_deg) <= tol;
+            else % "exact"
+                tf = abs(meta.los_zen_deg - geomObj.losZenTarget_deg) <= tol && ...
+                     abs(meta.los_az_deg  - geomObj.losAziTarget_deg) <= tol;
+            end
+        end
+    
+        % applying an LOS override
+        function [geomStructOut, rtStructOut] = applyLosOverrides(geomObj, meta, geomStructIn, rtStructIn)
+            geomStructOut = geomStructIn;
+            rtStructOut   = rtStructIn;
+    
+            if ~modtran.jsonCaseGenerator.losMatchesOverride(geomObj, meta)
+                return;
+            end
+    
+            % Forcing arbitrarily small non-zero zenith
+            if isprop(geomObj,"forceZenNonZero") && geomObj.forceZenNonZero
+                if isfield(geomStructOut,"OBSZEN") && abs(geomStructOut.OBSZEN) <= geomObj.losMatchTol_deg
+                    geomStructOut.OBSZEN = geomObj.zenEps_deg;
+                end
+            end
+    
+            % force LBL at zen=0 If correlated-k is used
+            if isprop(geomObj,"forceLblAtZen0IfCorrelatedK") && geomObj.forceLblAtZen0IfCorrelatedK
+                % Only trigger for zen~0
+                if isfield(geomStructOut,"OBSZEN") && abs(geomStructOut.OBSZEN) <= geomObj.losMatchTol_deg
+                    if isfield(rtStructOut,"MODTRN")
+                        modtrn = string(rtStructOut.MODTRN);
+    
+                        % treat any "CORRK" as correlated-k.
+                        % Adjust this test to match your enums.
+                        if contains(modtrn, "CORRK", "IgnoreCase", true)
+                            rtStructOut.MODTRN = geomObj.lblModtrnValue;
+                        end
+                    end
+                end
+            end
+    
+            % Cap NSTR (RT streams) to 8
+            if isprop(geomObj,"capNstrAt8") && geomObj.capNstrAt8
+                if isfield(rtStructOut,"NSTR") && rtStructOut.NSTR > 8
+                    rtStructOut.NSTR = 8;
+                end
+            end
+        end
 
         function s = formatNumericToken(x)
             s = string(sprintf("%g", x));
@@ -279,6 +335,10 @@ classdef jsonCaseGenerator
                 mi.DESCRIPTION = sprintf("Case %d - LOS zen %.3f az %.3f", ...
                     k, meta.los_zen_deg, meta.los_az_deg);
                 mi.CASE = k;
+
+                % apply per-LOS overrides
+                [geomStruct, rtStruct] = modtran.jsonCaseGenerator.applyLosOverrides( ...
+                    geom, meta, geomStruct, rtStruct);
 
                 mi.RTOPTIONS = rtStruct;
                 mi.ATMOSPHERE = atmStruct;
@@ -383,6 +443,10 @@ classdef jsonCaseGenerator
                 mi.DESCRIPTION = sprintf("Case %d - geom %d, LOS zen %.3f az %.3f", ...
                     k, gi, meta.los_zen_deg, meta.los_az_deg);
                 mi.CASE = k;
+
+                % apply per-LOS overrides
+                [geomStruct, rtStruct] = modtran.jsonCaseGenerator.applyLosOverrides( ...
+                    geomObj, meta, geomStruct, rtStruct);
 
                 mi.RTOPTIONS = rtStruct;
                 mi.ATMOSPHERE = atmStruct;
