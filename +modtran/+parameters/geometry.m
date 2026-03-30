@@ -4,11 +4,12 @@ classdef geometry
         lat_deg (1,1) double
         lon_deg (1,1) double
         alt_m   (1,1) double
+        location_label (1,1) string = ""                                    % good for multiple locations usage
 
         % Time (UTC)
         utcDT (1,1) datetime
 
-        % LOS sweep definition (degrees)
+        % LOS sweep definition (deg)
         zen_min (1,1) double = 0
         zen_max (1,1) double = 0
         zen_step (1,1) double = -1                                          % if -1 use only single value: zen_min
@@ -19,16 +20,30 @@ classdef geometry
         % injected zenith/azimuth values (deg)
         zen_inject_deg double = []                                          % optional extra zenith samples to include in sweep
         azi_inject_deg double = []                                          % optional extra azimuth samples to include in sweep
+        
+        % other zen/azi controls
+        enableLosOverrides (1,1) logical = false                            % allows a specific defined LOS case to be modified
+        losOverrideMode (1,1) string {mustBeMember(...                      % select which LOS to target (or all the zen=0 cases)
+                        losOverrideMode,["zen0","exact"])} = "zen0"
+        losZenTarget_deg (1,1) double = 0                                   % target zenith
+        losAziTarget_deg (1,1) double = 0                                   % target azi
+        losMatchTol_deg  (1,1) double = 1e-9
+        forceZenNonZero (1,1) logical = false                               % used to make a zenith arbitrarily small
+        zenEps_deg      (1,1) double = 1e-9
+
+        % to force line-by-line for zen=0 cases when using correlated-k RT
+        forceLblAtZen0IfCorrelatedK (1,1) logical = false
+        lblModtrnValue (1,1) string = "RT_LINE_BY_LINE"
+
+        % Cap number of RT streams at 8, useful for some zen=0 cases
+        capNstrAt8 (1,1) logical = false
 
         % Source selection
         % "sun" | "moon" | "none"                                           "none" is for transmittance only simuations
         source (1,1) string = "moon"
 
         % lunar phase angle (deg), if empty it autocomputes
-        lun_phase_deg double = []  % (0=Full, 90=Half, 180=New)
-        
-        % multi-location labels
-        location_label (1,1) string = ""
+        lun_phase_deg double = []                                           % (0=Full, 90=Half, 180=New)
 
     end
 
