@@ -301,6 +301,30 @@ def write_filtered_cases_json(
     payload = {"MODTRAN": filtered}
     out_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
+def _force_case_lbl(case: Dict[str, Any], lbl_token: str) -> Dict[str, Any]:
+    """
+    Return a shallow-copied case dict with RTOPTIONS.MODTRN forced to LBL.
+    Leaves original case untouched.
+    Expects case format: {"MODTRANINPUT": {...}}.
+    """
+    if not isinstance(case, dict):
+        return case
+
+    mi = case.get("MODTRANINPUT")
+    if not isinstance(mi, dict):
+        return case
+
+    # Shallow copies (good enough for this small patch)
+    case2 = dict(case)
+    mi2 = dict(mi)
+    rt = mi.get("RTOPTIONS", {})
+    rt2 = dict(rt) if isinstance(rt, dict) else {}
+
+    rt2["MODTRN"] = str(lbl_token).strip()
+    mi2["RTOPTIONS"] = rt2
+    case2["MODTRANINPUT"] = mi2
+    return case2
+
 
 # -----------------------------------------------------------------------------------
 # ---------------------------------- RUN 1 CASE -------------------------------------
@@ -432,14 +456,19 @@ def main(argv: Optional[List[str]] = None) -> int:
     p.add_argument("--keep-failed-workdirs", action="store_true")
     p.add_argument("--python-exe", default=sys.executable)
 
-    # naming / verification / repair
+    # naming / verification
     p.add_argument("--collect-prefix-mode", choices=["index", "index_name"], default="index_name")
     p.add_argument("--dedupe-collect", action="store_true", help="Remove duplicate collected files (keeps newest).")
     p.add_argument("--verify-collect", action="store_true", help="Check for missing collected outputs after the run.")
     p.add_argument("--require-collected-per-glob", type=int, default=1, help="Required matches per glob per case.")
+
+    # repair
+    p.add_argument("--skip-initial-run", action="store_true",help="Skip running all cases; only do verify/repair using existing collected outputs.")
     p.add_argument("--repair-missing", action="store_true", help="If missing outputs detected, generate filtered JSON and run again.")
     p.add_argument("--repair-out-json", default=None, help="Path to write missing-only JSON (default: <runs_dir>/missing_only.json).")
     p.add_argument("--repair-max-passes", type=int, default=1, help="How many repair passes to attempt.")
+    p.add_argument("--repair-force-lbl", action="store_true", help="On repair passes, force RTOPTIONS.MODTRN to line-by-line for the cases being rerun.")
+    p.add_argument("--repair-lbl-token", default="RT_LINE_BY_LINE", help="Enum token to use for RTOPTIONS.MODTRN when --repair-force-lbl is set.")
 
     args = p.parse_args(argv)
 
@@ -521,15 +550,19 @@ def main(argv: Optional[List[str]] = None) -> int:
     # --------------------------
     # 1) Initial run
     # --------------------------
-    results, failures = run_batch(cases)
+    results: List[RunResult] = []
+    failures: List[RunResult] = []
 
-    summary_path = runs_dir / "summary.json"
-    summary_path.write_text(json.dumps([r.__dict__ for r in results], indent=2), encoding="utf-8")
+    if not args.skip_initial_run:
+        results, failures = run_batch(cases)
 
-    print()
-    print(f"Summary written: {summary_path}")
-    print(f"Failures: {len(failures)}/{len(results)}")
+        summary_path = runs_dir / "summary.json"
+        summary_path.write_text(json.dumps([r.__dict__ for r in results], indent=2), encoding="utf-8")
 
+        print()
+        print(f"Summary written: {summary_path}")
+        print(f"Failures: {len(failures)}/{len(results)}")
+        
     # --------------------------
     # 2) Optional dedupe
     # --------------------------
@@ -571,14 +604,23 @@ def main(argv: Optional[List[str]] = None) -> int:
                     print()
                     print(f"Repair pass {pass_i}/{passes}: remaining missing cases = {len(remaining)}")
 
-                    # Write filtered JSON (missing-only)
-                    write_filtered_cases_json(cases, remaining, out_json)
+                    # Build the batch cases (missing-only)
+                    batch_cases = [cases[i - 1] for i in remaining]
+
+                    # Optionally force LBL on repair passes
+                    if args.repair_force_lbl:
+                        batch_cases = [_force_case_lbl(c, args.repair_lbl_token) for c in batch_cases]
+
+                    # Write filtered JSON (missing-only) from the (possibly patched) batch cases
+                    payload = {"MODTRAN": batch_cases}
+                    out_json.parent.mkdir(parents=True, exist_ok=True)
+                    out_json.write_text(json.dumps(payload, indent=2), encoding="utf-8")
                     print(f"Wrote missing-only JSON: {out_json}")
 
                     # Run only missing cases, but keep ORIGINAL indices for consistent naming/prefixing
-                    batch_cases = [cases[i - 1] for i in remaining]
                     results_missing, failures_missing = run_batch(batch_cases, base_index_map=remaining)
-
+                    results.extend(results_missing)
+                    failures.extend(failures_missing)
                     # Optional dedupe after each pass
                     if args.dedupe_collect:
                         removed = dedupe_collection_dir(collect_dir)
