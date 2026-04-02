@@ -53,7 +53,7 @@ aer.strato_model = "background";
 
 %% 3. Spectral parameters
 spec = modtran.parameters.spectral();
-spec.V1 = 100;
+spec.V1 = 300;
 spec.V2 = 10000;
 spec.DV = 1;
 spec.FWHM = 2.5;
@@ -64,7 +64,7 @@ surf.CSALB = "LAMB_URBAN";
 
 %% 5. RT options parameters
 rt = modtran.parameters.rt_options();                                       % depends on source
-rt.NSTR = 16;                                                               % set number of distort streams to 16 (8 gave negative scattering values)
+rt.NSTR = 8;                                                               % set number of distort streams to 16 (8 gave negative scattering values)
 
 %% 6) Atmosphere parameters
 atm = modtran.parameters.atmosphere();
