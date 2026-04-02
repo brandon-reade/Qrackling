@@ -11,7 +11,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -49,7 +49,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -75,7 +75,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -113,7 +113,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -139,7 +139,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -177,7 +177,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -203,7 +203,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -241,7 +241,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -267,7 +267,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -305,7 +305,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -331,7 +331,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -369,7 +369,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -395,7 +395,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -433,7 +433,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -459,7 +459,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -497,7 +497,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -523,7 +523,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -561,7 +561,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -587,7 +587,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -625,7 +625,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -651,7 +651,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -689,7 +689,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -715,7 +715,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -753,7 +753,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -779,7 +779,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -817,7 +817,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -843,7 +843,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -881,7 +881,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -907,7 +907,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -945,7 +945,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -971,7 +971,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1009,7 +1009,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1035,7 +1035,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1073,7 +1073,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1099,7 +1099,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1137,7 +1137,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1163,7 +1163,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1201,7 +1201,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1227,7 +1227,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1265,7 +1265,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1291,7 +1291,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1329,7 +1329,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1355,7 +1355,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1393,7 +1393,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1419,7 +1419,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1457,7 +1457,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1483,7 +1483,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1521,7 +1521,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1547,7 +1547,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1585,7 +1585,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1611,7 +1611,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1649,7 +1649,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1675,7 +1675,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1713,7 +1713,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1739,7 +1739,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1777,7 +1777,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1803,7 +1803,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1841,7 +1841,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1867,7 +1867,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1905,7 +1905,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1931,7 +1931,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -1969,7 +1969,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -1995,7 +1995,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2033,7 +2033,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2059,7 +2059,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2097,7 +2097,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2123,7 +2123,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2161,7 +2161,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2187,7 +2187,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2225,7 +2225,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2251,7 +2251,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2289,7 +2289,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2315,7 +2315,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2353,7 +2353,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2379,7 +2379,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2417,7 +2417,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2443,7 +2443,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2481,7 +2481,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2507,7 +2507,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2545,7 +2545,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2571,7 +2571,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2609,7 +2609,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2635,7 +2635,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2673,7 +2673,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2699,7 +2699,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2737,7 +2737,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2763,7 +2763,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2801,7 +2801,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2827,7 +2827,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2865,7 +2865,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2891,7 +2891,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2929,7 +2929,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -2955,7 +2955,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -2993,7 +2993,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3019,7 +3019,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3057,7 +3057,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3083,7 +3083,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3121,7 +3121,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3147,7 +3147,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3185,7 +3185,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3211,7 +3211,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3249,7 +3249,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3275,7 +3275,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3313,7 +3313,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3339,7 +3339,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3377,7 +3377,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3403,7 +3403,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3441,7 +3441,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3467,7 +3467,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3505,7 +3505,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3531,7 +3531,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3569,7 +3569,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3595,7 +3595,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3633,7 +3633,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3659,7 +3659,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3697,7 +3697,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3723,7 +3723,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3761,7 +3761,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3787,7 +3787,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3825,7 +3825,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3851,7 +3851,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3889,7 +3889,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3915,7 +3915,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -3953,7 +3953,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -3979,7 +3979,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4017,7 +4017,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4043,7 +4043,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4081,7 +4081,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4107,7 +4107,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4145,7 +4145,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4171,7 +4171,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4209,7 +4209,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4235,7 +4235,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4273,7 +4273,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4299,7 +4299,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4337,7 +4337,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4363,7 +4363,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4401,7 +4401,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4427,7 +4427,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4465,7 +4465,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4491,7 +4491,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4529,7 +4529,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4555,7 +4555,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4593,7 +4593,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4619,7 +4619,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4657,7 +4657,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4683,7 +4683,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4721,7 +4721,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4747,7 +4747,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4785,7 +4785,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4811,7 +4811,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4849,7 +4849,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4875,7 +4875,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4913,7 +4913,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -4939,7 +4939,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -4977,7 +4977,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5003,7 +5003,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5041,7 +5041,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5067,7 +5067,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5105,7 +5105,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5131,7 +5131,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5169,7 +5169,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5195,7 +5195,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5233,7 +5233,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5259,7 +5259,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5297,7 +5297,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5323,7 +5323,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5361,7 +5361,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5387,7 +5387,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5425,7 +5425,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5451,7 +5451,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5489,7 +5489,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5515,7 +5515,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5553,7 +5553,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5579,7 +5579,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5617,7 +5617,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5643,7 +5643,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5681,7 +5681,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5707,7 +5707,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5745,7 +5745,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5771,7 +5771,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5809,7 +5809,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5835,7 +5835,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5873,7 +5873,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5899,7 +5899,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -5937,7 +5937,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -5963,7 +5963,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6001,7 +6001,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6027,7 +6027,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6065,7 +6065,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6091,7 +6091,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6129,7 +6129,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6155,7 +6155,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6193,7 +6193,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6219,7 +6219,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6257,7 +6257,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6283,7 +6283,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6321,7 +6321,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6347,7 +6347,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6385,7 +6385,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6411,7 +6411,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6449,7 +6449,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6475,7 +6475,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6513,7 +6513,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6539,7 +6539,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6577,7 +6577,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6603,7 +6603,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6641,7 +6641,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6667,7 +6667,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6705,7 +6705,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6731,7 +6731,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6769,7 +6769,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6795,7 +6795,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6833,7 +6833,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6859,7 +6859,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6897,7 +6897,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6923,7 +6923,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -6961,7 +6961,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -6987,7 +6987,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7025,7 +7025,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7051,7 +7051,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7089,7 +7089,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7115,7 +7115,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7153,7 +7153,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7179,7 +7179,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7217,7 +7217,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7243,7 +7243,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7281,7 +7281,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7307,7 +7307,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7345,7 +7345,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7371,7 +7371,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7409,7 +7409,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7435,7 +7435,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7473,7 +7473,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7499,7 +7499,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7537,7 +7537,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7563,7 +7563,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7601,7 +7601,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
@@ -7627,7 +7627,7 @@
           "T_BEST": false,
           "IMULT": "RT_DISORT_AT_OBS",
           "DISALB": true,
-          "NSTR": 16,
+          "NSTR": 8,
           "SOLCON": 0,
           "IEMSCT": "RT_LUNAR_AND_THERMAL"
         },
@@ -7665,7 +7665,7 @@
           }
         },
         "SPECTRAL": {
-          "V1": 100,
+          "V1": 300,
           "V2": 10000,
           "DV": 1,
           "FWHM": 2.5,
