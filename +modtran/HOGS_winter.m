@@ -18,7 +18,7 @@ lat1 = 55.91450119018555;
 lon1 = -3.3166000843048096;
 alt_m1 = 100;
 
-utcDT = datetime(2026,1,3,1,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second)
+utcDT = datetime(2026,1,3,8,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second) For Jan 3rd 2026 Dawn: ~07:59, GMTSunrise: 08:45, GMTSunset: 16:08, Dusk: ~16:55 GMT
 geom1 = modtran.parameters.geometry(lat1, lon1, alt_m1, utcDT);
 
 % LOS sweep
@@ -37,7 +37,7 @@ geom1.forceLblAtZen0IfCorrelatedK = true;                                   % fo
 % geom1.capNstrAt8 = true;
 
 % Source (sun/moon/none)
-geom1.source = "moon";
+geom1.source = "sun";
 % geom1.lun_phase_deg = [];                                                 % can optionally set this if source="moon"
                                                                             % otherwise it is calculated
 
@@ -46,9 +46,9 @@ geom1.location_label = "HOGS";
 
 %% 2) Aerosol / clouds parameters
 aer = modtran.parameters.aerosol();
-aer.visib_km = 0.650;                                                         % visibility is given in MODTRAN as %2 contrast (not %5), 650m in MODTRAN is 500m common visibility
+aer.visib_km = 1;                                                       % visibility is given in MODTRAN as %2 contrast (not %5), 650m in MODTRAN is 500m 'common' visibility
 aer.clouds = "none";
-aer.aerosol_model = "urban";
+aer.aerosol_model = "urban";                                                % urban, fog_radiative, fog_advective
 aer.strato_model = "background";
 
 %% 3. Spectral parameters
@@ -64,7 +64,7 @@ surf.CSALB = "LAMB_URBAN";
 
 %% 5. RT options parameters
 rt = modtran.parameters.rt_options();                                       % depends on source
-rt.NSTR = 8;                                                               % set number of distort streams to 16 (8 gave negative scattering values)
+rt.NSTR = 8;                                                                % set number of distort streams to 16 (8 gave negative scattering values)
 
 %% 6) Atmosphere parameters
 atm = modtran.parameters.atmosphere();
