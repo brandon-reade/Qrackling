@@ -2,7 +2,7 @@
   "MODTRAN": [
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi0",
         "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
         "CASE": 1,
         "RTOPTIONS": {
@@ -13,7 +13,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -25,7 +25,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -37,9 +37,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -60,13 +59,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi30",
         "DESCRIPTION": "Case 2 - geom 1, LOS zen 0.000 az 30.000",
         "CASE": 2,
         "RTOPTIONS": {
@@ -77,7 +76,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -89,7 +88,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -101,9 +100,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -124,13 +122,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi60",
         "DESCRIPTION": "Case 3 - geom 1, LOS zen 0.000 az 60.000",
         "CASE": 3,
         "RTOPTIONS": {
@@ -141,7 +139,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -153,7 +151,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -165,9 +163,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -188,13 +185,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi90",
         "DESCRIPTION": "Case 4 - geom 1, LOS zen 0.000 az 90.000",
         "CASE": 4,
         "RTOPTIONS": {
@@ -205,7 +202,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -217,7 +214,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -229,9 +226,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -252,13 +248,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi120",
         "DESCRIPTION": "Case 5 - geom 1, LOS zen 0.000 az 120.000",
         "CASE": 5,
         "RTOPTIONS": {
@@ -269,7 +265,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -281,7 +277,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -293,9 +289,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -316,13 +311,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi150",
         "DESCRIPTION": "Case 6 - geom 1, LOS zen 0.000 az 150.000",
         "CASE": 6,
         "RTOPTIONS": {
@@ -333,7 +328,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -345,7 +340,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -357,9 +352,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -380,13 +374,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi180",
         "DESCRIPTION": "Case 7 - geom 1, LOS zen 0.000 az 180.000",
         "CASE": 7,
         "RTOPTIONS": {
@@ -397,7 +391,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -409,7 +403,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -421,9 +415,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -444,13 +437,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi210",
         "DESCRIPTION": "Case 8 - geom 1, LOS zen 0.000 az 210.000",
         "CASE": 8,
         "RTOPTIONS": {
@@ -461,7 +454,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -473,7 +466,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -485,9 +478,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -508,13 +500,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi240",
         "DESCRIPTION": "Case 9 - geom 1, LOS zen 0.000 az 240.000",
         "CASE": 9,
         "RTOPTIONS": {
@@ -525,7 +517,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -537,7 +529,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -549,9 +541,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -572,13 +563,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi270",
         "DESCRIPTION": "Case 10 - geom 1, LOS zen 0.000 az 270.000",
         "CASE": 10,
         "RTOPTIONS": {
@@ -589,7 +580,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -601,7 +592,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -613,9 +604,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -636,13 +626,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi300",
         "DESCRIPTION": "Case 11 - geom 1, LOS zen 0.000 az 300.000",
         "CASE": 11,
         "RTOPTIONS": {
@@ -653,7 +643,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -665,7 +655,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -677,9 +667,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -700,13 +689,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen0_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi330",
         "DESCRIPTION": "Case 12 - geom 1, LOS zen 0.000 az 330.000",
         "CASE": 12,
         "RTOPTIONS": {
@@ -717,7 +706,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -729,7 +718,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -741,9 +730,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 118.84750456842028,
-          "PARM2": 30.934301235773425,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 33.3298516966433,
+          "PARM2": 95.628207063373836
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -764,13 +752,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen0_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi0",
         "DESCRIPTION": "Case 13 - geom 1, LOS zen 10.000 az 0.000",
         "CASE": 13,
         "RTOPTIONS": {
@@ -781,7 +769,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -793,7 +781,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -805,9 +793,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 22.718665143576622,
-          "PARM2": 39.955942441104995,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 302.09392578249509,
+          "PARM2": 101.04239925082537
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -828,13 +815,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi30",
         "DESCRIPTION": "Case 14 - geom 1, LOS zen 10.000 az 30.000",
         "CASE": 14,
         "RTOPTIONS": {
@@ -845,7 +832,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -857,7 +844,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -869,9 +856,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.09576390296724,
-          "PARM2": 40.932722067650879,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 272.29958344868453,
+          "PARM2": 96.120537611386879
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -892,13 +878,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi60",
         "DESCRIPTION": "Case 15 - geom 1, LOS zen 10.000 az 60.000",
         "CASE": 15,
         "RTOPTIONS": {
@@ -909,7 +895,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -921,7 +907,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -933,9 +919,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 335.45025550271453,
-          "PARM2": 39.795489587915334,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 242.80526110532662,
+          "PARM2": 91.089605142770964
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -956,13 +941,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi90",
         "DESCRIPTION": "Case 16 - geom 1, LOS zen 10.000 az 90.000",
         "CASE": 16,
         "RTOPTIONS": {
@@ -973,7 +958,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -985,7 +970,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -997,9 +982,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 311.12966341022843,
-          "PARM2": 36.711314097858164,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 213.19123942288758,
+          "PARM2": 87.259964891443772
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1020,13 +1004,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi120",
         "DESCRIPTION": "Case 17 - geom 1, LOS zen 10.000 az 120.000",
         "CASE": 17,
         "RTOPTIONS": {
@@ -1037,7 +1021,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1049,7 +1033,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1061,9 +1045,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 285.10946139082307,
-          "PARM2": 32.164682543938078,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 183.32338778059179,
+          "PARM2": 85.644972198722186
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1084,13 +1067,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi150",
         "DESCRIPTION": "Case 18 - geom 1, LOS zen 10.000 az 150.000",
         "CASE": 18,
         "RTOPTIONS": {
@@ -1101,7 +1084,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1113,7 +1096,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1125,9 +1108,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 255.60145463478636,
-          "PARM2": 27.012904910816207,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 153.42052222205237,
+          "PARM2": 86.6840470683599
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1148,13 +1130,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi180",
         "DESCRIPTION": "Case 19 - geom 1, LOS zen 10.000 az 180.000",
         "CASE": 19,
         "RTOPTIONS": {
@@ -1165,7 +1147,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1177,7 +1159,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1189,9 +1171,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 220.10565211411171,
-          "PARM2": 22.644180952498814,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 123.74743755576158,
+          "PARM2": 90.09341746285277
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1212,13 +1193,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi210",
         "DESCRIPTION": "Case 20 - geom 1, LOS zen 10.000 az 210.000",
         "CASE": 20,
         "RTOPTIONS": {
@@ -1229,7 +1210,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1241,7 +1222,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1253,9 +1234,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 178.34196761531413,
-          "PARM2": 20.937196795545955,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 94.257250470844212,
+          "PARM2": 94.964892193200981
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1276,13 +1256,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi240",
         "DESCRIPTION": "Case 21 - geom 1, LOS zen 10.000 az 240.000",
         "CASE": 21,
         "RTOPTIONS": {
@@ -1293,7 +1273,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1305,7 +1285,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1317,9 +1297,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 136.91153829789556,
-          "PARM2": 22.909895365662972,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 64.568265434873254,
+          "PARM2": 100.0291822779939
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1340,13 +1319,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi270",
         "DESCRIPTION": "Case 22 - geom 1, LOS zen 10.000 az 270.000",
         "CASE": 22,
         "RTOPTIONS": {
@@ -1357,7 +1336,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1369,7 +1348,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1381,9 +1360,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 101.95112271172067,
-          "PARM2": 27.402602301620956,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 34.292071405540305,
+          "PARM2": 103.94380959782302
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1404,13 +1382,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi300",
         "DESCRIPTION": "Case 23 - geom 1, LOS zen 10.000 az 300.000",
         "CASE": 23,
         "RTOPTIONS": {
@@ -1421,7 +1399,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1433,7 +1411,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1445,9 +1423,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 72.796339787531636,
-          "PARM2": 32.549107240159444,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 3.4408532283731335,
+          "PARM2": 105.61084952187244
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1468,13 +1445,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen10_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi330",
         "DESCRIPTION": "Case 24 - geom 1, LOS zen 10.000 az 330.000",
         "CASE": 24,
         "RTOPTIONS": {
@@ -1485,7 +1462,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1497,7 +1474,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1509,9 +1486,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 46.958156639296739,
-          "PARM2": 37.008344743512545,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 332.51842250231545,
+          "PARM2": 104.53715597462624
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1532,13 +1508,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen10_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen10_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi0",
         "DESCRIPTION": "Case 25 - geom 1, LOS zen 20.000 az 0.000",
         "CASE": 25,
         "RTOPTIONS": {
@@ -1549,7 +1525,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1561,7 +1537,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1573,9 +1549,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 19.094122393349146,
-          "PARM2": 49.305261516173388,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 300.01172794987906,
+          "PARM2": 106.21116073836126
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1596,13 +1571,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi30",
         "DESCRIPTION": "Case 26 - geom 1, LOS zen 20.000 az 30.000",
         "CASE": 26,
         "RTOPTIONS": {
@@ -1613,7 +1588,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1625,7 +1600,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1637,9 +1612,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.23695610651322,
-          "PARM2": 50.931676524592568,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 271.19794848232618,
+          "PARM2": 96.4264979098237
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1660,13 +1634,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi60",
         "DESCRIPTION": "Case 27 - geom 1, LOS zen 20.000 az 60.000",
         "CASE": 27,
         "RTOPTIONS": {
@@ -1677,7 +1651,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1689,7 +1663,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1701,9 +1675,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 339.38051207481374,
-          "PARM2": 49.037489117409855,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 242.99109265818083,
+          "PARM2": 86.524683132729479
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1724,13 +1697,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi90",
         "DESCRIPTION": "Case 28 - geom 1, LOS zen 20.000 az 90.000",
         "CASE": 28,
         "RTOPTIONS": {
@@ -1741,7 +1714,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1753,7 +1726,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1765,9 +1738,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 319.45930027273278,
-          "PARM2": 43.846359433846636,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 213.86245979418351,
+          "PARM2": 78.917096632663146
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1788,13 +1760,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi120",
         "DESCRIPTION": "Case 29 - geom 1, LOS zen 20.000 az 120.000",
         "CASE": 29,
         "RTOPTIONS": {
@@ -1805,7 +1777,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1817,7 +1789,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1829,9 +1801,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 298.89472514462818,
-          "PARM2": 35.94659535908999,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 183.42044021265929,
+          "PARM2": 75.662193307546815
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1852,13 +1823,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi150",
         "DESCRIPTION": "Case 30 - geom 1, LOS zen 20.000 az 150.000",
         "CASE": 30,
         "RTOPTIONS": {
@@ -1869,7 +1840,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1881,7 +1852,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1893,9 +1864,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 275.6442629312387,
-          "PARM2": 26.235906135932009,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 152.80120880946833,
+          "PARM2": 77.76045593894824
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1916,13 +1886,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi180",
         "DESCRIPTION": "Case 31 - geom 1, LOS zen 20.000 az 180.000",
         "CASE": 31,
         "RTOPTIONS": {
@@ -1933,7 +1903,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -1945,7 +1915,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -1957,9 +1927,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 242.38597229087696,
-          "PARM2": 16.254545961708892,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 123.35708174929451,
+          "PARM2": 84.55665157039823
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -1980,13 +1949,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi210",
         "DESCRIPTION": "Case 32 - geom 1, LOS zen 20.000 az 210.000",
         "CASE": 32,
         "RTOPTIONS": {
@@ -1997,7 +1966,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2009,7 +1978,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2021,9 +1990,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 176.87835060566559,
-          "PARM2": 10.945039464620212,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 95.053858388920361,
+          "PARM2": 94.1511658377502
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2044,13 +2012,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi240",
         "DESCRIPTION": "Case 33 - geom 1, LOS zen 20.000 az 240.000",
         "CASE": 33,
         "RTOPTIONS": {
@@ -2061,7 +2029,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2073,7 +2041,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2085,9 +2053,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 114.29140191147397,
-          "PARM2": 16.963394225749976,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 66.525442506738514,
+          "PARM2": 104.17800380861294
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2108,13 +2075,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi270",
         "DESCRIPTION": "Case 34 - geom 1, LOS zen 20.000 az 270.000",
         "CASE": 34,
         "RTOPTIONS": {
@@ -2125,7 +2092,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2137,7 +2104,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2149,9 +2116,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 82.371434877718443,
-          "PARM2": 27.018931614185238,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 36.174979323970192,
+          "PARM2": 112.11988523015712
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2172,13 +2138,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi300",
         "DESCRIPTION": "Case 35 - geom 1, LOS zen 20.000 az 300.000",
         "CASE": 35,
         "RTOPTIONS": {
@@ -2189,7 +2155,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2201,7 +2167,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2213,9 +2179,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 59.471374393783158,
-          "PARM2": 36.631273540164464,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 3.6747129742752782,
+          "PARM2": 115.59169484971935
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2236,13 +2201,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen20_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi330",
         "DESCRIPTION": "Case 36 - geom 1, LOS zen 20.000 az 330.000",
         "CASE": 36,
         "RTOPTIONS": {
@@ -2253,7 +2218,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2265,7 +2230,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2277,9 +2242,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 38.999972536063183,
-          "PARM2": 44.350660561318847,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 330.887267628272,
+          "PARM2": 113.34807427195412
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2300,13 +2264,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen20_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen20_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi0",
         "DESCRIPTION": "Case 37 - geom 1, LOS zen 30.000 az 0.000",
         "CASE": 37,
         "RTOPTIONS": {
@@ -2317,7 +2281,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2329,7 +2293,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2341,9 +2305,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 16.851622938117075,
-          "PARM2": 58.82139897060874,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 297.0463369629353,
+          "PARM2": 110.99817883404596
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2364,13 +2327,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi30",
         "DESCRIPTION": "Case 38 - geom 1, LOS zen 30.000 az 30.000",
         "CASE": 38,
         "RTOPTIONS": {
@@ -2381,7 +2344,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2393,7 +2356,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2405,9 +2368,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.32220082330167,
-          "PARM2": 60.930892801220836,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 270.05902276365714,
+          "PARM2": 96.536471836932861
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2428,13 +2390,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi60",
         "DESCRIPTION": "Case 39 - geom 1, LOS zen 30.000 az 60.000",
         "CASE": 39,
         "RTOPTIONS": {
@@ -2445,7 +2407,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2457,7 +2419,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2469,9 +2431,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 341.82173064434892,
-          "PARM2": 58.474551184181593,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 243.88863955150055,
+          "PARM2": 82.044076958114886
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2492,13 +2453,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi90",
         "DESCRIPTION": "Case 40 - geom 1, LOS zen 30.000 az 90.000",
         "CASE": 40,
         "RTOPTIONS": {
@@ -2509,7 +2470,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2521,7 +2482,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2533,9 +2494,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 325.02624728649147,
-          "PARM2": 51.769327016486379,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 215.41071948806777,
+          "PARM2": 70.681865116886755
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2556,13 +2516,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi120",
         "DESCRIPTION": "Case 41 - geom 1, LOS zen 30.000 az 120.000",
         "CASE": 41,
         "RTOPTIONS": {
@@ -2573,7 +2533,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2585,7 +2545,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2597,9 +2557,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 309.25059983569258,
-          "PARM2": 41.581766398140729,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 183.63686942899557,
+          "PARM2": 65.681038341766978
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2620,13 +2579,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi150",
         "DESCRIPTION": "Case 42 - geom 1, LOS zen 30.000 az 150.000",
         "CASE": 42,
         "RTOPTIONS": {
@@ -2637,7 +2596,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2649,7 +2608,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2661,9 +2620,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 294.29385136432643,
-          "PARM2": 28.859675287724023,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 151.39717377522155,
+          "PARM2": 68.917294733215456
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2684,13 +2642,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi180",
         "DESCRIPTION": "Case 43 - geom 1, LOS zen 30.000 az 180.000",
         "CASE": 43,
         "RTOPTIONS": {
@@ -2701,7 +2659,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2713,7 +2671,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2725,9 +2683,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 278.92239196706714,
-          "PARM2": 14.540199367806801,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 122.14904945146316,
+          "PARM2": 79.1364257233402
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2748,13 +2705,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi210",
         "DESCRIPTION": "Case 44 - geom 1, LOS zen 30.000 az 210.000",
         "CASE": 44,
         "RTOPTIONS": {
@@ -2765,7 +2722,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2777,7 +2734,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2789,9 +2746,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 147.47789461061495,
-          "PARM2": 1.1019623219455252,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 95.696111305119217,
+          "PARM2": 93.212050509298436
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2812,13 +2768,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi240",
         "DESCRIPTION": "Case 45 - geom 1, LOS zen 30.000 az 240.000",
         "CASE": 45,
         "RTOPTIONS": {
@@ -2829,7 +2785,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2841,7 +2797,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2853,9 +2809,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 79.7907514454863,
-          "PARM2": 15.676635104015251,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 69.200239709684425,
+          "PARM2": 107.95550994865935
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2876,13 +2831,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi270",
         "DESCRIPTION": "Case 46 - geom 1, LOS zen 30.000 az 270.000",
         "CASE": 46,
         "RTOPTIONS": {
@@ -2893,7 +2848,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2905,7 +2860,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2917,9 +2872,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 64.570433842952539,
-          "PARM2": 29.905346254163206,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 39.174758419453326,
+          "PARM2": 120.04501527595873
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -2940,13 +2894,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi300",
         "DESCRIPTION": "Case 47 - geom 1, LOS zen 30.000 az 300.000",
         "CASE": 47,
         "RTOPTIONS": {
@@ -2957,7 +2911,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -2969,7 +2923,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -2981,9 +2935,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 49.572443780098027,
-          "PARM2": 42.466696389251972,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 4.0750736928218059,
+          "PARM2": 125.56901079535164
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3004,13 +2957,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen30_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi330",
         "DESCRIPTION": "Case 48 - geom 1, LOS zen 30.000 az 330.000",
         "CASE": 48,
         "RTOPTIONS": {
@@ -3021,7 +2974,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3033,7 +2986,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3045,9 +2998,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 33.718408709855929,
-          "PARM2": 52.419549366245327,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 328.22424377194938,
+          "PARM2": 121.97723883226247
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3068,13 +3020,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen30_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen30_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi0",
         "DESCRIPTION": "Case 49 - geom 1, LOS zen 40.000 az 0.000",
         "CASE": 49,
         "RTOPTIONS": {
@@ -3085,7 +3037,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3097,7 +3049,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3109,9 +3061,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 15.468016336358714,
-          "PARM2": 68.428873436249688,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 293.16866148753672,
+          "PARM2": 115.25264326565407
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3132,13 +3083,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi30",
         "DESCRIPTION": "Case 50 - geom 1, LOS zen 40.000 az 30.000",
         "CASE": 50,
         "RTOPTIONS": {
@@ -3149,7 +3100,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3161,7 +3112,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3173,9 +3124,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.37318353217574,
-          "PARM2": 70.930248995850533,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 268.91825766596122,
+          "PARM2": 96.4469922407827
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3196,13 +3146,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi60",
         "DESCRIPTION": "Case 51 - geom 1, LOS zen 40.000 az 60.000",
         "CASE": 51,
         "RTOPTIONS": {
@@ -3213,7 +3163,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3225,7 +3175,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3237,9 +3187,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 343.33494303029482,
-          "PARM2": 68.018820161772084,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 245.50277832471758,
+          "PARM2": 77.760509159658753
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3260,13 +3209,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi90",
         "DESCRIPTION": "Case 52 - geom 1, LOS zen 40.000 az 90.000",
         "CASE": 52,
         "RTOPTIONS": {
@@ -3277,7 +3226,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3289,7 +3238,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3301,9 +3250,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 328.72733401961659,
-          "PARM2": 60.15500629423871,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 217.99536339343271,
+          "PARM2": 62.655120229153646
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3324,13 +3272,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi120",
         "DESCRIPTION": "Case 53 - geom 1, LOS zen 40.000 az 120.000",
         "CASE": 53,
         "RTOPTIONS": {
@@ -3341,7 +3289,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3353,7 +3301,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3365,9 +3313,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 316.5972370052599,
-          "PARM2": 48.415316791127537,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 184.01225683467479,
+          "PARM2": 55.703142910107871
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3388,13 +3335,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi150",
         "DESCRIPTION": "Case 54 - geom 1, LOS zen 40.000 az 150.000",
         "CASE": 54,
         "RTOPTIONS": {
@@ -3405,7 +3352,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3417,7 +3364,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3429,9 +3376,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 308.31685497837378,
-          "PARM2": 34.104479287469843,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 149.02940552995503,
+          "PARM2": 60.231205911139746
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3452,13 +3398,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi180",
         "DESCRIPTION": "Case 55 - geom 1, LOS zen 40.000 az 180.000",
         "CASE": 55,
         "RTOPTIONS": {
@@ -3469,7 +3415,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3481,7 +3427,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3493,9 +3439,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 309.7713360835283,
-          "PARM2": 18.825722704436966,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 120.09589821434763,
+          "PARM2": 73.957271061688829
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3516,13 +3461,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi210",
         "DESCRIPTION": "Case 56 - geom 1, LOS zen 40.000 az 210.000",
         "CASE": 56,
         "RTOPTIONS": {
@@ -3533,7 +3478,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3545,7 +3490,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3557,9 +3502,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 3.7524362399806837,
-          "PARM2": 9.0899730766393887,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 96.165344318953188,
+          "PARM2": 92.176179292907634
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3580,13 +3524,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi240",
         "DESCRIPTION": "Case 57 - geom 1, LOS zen 40.000 az 240.000",
         "CASE": 57,
         "RTOPTIONS": {
@@ -3597,7 +3541,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3609,7 +3553,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3621,9 +3565,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 51.12928709000137,
-          "PARM2": 19.972205702431712,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 72.573299953835132,
+          "PARM2": 111.23873207932193
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3644,13 +3587,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi270",
         "DESCRIPTION": "Case 58 - geom 1, LOS zen 40.000 az 270.000",
         "CASE": 58,
         "RTOPTIONS": {
@@ -3661,7 +3604,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3673,7 +3616,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3685,9 +3628,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 51.251141681966395,
-          "PARM2": 35.263535444935044,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 43.614234878975267,
+          "PARM2": 127.56071480858972
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3708,13 +3650,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi300",
         "DESCRIPTION": "Case 59 - geom 1, LOS zen 40.000 az 300.000",
         "CASE": 59,
         "RTOPTIONS": {
@@ -3725,7 +3667,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3737,7 +3679,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3749,9 +3691,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 42.581676656978075,
-          "PARM2": 49.425656226718694,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 4.7339237588033951,
+          "PARM2": 135.5397910714689
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3772,13 +3713,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen40_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi330",
         "DESCRIPTION": "Case 60 - geom 1, LOS zen 40.000 az 330.000",
         "CASE": 60,
         "RTOPTIONS": {
@@ -3789,7 +3730,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3801,7 +3742,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3813,9 +3754,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 30.226277800661709,
-          "PARM2": 60.912552524997182,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 324.14950476045658,
+          "PARM2": 130.29758085291868
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3836,13 +3776,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen40_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen40_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi0",
         "DESCRIPTION": "Case 61 - geom 1, LOS zen 50.000 az 0.000",
         "CASE": 61,
         "RTOPTIONS": {
@@ -3853,7 +3793,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3865,7 +3805,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3877,9 +3817,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 14.683597930021824,
-          "PARM2": 78.086580227233171,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 288.38468222561244,
+          "PARM2": 118.81089591645387
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3900,13 +3839,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi30",
         "DESCRIPTION": "Case 62 - geom 1, LOS zen 50.000 az 30.000",
         "CASE": 62,
         "RTOPTIONS": {
@@ -3917,7 +3856,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3929,7 +3868,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -3941,9 +3880,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.40008163200213,
-          "PARM2": 80.929679164669352,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 267.81117297116236,
+          "PARM2": 96.160880586513343
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -3964,13 +3902,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi60",
         "DESCRIPTION": "Case 63 - geom 1, LOS zen 50.000 az 60.000",
         "CASE": 63,
         "RTOPTIONS": {
@@ -3981,7 +3919,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -3993,7 +3931,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4005,9 +3943,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 344.20132537079655,
-          "PARM2": 77.622379225963925,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 247.83650835059916,
+          "PARM2": 73.790869787868473
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4028,13 +3965,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi90",
         "DESCRIPTION": "Case 64 - geom 1, LOS zen 50.000 az 90.000",
         "CASE": 64,
         "RTOPTIONS": {
@@ -4045,7 +3982,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4057,7 +3994,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4069,9 +4006,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 331.12533002997367,
-          "PARM2": 68.816227879250945,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 221.89192835769268,
+          "PARM2": 54.975906124736738
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4092,13 +4028,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi120",
         "DESCRIPTION": "Case 65 - geom 1, LOS zen 50.000 az 120.000",
         "CASE": 65,
         "RTOPTIONS": {
@@ -4109,7 +4045,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4121,7 +4057,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4133,9 +4069,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 321.68541375935297,
-          "PARM2": 55.994240512786874,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 184.63016663136483,
+          "PARM2": 45.73128210469676
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4156,13 +4091,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi150",
         "DESCRIPTION": "Case 66 - geom 1, LOS zen 50.000 az 150.000",
         "CASE": 66,
         "RTOPTIONS": {
@@ -4173,7 +4108,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4185,7 +4120,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4197,9 +4132,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 317.85720348041377,
-          "PARM2": 40.968539771112596,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 145.36870934943843,
+          "PARM2": 51.815089783109329
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4220,13 +4154,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi180",
         "DESCRIPTION": "Case 67 - geom 1, LOS zen 50.000 az 180.000",
         "CASE": 67,
         "RTOPTIONS": {
@@ -4237,7 +4171,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4249,7 +4183,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4261,9 +4195,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 325.9963428071876,
-          "PARM2": 26.326917474730784,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 117.16078974572545,
+          "PARM2": 69.155047171872582
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4284,13 +4217,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi210",
         "DESCRIPTION": "Case 68 - geom 1, LOS zen 50.000 az 210.000",
         "CASE": 68,
         "RTOPTIONS": {
@@ -4301,7 +4234,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4313,7 +4246,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4325,9 +4258,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 1.8125922589111532,
-          "PARM2": 19.079666819799936,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 96.448131758595451,
+          "PARM2": 91.074900765028175
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4348,13 +4280,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi240",
         "DESCRIPTION": "Case 69 - geom 1, LOS zen 50.000 az 240.000",
         "CASE": 69,
         "RTOPTIONS": {
@@ -4365,7 +4297,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4377,7 +4309,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4389,9 +4321,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 35.392579471226043,
-          "PARM2": 27.332402370690414,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 76.591594362798816,
+          "PARM2": 113.90517404340856
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4412,13 +4343,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi270",
         "DESCRIPTION": "Case 70 - geom 1, LOS zen 50.000 az 270.000",
         "CASE": 70,
         "RTOPTIONS": {
@@ -4429,7 +4360,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4441,7 +4372,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4453,9 +4384,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 42.137892804311967,
-          "PARM2": 42.153368265167451,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 49.968169857608721,
+          "PARM2": 134.42707395283614
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4476,13 +4406,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi300",
         "DESCRIPTION": "Case 71 - geom 1, LOS zen 50.000 az 300.000",
         "CASE": 71,
         "RTOPTIONS": {
@@ -4493,7 +4423,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4505,7 +4435,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4517,9 +4447,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 37.752108524508046,
-          "PARM2": 57.082197395415868,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 5.8571466002059784,
+          "PARM2": 145.4978009563186
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4540,13 +4469,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen50_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi330",
         "DESCRIPTION": "Case 72 - geom 1, LOS zen 50.000 az 330.000",
         "CASE": 72,
         "RTOPTIONS": {
@@ -4557,7 +4486,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4569,7 +4498,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4581,9 +4510,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 27.981688143470539,
-          "PARM2": 69.656852565452837,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 318.02308390114496,
+          "PARM2": 138.09741578198143
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4604,13 +4532,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen50_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen50_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi0",
         "DESCRIPTION": "Case 73 - geom 1, LOS zen 60.000 az 0.000",
         "CASE": 73,
         "RTOPTIONS": {
@@ -4621,7 +4549,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4633,7 +4561,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4645,9 +4573,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 14.37158247446729,
-          "PARM2": 87.768429874850753,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 282.77119662410468,
+          "PARM2": 121.50595997059588
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4668,13 +4595,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi30",
         "DESCRIPTION": "Case 74 - geom 1, LOS zen 60.000 az 30.000",
         "CASE": 74,
         "RTOPTIONS": {
@@ -4685,7 +4612,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4697,7 +4624,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4709,9 +4636,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.40750561303514,
-          "PARM2": 90.929140535012323,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 266.77204429784894,
+          "PARM2": 95.687133195662966
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4732,13 +4658,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi60",
         "DESCRIPTION": "Case 75 - geom 1, LOS zen 60.000 az 60.000",
         "CASE": 75,
         "RTOPTIONS": {
@@ -4749,7 +4675,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4761,7 +4687,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4773,9 +4699,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 344.55964131018038,
-          "PARM2": 87.254905367247048,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 250.88092907451363,
+          "PARM2": 70.256607523969635
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4796,13 +4721,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi90",
         "DESCRIPTION": "Case 76 - geom 1, LOS zen 60.000 az 90.000",
         "CASE": 76,
         "RTOPTIONS": {
@@ -4813,7 +4738,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4825,7 +4750,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4837,9 +4762,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 332.55147912323469,
-          "PARM2": 77.638090843899562,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 227.52155142124403,
+          "PARM2": 47.851229926742924
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4860,13 +4784,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi120",
         "DESCRIPTION": "Case 77 - geom 1, LOS zen 60.000 az 120.000",
         "CASE": 77,
         "RTOPTIONS": {
@@ -4877,7 +4801,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4889,7 +4813,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4901,9 +4825,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 325.13422395861289,
-          "PARM2": 64.034308885186178,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 185.67507680398049,
+          "PARM2": 35.77107646011784
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4924,13 +4847,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi150",
         "DESCRIPTION": "Case 78 - geom 1, LOS zen 60.000 az 150.000",
         "CASE": 78,
         "RTOPTIONS": {
@@ -4941,7 +4864,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -4953,7 +4876,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -4965,9 +4888,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 324.19572289498655,
-          "PARM2": 48.762598268204322,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 139.85319219407384,
+          "PARM2": 43.853153666029876
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -4988,13 +4910,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi180",
         "DESCRIPTION": "Case 79 - geom 1, LOS zen 60.000 az 180.000",
         "CASE": 79,
         "RTOPTIONS": {
@@ -5005,7 +4927,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5017,7 +4939,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5029,9 +4951,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 334.40203941729851,
-          "PARM2": 35.033263633923937,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 113.31398733068924,
+          "PARM2": 64.88006897828825
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5052,13 +4973,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi210",
         "DESCRIPTION": "Case 80 - geom 1, LOS zen 60.000 az 210.000",
         "CASE": 80,
         "RTOPTIONS": {
@@ -5069,7 +4990,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5081,7 +5002,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5093,9 +5014,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 1.2190989521559257,
-          "PARM2": 29.076318419956891,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 96.536475275144753,
+          "PARM2": 89.94136090837678
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5116,13 +5036,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi240",
         "DESCRIPTION": "Case 81 - geom 1, LOS zen 60.000 az 240.000",
         "CASE": 81,
         "RTOPTIONS": {
@@ -5133,7 +5053,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5145,7 +5065,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5157,9 +5077,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 26.957391308617151,
-          "PARM2": 35.917285812851212,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 81.153398959666575,
+          "PARM2": 115.84136786486246
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5180,13 +5099,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi270",
         "DESCRIPTION": "Case 82 - geom 1, LOS zen 60.000 az 270.000",
         "CASE": 82,
         "RTOPTIONS": {
@@ -5197,7 +5116,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5209,7 +5128,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5221,9 +5140,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 36.039892226415077,
-          "PARM2": 49.933870482657696,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 58.826566967854937,
+          "PARM2": 140.27589851093816
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5244,13 +5162,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi300",
         "DESCRIPTION": "Case 83 - geom 1, LOS zen 60.000 az 300.000",
         "CASE": 83,
         "RTOPTIONS": {
@@ -5261,7 +5179,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5273,7 +5191,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5285,9 +5203,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 34.492627081325182,
-          "PARM2": 65.1701826568809,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 7.9900669092656189,
+          "PARM2": 155.42695554961273
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5308,13 +5225,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen60_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi330",
         "DESCRIPTION": "Case 84 - geom 1, LOS zen 60.000 az 330.000",
         "CASE": 84,
         "RTOPTIONS": {
@@ -5325,7 +5242,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5337,7 +5254,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5349,9 +5266,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 26.670807646770509,
-          "PARM2": 78.546251931200842,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 308.84418141462794,
+          "PARM2": 145.00385722757071
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5372,13 +5288,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen60_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen60_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi0",
         "DESCRIPTION": "Case 85 - geom 1, LOS zen 70.000 az 0.000",
         "CASE": 85,
         "RTOPTIONS": {
@@ -5389,7 +5305,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5401,7 +5317,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5413,9 +5329,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 14.485521175746845,
-          "PARM2": 97.454550230882262,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 276.50848928758319,
+          "PARM2": 123.18715703689351
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5436,13 +5351,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi30",
         "DESCRIPTION": "Case 86 - geom 1, LOS zen 70.000 az 30.000",
         "CASE": 86,
         "RTOPTIONS": {
@@ -5453,7 +5368,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5465,7 +5380,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5477,9 +5392,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.39664072637214,
-          "PARM2": 100.92859881600452,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 265.83268978560943,
+          "PARM2": 95.040565422280721
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5500,13 +5414,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi60",
         "DESCRIPTION": "Case 87 - geom 1, LOS zen 70.000 az 60.000",
         "CASE": 87,
         "RTOPTIONS": {
@@ -5517,7 +5431,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5529,7 +5443,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5541,9 +5455,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 344.46267653085204,
-          "PARM2": 96.89347613163973,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 254.60108706667472,
+          "PARM2": 67.281239227488086
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5564,13 +5477,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi90",
         "DESCRIPTION": "Case 88 - geom 1, LOS zen 70.000 az 90.000",
         "CASE": 88,
         "RTOPTIONS": {
@@ -5581,7 +5494,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5593,7 +5506,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5605,9 +5518,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 333.18666670267862,
-          "PARM2": 86.542590337719218,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 235.44778853667327,
+          "PARM2": 41.599379569883119
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5628,13 +5540,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi120",
         "DESCRIPTION": "Case 89 - geom 1, LOS zen 70.000 az 120.000",
         "CASE": 89,
         "RTOPTIONS": {
@@ -5645,7 +5557,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5657,7 +5569,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5669,9 +5581,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 327.36272702856229,
-          "PARM2": 72.3569398222271,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 187.62203000012133,
+          "PARM2": 25.836562167867509
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5692,13 +5603,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi150",
         "DESCRIPTION": "Case 90 - geom 1, LOS zen 70.000 az 150.000",
         "CASE": 90,
         "RTOPTIONS": {
@@ -5709,7 +5620,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5721,7 +5632,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5733,9 +5644,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 328.39954874938724,
-          "PARM2": 57.09399782756698,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 131.58036550409221,
+          "PARM2": 36.66664502007643
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5756,13 +5666,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi180",
         "DESCRIPTION": "Case 91 - geom 1, LOS zen 70.000 az 180.000",
         "CASE": 91,
         "RTOPTIONS": {
@@ -5773,7 +5683,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5785,7 +5695,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5797,9 +5707,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 339.17399333222824,
-          "PARM2": 44.235357601367966,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 108.55974075591253,
+          "PARM2": 61.295664363456289
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5820,13 +5729,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi210",
         "DESCRIPTION": "Case 92 - geom 1, LOS zen 70.000 az 210.000",
         "CASE": 92,
         "RTOPTIONS": {
@@ -5837,7 +5746,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5849,7 +5758,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5861,9 +5770,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 0.93987452593020482,
-          "PARM2": 39.074582158030118,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 96.427891081741151,
+          "PARM2": 88.809580199792222
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5884,13 +5792,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi240",
         "DESCRIPTION": "Case 93 - geom 1, LOS zen 70.000 az 240.000",
         "CASE": 93,
         "RTOPTIONS": {
@@ -5901,7 +5809,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5913,7 +5821,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5925,9 +5833,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 22.0799100138404,
-          "PARM2": 45.027739451207616,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 86.100492935742793,
+          "PARM2": 116.95521255132266
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -5948,13 +5855,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi270",
         "DESCRIPTION": "Case 94 - geom 1, LOS zen 70.000 az 270.000",
         "CASE": 94,
         "RTOPTIONS": {
@@ -5965,7 +5872,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -5977,7 +5884,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -5989,9 +5896,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 31.977624200855356,
-          "PARM2": 58.235171059410071,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 70.6310336711056,
+          "PARM2": 144.57659122267577
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6012,13 +5918,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi300",
         "DESCRIPTION": "Case 95 - geom 1, LOS zen 70.000 az 300.000",
         "CASE": 95,
         "RTOPTIONS": {
@@ -6029,7 +5935,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6041,7 +5947,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6053,9 +5959,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 32.40936351065627,
-          "PARM2": 73.521568300176952,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 13.138821087588637,
+          "PARM2": 165.26816985838522
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6076,13 +5981,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen70_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi330",
         "DESCRIPTION": "Case 96 - geom 1, LOS zen 70.000 az 330.000",
         "CASE": 96,
         "RTOPTIONS": {
@@ -6093,7 +5998,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6105,7 +6010,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6117,9 +6022,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 26.125652131490636,
-          "PARM2": 87.50809982006902,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 295.389059632127,
+          "PARM2": 150.36687250863335
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6140,13 +6044,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen70_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen70_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi0",
         "DESCRIPTION": "Case 97 - geom 1, LOS zen 80.000 az 0.000",
         "CASE": 97,
         "RTOPTIONS": {
@@ -6157,7 +6061,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6169,7 +6073,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6181,9 +6085,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 15.04211680098385,
-          "PARM2": 107.12610095060121,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 269.88765117437487,
+          "PARM2": 123.74738667497432
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6204,13 +6107,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi30",
         "DESCRIPTION": "Case 98 - geom 1, LOS zen 80.000 az 30.000",
         "CASE": 98,
         "RTOPTIONS": {
@@ -6221,7 +6124,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6233,7 +6136,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6245,9 +6148,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.36573977200163,
-          "PARM2": 110.92801891073204,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 265.02143971518262,
+          "PARM2": 94.241247611964269
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6268,13 +6170,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi60",
         "DESCRIPTION": "Case 99 - geom 1, LOS zen 80.000 az 60.000",
         "CASE": 99,
         "RTOPTIONS": {
@@ -6285,7 +6187,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6297,7 +6199,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6309,9 +6211,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 343.89640898840963,
-          "PARM2": 106.51661330901169,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 258.92007076966559,
+          "PARM2": 64.983877225984543
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6332,13 +6233,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi90",
         "DESCRIPTION": "Case 100 - geom 1, LOS zen 80.000 az 90.000",
         "CASE": 100,
         "RTOPTIONS": {
@@ -6349,7 +6250,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6361,7 +6262,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6373,9 +6274,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 333.10716691636446,
-          "PARM2": 95.468887741588858,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 246.21767577609177,
+          "PARM2": 36.694699292602316
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6396,13 +6296,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi120",
         "DESCRIPTION": "Case 101 - geom 1, LOS zen 80.000 az 120.000",
         "CASE": 101,
         "RTOPTIONS": {
@@ -6413,7 +6313,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6425,7 +6325,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6437,9 +6337,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 328.62854197410286,
-          "PARM2": 80.843577845306811,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 192.12313101547545,
+          "PARM2": 15.976344918953101
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6460,13 +6359,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi150",
         "DESCRIPTION": "Case 102 - geom 1, LOS zen 80.000 az 150.000",
         "CASE": 102,
         "RTOPTIONS": {
@@ -6477,7 +6376,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6489,7 +6388,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6501,9 +6400,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 331.14936813715991,
-          "PARM2": 65.742539478255765,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 119.33288645852082,
+          "PARM2": 30.822705896551643
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6524,13 +6422,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi180",
         "DESCRIPTION": "Case 103 - geom 1, LOS zen 80.000 az 180.000",
         "CASE": 103,
         "RTOPTIONS": {
@@ -6541,7 +6439,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6553,7 +6451,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6565,9 +6463,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 342.07049188630856,
-          "PARM2": 53.674508122431504,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 102.97186530136112,
+          "PARM2": 58.568959995905615
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6588,13 +6485,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi210",
         "DESCRIPTION": "Case 104 - geom 1, LOS zen 80.000 az 210.000",
         "CASE": 104,
         "RTOPTIONS": {
@@ -6605,7 +6502,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6617,7 +6514,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6629,9 +6526,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 0.784096730057181,
-          "PARM2": 49.073465424292792,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 96.125433046762311,
+          "PARM2": 87.713531642601509
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6652,13 +6548,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi240",
         "DESCRIPTION": "Case 105 - geom 1, LOS zen 80.000 az 240.000",
         "CASE": 105,
         "RTOPTIONS": {
@@ -6669,7 +6565,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6681,7 +6577,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6693,9 +6589,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 19.09135480496484,
-          "PARM2": 54.395323279556116,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 91.2249820120788,
+          "PARM2": 117.18941575033764
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6716,13 +6611,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi270",
         "DESCRIPTION": "Case 106 - geom 1, LOS zen 80.000 az 270.000",
         "CASE": 106,
         "RTOPTIONS": {
@@ -6733,7 +6628,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6745,7 +6640,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6757,9 +6652,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 29.321462785723796,
-          "PARM2": 66.846164442428432,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 85.003661969628283,
+          "PARM2": 146.7087578350781
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6780,13 +6674,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi300",
         "DESCRIPTION": "Case 107 - geom 1, LOS zen 80.000 az 300.000",
         "CASE": 107,
         "RTOPTIONS": {
@@ -6797,7 +6691,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6809,7 +6703,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6821,9 +6715,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 31.263306375938505,
-          "PARM2": 82.023574591401314,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 37.27904248920791,
+          "PARM2": 174.52369741145426
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6844,13 +6737,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen80_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi330",
         "DESCRIPTION": "Case 108 - geom 1, LOS zen 80.000 az 330.000",
         "CASE": 108,
         "RTOPTIONS": {
@@ -6861,7 +6754,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6873,7 +6766,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6885,9 +6778,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 26.279967142353243,
-          "PARM2": 96.484912879794493,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 277.37819387162779,
+          "PARM2": 153.22942465453571
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6908,13 +6800,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen80_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen80_azi330.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi0",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi0",
         "DESCRIPTION": "Case 109 - geom 1, LOS zen 90.000 az 0.000",
         "CASE": 109,
         "RTOPTIONS": {
@@ -6925,7 +6817,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -6937,7 +6829,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -6949,9 +6841,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 16.127268239304829,
-          "PARM2": 116.76063748518999,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 263.27316559817052,
+          "PARM2": 123.14839869122308
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -6972,13 +6863,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi0.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi0.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi30",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi30",
         "DESCRIPTION": "Case 110 - geom 1, LOS zen 90.000 az 30.000",
         "CASE": 110,
         "RTOPTIONS": {
@@ -6989,7 +6880,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7001,7 +6892,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7013,9 +6904,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 359.30938829984694,
-          "PARM2": 120.92735514559361,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 264.36233597193916,
+          "PARM2": 93.313781310250747
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7036,13 +6926,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi30.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi30.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi60",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi60",
         "DESCRIPTION": "Case 111 - geom 1, LOS zen 90.000 az 60.000",
         "CASE": 111,
         "RTOPTIONS": {
@@ -7053,7 +6943,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7065,7 +6955,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7077,9 +6967,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 342.77504767372773,
-          "PARM2": 116.09908248528792,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 263.70677998572734,
+          "PARM2": 63.468506091895755
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7100,13 +6989,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi60.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi60.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi90",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi90",
         "DESCRIPTION": "Case 112 - geom 1, LOS zen 90.000 az 90.000",
         "CASE": 112,
         "RTOPTIONS": {
@@ -7117,7 +7006,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7129,7 +7018,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7141,9 +7030,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 332.30358352032783,
-          "PARM2": 104.36044904647683,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 259.83184208755193,
+          "PARM2": 33.74755154194844
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7164,13 +7052,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi90.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi90.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi120",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi120",
         "DESCRIPTION": "Case 113 - geom 1, LOS zen 90.000 az 120.000",
         "CASE": 113,
         "RTOPTIONS": {
@@ -7181,7 +7069,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7193,7 +7081,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7205,9 +7093,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 329.07080979228044,
-          "PARM2": 89.407583520263614,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 210.51510664899104,
+          "PARM2": 6.5367371551266693
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7228,13 +7115,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi120.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi120.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi150",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi150",
         "DESCRIPTION": "Case 114 - geom 1, LOS zen 90.000 az 150.000",
         "CASE": 114,
         "RTOPTIONS": {
@@ -7245,7 +7132,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7257,7 +7144,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7269,9 +7156,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 332.84771386231722,
-          "PARM2": 74.577800216942038,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 102.3830838239537,
+          "PARM2": 27.214895523294185
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7292,13 +7178,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi150.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi150.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi180",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi180",
         "DESCRIPTION": "Case 115 - geom 1, LOS zen 90.000 az 180.000",
         "CASE": 115,
         "RTOPTIONS": {
@@ -7309,7 +7195,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7321,7 +7207,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7333,9 +7219,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 343.87273176069516,
-          "PARM2": 63.239362514810004,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 96.726834401829493,
+          "PARM2": 56.851601308776928
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7356,13 +7241,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi180.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi180.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi210",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi210",
         "DESCRIPTION": "Case 116 - geom 1, LOS zen 90.000 az 210.000",
         "CASE": 116,
         "RTOPTIONS": {
@@ -7373,7 +7258,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7385,7 +7270,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7397,9 +7282,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 0.69061170015307938,
-          "PARM2": 59.072644854406384,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 95.637664028060854,
+          "PARM2": 86.686218689749253
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7420,13 +7304,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi210.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi210.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi240",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi240",
         "DESCRIPTION": "Case 117 - geom 1, LOS zen 90.000 az 240.000",
         "CASE": 117,
         "RTOPTIONS": {
@@ -7437,7 +7321,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7449,7 +7333,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7461,9 +7345,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 17.224952326272298,
-          "PARM2": 63.900917514712084,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 96.293220014272677,
+          "PARM2": 116.53149390810424
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7484,13 +7367,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi240.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi240.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi270",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi270",
         "DESCRIPTION": "Case 118 - geom 1, LOS zen 90.000 az 270.000",
         "CASE": 118,
         "RTOPTIONS": {
@@ -7501,7 +7384,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7513,7 +7396,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7525,9 +7408,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 27.696416479672163,
-          "PARM2": 75.63955095352317,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 100.16815791244805,
+          "PARM2": 146.25244845805159
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7548,13 +7430,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi270.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi270.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi300",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi300",
         "DESCRIPTION": "Case 119 - geom 1, LOS zen 90.000 az 300.000",
         "CASE": 119,
         "RTOPTIONS": {
@@ -7565,7 +7447,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7577,7 +7459,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7589,9 +7471,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 30.929190207719547,
-          "PARM2": 90.592416479736386,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 149.48489335100896,
+          "PARM2": 173.46326284487333
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7612,13 +7493,13 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi300.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi300.csv"
         }
       }
     },
     {
       "MODTRANINPUT": {
-        "NAME": "Transm_HOGS_650mvis_none_urban_background_zen90_azi330",
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi330",
         "DESCRIPTION": "Case 120 - geom 1, LOS zen 90.000 az 330.000",
         "CASE": 120,
         "RTOPTIONS": {
@@ -7629,7 +7510,7 @@
           "DISALB": true,
           "NSTR": 8,
           "SOLCON": 0,
-          "IEMSCT": "RT_LUNAR_AND_THERMAL"
+          "IEMSCT": "RT_SOLAR_AND_THERMAL"
         },
         "ATMOSPHERE": {
           "MODEL": "ATM_MIDLAT_WINTER",
@@ -7641,7 +7522,7 @@
           "IVULCN": "STRATO_BACKGROUND",
           "ICLD": "CLOUD_NONE",
           "ISEASN": "SEASN_FALL_WINTER",
-          "VIS": 0.65
+          "VIS": 1
         },
         "GEOMETRY": {
           "ITYPE": 3,
@@ -7653,9 +7534,8 @@
           "BCKZEN": 0,
           "IDAY": 3,
           "IPARM": 2,
-          "PARM1": 27.152286137682786,
-          "PARM2": 105.42219978305796,
-          "ANGLEM": 6.9191849358874427
+          "PARM1": 257.61691617604629,
+          "PARM2": 152.78510447670584
         },
         "SURFACE": {
           "SURFTYPE": "REFL_LAMBER_MODEL",
@@ -7676,7 +7556,7 @@
           "BMNAME": "p1_2013"
         },
         "FILEOPTIONS": {
-          "CSVPRNT": "Transm_HOGS_650mvis_none_urban_background_zen90_azi330.csv"
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen90_azi330.csv"
         }
       }
     }
