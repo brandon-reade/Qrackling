@@ -12,6 +12,7 @@
 % - fix duplicate matching or remove the redundant duplicate checks
 % - remove the reruns and automatically use the method of
 %   generating a filtered JSON to get missing data points
+% - need to update with the error handling (present in the Python script)
 
 classdef parallelRunnerJSON
     methods (Static)
