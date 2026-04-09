@@ -20,7 +20,7 @@ arguments
     options.FOVMode {mustBeMember(options.FOVMode,["diffraction","geometric","direct"])} = "direct"
 
     % direct FOV (radians) when FOVMode="direct"
-    options.FOVDirectRad (1,1) double {mustBeNonnegative} = 4.756e-3
+    options.FOVDirectRad (1,1) double {mustBeNonnegative} = 37E-6
 
     % Parameter for Geometric FOV
     options.FieldDiameter_m (1,1) double {mustBePositive} = 0.04   % e.g. RC700 image field diameter
@@ -28,11 +28,11 @@ end
 
 %% parameters and components
 %Telescope
-Telescope_Diameter = 0.7;                                           %telescope diameter in m
+Telescope_Diameter = 0.7;                                                   %telescope diameter in m
 Telescope_Focal_Length = 8.4;
 Telescope_Eyepiece_Focal_Length = 0.076;
-Pointing_Jitter = 1E-6;                                             %pointing error in rads
-Optical_Efficiency = (1-0.3^2)*10^(-1.1/10);                              %optical efficiency of telescope (dimensionless), including obscuration and back-end losses
+Pointing_Jitter = 1E-6;                                                     %pointing error in rads
+Optical_Efficiency = (1-0.3^2)*10^(-1.1/10);                                %optical efficiency of telescope (dimensionless), including obscuration and back-end losses
 
 % NEW: decide whether we pass an explicit 'FOV' to the Telescope constructor
 % Important: Telescope.SetFOV requires Wavelength is set first.

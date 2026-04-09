@@ -53,5 +53,15 @@ classdef aerosol
             if ~isKey(m,key), error("aerosol:strato","Unknown stratospheric model '%s'.", key); end
             code = m(key);
         end
+
+        function code = mapSeasonModel(key)
+            key = lower(strtrim(string(key)));
+            m = containers.Map( ...
+                ["auto","spring","summer","autumn", "winter"], ...
+                ["SEASN_AUTO","SEASN_SPRING_SUMMER","SEASN_SPRING_SUMMER",...
+                "SEASN_FALL_WINTER", "SEASN_FALL_WINTER"] );
+            if ~isKey(m,key), error("aerosol:season","Unknown season model '%s'.", key); end
+            code = m(key);
+        end
     end
 end
