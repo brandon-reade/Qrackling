@@ -1,7 +1,7 @@
 % Author: Brandon Reade
 % Date: 27/03/2026
-% Last update: 27/03/2026
-% Comparison of a simulation of a Decoy BB84 pass at 1km visibility
+% Last update: 09/08/2026
+% Comparison of a simulation of a Decoy BB84 pass at 10km visibility
 
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
@@ -10,23 +10,22 @@ modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_WinterClear-10kVis',...
     'moon_jan3rd_2026_800to3000_1am_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_800to3000_1am_full 
-                                                
-
-if ~isfolder(modtran_dir)
-    error('MODTRAN folder not found: %s', modtran_dir);
-end
-addpath(fullfile(repo_root));                                               
+                                                                                       
 
 %% 1. Choose parameters
+% plotting options
+plot_each_pass          = false;
+plot_detectors          = true;
+plot_spectral_radiance  = false;
+
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
-plot_each_pass = true;
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 10E-6;
 Rep_Rate                    = 1E9;
-Time_Gate_Width             = 200E-12;                                         % times in s
-Spectral_Filter_Width       = 10;                                           % spectral width in nm
+%Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
+Spectral_Filter_Width       = 10;                                          % spectral width in nm
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -36,11 +35,12 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {850, 1550, 2140}, ...
+    'Wavelength', {800, 1550, 2140}, ...
     'DetectorPreset', { 'PerkinElmer', ...
                         'QuantumOpus1550_RoomTempAmplifier', ...
-                        'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'rxFOV', {37E-6, 37E-6, 37E-6}...                                       % diffraction-limited "FOV" (acceptance angle)
+                        'SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
+    'rxFOV', {37E-6, 37E-6, 37E-6},...                                       % diffraction-limited "FOV" (acceptance angle)
+    'TimeGateWidth', {100E-12, 352E-12, 30E-12}...
                         );
 
 % Preallocate results and objects
@@ -60,8 +60,8 @@ for i = 1:nQKDSystems
         Rep_Rate, Transmitter_Telescope_Diameter, MPNs, SPs, state_prep_error);
     
     % Create detector
-    Det{i} = createPresetDetector(QKDsystems(i).Wavelength, 1E8,...
-        Time_Gate_Width, Spectral_Filter_Width, QKDsystems(i).DetectorPreset);
+    Det{i} = createPresetDetector(QKDsystems(i).Wavelength, Rep_Rate,...
+        QKDsystems(i).TimeGateWidth, Spectral_Filter_Width, QKDsystems(i).DetectorPreset);
     
     % Create ground station
     GS{i} = createGroundStation(Det{i}, Receiver_Telescope_Diameter,...
@@ -69,8 +69,8 @@ for i = 1:nQKDSystems
         Env, [55.909723,-3.319995,10], 'Heriot-Watt');
 
     tel = GS{i}.Telescope;
-    fprintf("(%dnm) Diff-limited FOV = %.3g urad, Receiver jitter = %.3g urad\n", ...
-        QKDsystems(i).Wavelength, tel.FOV*1e6, tel.Pointing_Jitter*1e6);
+    fprintf("(%dnm) Acceptance FOV = %.3g urad, Receiver jitter = %.3g urad\n", ...         % diffraction-limited is automatically calculated
+        QKDsystems(i).Wavelength, tel.FOV*1e6, tel.Pointing_Jitter*1e6);                    % otherwise when it is fixed it is an acceptance angle
     
     % Run simulation
     Results{i} = nodes.QkdPassSimulation(GS{i}, Sat{i}, protocol.decoyBB84);
@@ -83,8 +83,19 @@ for i = 1:nQKDSystems
         fig.NumberTitle = 'off';
         fig.Tag = sprintf('Decoy-state BB84_%dnm', wl); 
     end
-end
 
+    if plot_detectors
+        Det{i}.Plot;
+        fwhm = detectorJitterFWHM(Det{i});
+        Trep = 1 / Det{i}.Repetition_Rate;
+        fprintf("(%dnm) Detector jitter FWHM: %.2f ps\n", QKDsystems(i).Wavelength, fwhm*1e12);
+        k = 2; % gate = 2×FWHM is a decent starting point
+        gate = min(k * fwhm, 0.5 * Trep);
+
+        fprintf("(%dnm) RepRate=%.2g Hz (T=%.2f ps), choose gate≈%.2f ps (k=%g)\n", ...
+        QKDsystems(i).Wavelength, Det{i}.Repetition_Rate, Trep*1e12, gate*1e12, k);
+    end
+end
 
 %% Plot results for multiple QKD systems
 plots.compare.QKDComparison(Results, ...
@@ -131,7 +142,9 @@ opts.titlePrefix = sprintf('Atmospheric Profile (azi=%d): ', azi);
 plots.TransmittanceRadiance(cases, opts);
 
 %% Plot Environment spectral radiance
-%Plot(Env,"spectral radiance");
+if plot_spectral_radiance
+    Plot(Env,"spectral radiance");
+end
 
 %% Functions to build QKD Systems
 % Environments
@@ -188,6 +201,29 @@ function SimGS = createGroundStation(Detector, RxDiameter, Wavelength, FOV, Jitt
     SimGS = nodes.Ground_Station(RxTelescope, 'Detector', Detector,...      % ground station
         'LLA', LLA, 'Name', Name);
     SimGS.Environment = Env;                                                % environment
+end
+
+function fwhm_s = detectorJitterFWHM(det)
+    % Returns FWHM in seconds (NaN if unavailable)
+    if ~isempty(det.PDF)
+        y = det.PDF;
+    elseif ~isempty(det.Jitter_Histogram)
+        y = det.Jitter_Histogram;
+    else
+        fwhm_s = NaN;
+        return;
+    end
+
+    [~, i0] = max(y);
+    t = ((1:numel(y)) - i0) * det.Histogram_Bin_Width; % seconds
+    y = y ./ max(y);
+
+    mask = (y >= 0.5);
+    if any(mask)
+        fwhm_s = max(t(mask)) - min(t(mask));
+    else
+        fwhm_s = NaN;
+    end
 end
 
 
