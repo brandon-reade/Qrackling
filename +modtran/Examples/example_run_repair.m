@@ -12,20 +12,24 @@ addpath(fullfile(repo_root));
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
 json_root = "HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30";
 json_file = "HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30.json";
-cases_json = fullfile(json_root, json_file + ".json");
+cases_json = fullfile(jsonDir, json_root, json_file);
 
 % MODTRAN roots
 runs_dir = "E:\MODTRAN_RESULTS\runs_tmp";
 modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";
 
+% collection dir
+collect_dir = fullfile(repo_root, "+modtran", "Data", "collect_" + filename);
+collect_glob = "*_scan.csv";                                                % file type to collect
+
 %% Define options
 opts = struct();
 opts.maxWorkers = 10;
 
 opts.outputMode = "shared";
-opts.collectDir = fullfile(repo_root, "+modtran", "Data", "collect_" + filename);
-opts.collectGlob = "*_scan.csv";
+opts.collectDir = collect_dir;
+opts.collectGlob = collect_glob;
 opts.collectPrefixMode = "index";                                           % collect by case number
 opts.requireCollectedPerCase = 1;
 
@@ -45,3 +49,8 @@ opts.repairForceLbl = true;                                                 % op
 
 modtran.parallelRunnerJSON.runCasesParallel( ...
     cases_json, runs_dir, modtran_exe, modtran_data_dir, opts);
+
+if options.dedupeCollect
+    removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
+    fprintf("De-dupe removed: %d\n", removed);
+end
