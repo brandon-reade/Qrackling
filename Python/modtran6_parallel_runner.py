@@ -23,21 +23,39 @@ Update (March 2026):
   * Original output filename should already be in that convention, e.g. "..._scan.csv"
 
 Example usage
-python .\modtran6_parallel_runner.py `
-  --cases-json "E:\MODTRAN_RESULTS\PythonGeneratedCases\HOGSWinterClear-1kVisib\moon_jan3rd_2026_1am_800to3000nm_full\HOGSWinter1am_1kmVis_800to3000_zen0step10_azi0step30.json" `
+python .\modtran6_parallel_runner.py ` 
+   --cases-json "C:\Users\bsr4001\Documents\GitHub\Qrackling\+modtran\JSON_Cases\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30.json" `
+   --runs-dir "E:\MODTRAN_RESULTS\runs_tmp" `                                                                                                      
+   --max-workers 10 `
+   --modtran-exe "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe" `     
+   --modtran-data-dir "E:\MODTRAN\MOD6DATA" `                                 
+   --output-mode shared `
+   --collect-dir "C:\Users\bsr4001\Documents\GitHub\Qrackling\+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30" `
+   --collect-glob "*_scan.csv" `
+   --dedupe-collect `
+   --verify-collect `
+   --repair-missing `
+   --repair-out-json "E:\MODTRAN_RESULTS\collect\missing_only.json" `
+   --repair-max-passes 2 `
+   --keep-failed-workdirs --keep-workdirs --collect-prefix-mode index
+
+   Example of getting missing data points
+   python .\modtran6_parallel_runner.py `
+  --cases-json "C:\Users\bsr4001\Documents\GitHub\Qrackling\+modtran\JSON_Cases\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30.json" `
   --runs-dir "E:\MODTRAN_RESULTS\runs_tmp" `
-  --max-workers 8 `
+  --max-workers 10 `
   --modtran-exe "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe" `
   --modtran-data-dir "E:\MODTRAN\MOD6DATA" `
   --output-mode shared `
-  --collect-dir "E:\MODTRAN_RESULTS\PythonGeneratedCases\HOGSWinterClear-1kVisib\moon_jan3rd_2026_1am_800to3000nm_full" `
+  --collect-dir "C:\Users\bsr4001\Documents\GitHub\Qrackling\+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30" `
   --collect-glob "*_scan.csv" `
-  --dedupe-collect `
   --verify-collect `
   --repair-missing `
   --repair-out-json "E:\MODTRAN_RESULTS\collect\missing_only.json" `
-  --repair-max-passes 2 `
-  --keep-failed-workdirs
+  --repair-max-passes 3 `
+  --keep-failed-workdirs --keep-workdirs `
+  --collect-prefix-mode index `
+  --skip-initial-run --repair-force-lbl
 """
 
 from __future__ import annotations
