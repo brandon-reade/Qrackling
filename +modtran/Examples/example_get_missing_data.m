@@ -1,6 +1,6 @@
 % Author: Brandon Reade
 % Date: 26/03/2026
-% Generating a JSON ocntaining missing data from a previous input file 
+% Generating a JSON containing missing data from a previous input file 
 % and running only missing cases
 
 %% Inputs
