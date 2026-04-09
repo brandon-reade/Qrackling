@@ -76,6 +76,8 @@ classdef parallelRunnerJSON
                 options.maxRerunsMissingRequiredOutputs (1,1) double = 1    % maximum attempts per case for missing required outputs (total attempts = 1 + maxRerunsMissingRequiredOutputs)
 
                 % repair passes to obtain missing data points
+                options.repairRunInParallel (1,1) logical = true            % run missing-case reruns using parfeval
+                options.repairMaxWorkers (1,1) double = NaN                 % if NaN, use options.maxWorkers
                 options.skipInitialRun (1,1) logical = false                % skips initial run, only targets specific missing cases based on collection state
                 options.repairMissing (1,1) logical = false                 % generate filtered JSON of missing + rerun (multi-pass)
                 options.repairOutJson (1,1) string = ""                     % path for missing-only.json (default: <runs_dir>/missing_only.json)
@@ -251,24 +253,27 @@ classdef parallelRunnerJSON
                     fprintf("Wrote missing-only JSON: %s\n", options.repairOutJson);
 
                     % Re-run missing cases (force rerun)
-                    % Important to Use original indices so naming/prefix remains consistent with the full run.
-                    for j = 1:numel(missingIdx)
-                        i = missingIdx(j);
-                        fprintf("  Repair re-run case %06d (missing globs: %s)\n", i, strjoin(string(missingInfo{j}.missingGlobs), ", "));
-
-                        caseObj = cases{i};
-
-                        % Optional Line-by-line RT option set
-                        if options.repairForceLbl
-                            caseObj = modtran.parallelRunnerJSON.forceCaseLbl(caseObj, options.repairLblToken);
+                    % IMPORTANT: Use ORIGINAL indices so naming/prefix remains consistent with the full run
+                    if options.repairRunInParallel
+                        results = modtran.parallelRunnerJSON.runCaseIndicesParallel( ...
+                            cases, missingIdx, runs_dir, modtran_exe, modtran_data_dir, options, results, true);
+                    else
+                        % sequential fallback
+                        for j = 1:numel(missingIdx)
+                            i = missingIdx(j);
+                            fprintf("  Repair re-run case %06d (missing globs: %s)\n", i, strjoin(string(missingInfo{j}.missingGlobs), ", "));
+                    
+                            caseObj = cases{i};
+                            if options.repairForceLbl
+                                caseObj = modtran.parallelRunnerJSON.forceCaseLbl(caseObj, options.repairLblToken);
+                            end
+                    
+                            rr = modtran.parallelRunnerJSON.runOneCase( ...
+                                caseObj, i, runs_dir, modtran_exe, modtran_data_dir, options, true);
+                    
+                            results(i) = rr;
                         end
-
-                        rr = modtran.parallelRunnerJSON.runOneCase( ...
-                            caseObj, i, runs_dir, modtran_exe, modtran_data_dir, options, true);
-
-                        results(i) = rr;
                     end
-                end
 
                 % Re-write summary after repairs
                 summaryPath = fullfile(runs_dir, "summary.json");
@@ -382,6 +387,65 @@ classdef parallelRunnerJSON
 
     %% Private functions
     methods (Static, Access = private)
+        function results = runCaseIndicesParallel(cases, indices, runs_dir, modtran_exe, modtran_data_dir, options, results, forceRerun)
+            % Run a subset of case indices in parallel using parfeval
+            % indices are original indices into "cases"
+      
+            if isempty(indices)
+                return;
+            end
+        
+            % Choose worker count for repair
+            nW = options.maxWorkers;
+            if isfield(options, "repairMaxWorkers") && ~isnan(options.repairMaxWorkers)
+                nW = options.repairMaxWorkers;
+            end
+        
+            % Ensure we have a pool. (If one already exists, we use it.)
+            pool = gcp("nocreate");
+            if isempty(pool)
+                parpool("Processes", nW);
+            end
+        
+            % Submit futures: one future per original index
+            f = parallel.FevalFuture.empty(0,1);
+            for j = 1:numel(indices)
+                i = indices(j);
+        
+                % Base case object
+                caseObj = cases{i};
+        
+                % Apply repair-time patching BEFORE submission (so each worker gets correct caseObj)
+                if isfield(options, "repairForceLbl") && options.repairForceLbl
+                    caseObj = modtran.parallelRunnerJSON.forceCaseLbl(caseObj, options.repairLblToken);
+                end
+        
+                f(j,1) = parfeval( ...
+                    @modtran.parallelRunnerJSON.runOneCase, ...
+                    1, ...                              % one output: result struct
+                    caseObj, i, runs_dir, ...
+                    modtran_exe, modtran_data_dir, ...
+                    options, forceRerun);
+            end
+        
+            nDone = 0;
+            while nDone < numel(f)
+                [~, r] = fetchNext(f);                 % r.case_index is the ORIGINAL index
+                results(r.case_index) = r;
+                nDone = nDone + 1;
+        
+                if r.skipped
+                    status = "SKIP";
+                elseif r.returncode == 0
+                    status = "OK";
+                else
+                    status = "FAIL";
+                end
+        
+                fprintf("[REPAIR-%s] case=%06d elapsed=%7.2fs workdir=%s\n", ...
+                    status, r.case_index, r.elapsed_s, r.workdir);
+            end
+        end
 
         function case2 = forceCaseLbl(caseObj, lblToken)
             % force RTOPTIONS.MODTRN to line-by-line (or a given override token)
