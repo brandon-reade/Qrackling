@@ -2,6 +2,8 @@
 % Date: 11/03/2026
 % Last update: 27/03/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
+% To do:
+% - look at time gate width and change for each detector
 
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
@@ -24,9 +26,9 @@ Transmitter_Telescope_Diameter=0.1;                                        % dia
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 10E-6;
-Rep_Rate                    = 1E9;
-Time_Gate_Width             = 200E-12;                                      % times in s
-Spectral_Filter_Width       = 10;                                           % spectral width in nm
+Rep_Rate                    = 2E9;
+Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: 200ps best for 1550, ~35 best for 2140)
+Spectral_Filter_Width       = 10;                                          % spectral width in nm
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
