@@ -1,15 +1,19 @@
 % Author: Brandon Reade
 % Date: 11/03/2026
-% Last update: 09/08/2026
+% Last update: 10/04/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
 
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
+
 modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
     'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
-                                               % moon_jan3rd_2026_1am_800to3000nm_full 
+                                               % moon_jan3rd_2026_1am_800to3000nm_full
+
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');
                                                 
 
 if ~isfolder(modtran_dir)
@@ -19,9 +23,13 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass          = true;
+plot_each_pass          = false;
+plot_compare            = true;
+plot_loss_comparison    = true;
 plot_detectors          = false;
 plot_spectral_radiance  = false;
+LOS_at_time             = false;
+plot_spectral_map       = false;
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
@@ -40,12 +48,14 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {850, 1550, 2140}, ...
-    'DetectorPreset', { 'PerkinElmer', ...
-                        'QuantumOpus1550_RoomTempAmplifier', ...
+    'Wavelength', {1550, 2140, 3000}, ...
+    'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
+                        'SNSPD_NbTiN_2um', ...
                         'SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'rxFOV', {37E-6, 37E-6, 37E-6},...                                       % diffraction-limited "FOV" (acceptance angle)
-    'TimeGateWidth', {100E-12, 352E-12, 28.6E-12}...
+    'txDiam', {0.1, 0.1, 0.1},...                                           % transmitter telescope diameter (0.08m for SPOQC)
+    'rxDiam', {0.7, 0.96, 1},...                                            % receiever telescope diameter (0.7m for HOGS)
+    'rxFOV', {37E-6, 37E-6, 5E-6},...                                       % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
+    'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12}...
                         );
 
 % Preallocate results and objects
@@ -62,14 +72,14 @@ Env = buildEnvironment(modtran_dir);
 for i = 1:nQKDSystems
     % Create satellite
     Sat{i} = createSatellite(QKDsystems(i).Wavelength, OrbitDataFileLocation,...
-        Rep_Rate, Transmitter_Telescope_Diameter, MPNs, SPs, state_prep_error);
+        Rep_Rate, QKDsystems(i).txDiam, MPNs, SPs, state_prep_error);
     
     % Create detector
     Det{i} = createPresetDetector(QKDsystems(i).Wavelength, Rep_Rate,...
         QKDsystems(i).TimeGateWidth, Spectral_Filter_Width, QKDsystems(i).DetectorPreset);
     
     % Create ground station
-    GS{i} = createGroundStation(Det{i}, Receiver_Telescope_Diameter,...
+    GS{i} = createGroundStation(Det{i}, QKDsystems(i).rxDiam,...
         QKDsystems(i).Wavelength, QKDsystems(i).rxFOV, Receiver_Jitter, ...
         Env, [55.909723,-3.319995,10], 'Heriot-Watt');
 
@@ -100,18 +110,26 @@ for i = 1:nQKDSystems
         fprintf("(%dnm) RepRate=%.2g Hz (T=%.2f ps), choose gate≈%.2f ps (k=%g)\n", ...
         QKDsystems(i).Wavelength, Det{i}.Repetition_Rate, Trep*1e12, gate*1e12, k);
     end
+
+    if LOS_at_time
+        printResultAtOffset(Results{i}, Env, QKDsystems(i).Wavelength, minutes(7)+seconds(30));
+    end
 end
 
 %% Plot results for multiple QKD systems
-plots.compare.QKDComparison(Results, ...
-    'Wavelengths', [QKDsystems.Wavelength], ...
-    'MaskMode', "active", ...                 
-    'FigureName', "Decoy-state BB84 QKD Comparison (Vis 1km)");
+if plot_compare
+    plots.compare.QKDComparison(Results, ...
+        'Wavelengths', [QKDsystems.Wavelength], ...
+        'MaskMode', "active", ...                 
+        'FigureName', "Decoy-state BB84 QKD Comparison (Vis 1km)");
+end
 
-plots.compare.LossComparison(Results, ...
-    'Wavelengths', [QKDsystems.Wavelength], ...
-    'MaskMode', "active", ...
-    'FigureName', "Loss Components Comparison (Vis 1km)");
+if plot_loss_comparison
+    plots.compare.LossComparison(Results, ...
+        'Wavelengths', [QKDsystems.Wavelength], ...
+        'MaskMode', "active", ...
+        'FigureName', "Loss Components Comparison (Vis 1km)");
+end
 
 plots.compare.BackgroundCountsComparison(Results, ...
     'Wavelengths', [QKDsystems.Wavelength], ...
@@ -129,8 +147,8 @@ plots.compare.RadTranVsZenith(Env, ...
     'TwoPanel', false, 'UseYYAxis', true);
 
 %% Plot Radiance and Transmission Profiles
-zen_angles = 0:30:90; 
-azi = 180;
+zen_angles = 0:30:60; 
+azi = 30;
 
 clear cases;
 
@@ -149,6 +167,17 @@ plots.TransmittanceRadiance(cases, opts);
 %% Plot Environment spectral radiance
 if plot_spectral_radiance
     Plot(Env,"spectral radiance");
+end
+
+if plot_spectral_map
+    for i = 1:nQKDSystems
+        plots.plotRadianceMap(Env, QKDsystems(i).Wavelength, ...
+        'AzimuthDeg', (0:30:330)', ...
+        'ZenithDeg', (0:10:90)', ...
+        'UseLogZ', false, ...
+        'Mode', 'bars', ...
+        'Title', "MODTRAN spectral radiance map");
+    end
 end
 
 %% Functions to build QKD Systems
@@ -208,6 +237,7 @@ function SimGS = createGroundStation(Detector, RxDiameter, Wavelength, FOV, Jitt
     SimGS.Environment = Env;                                                % environment
 end
 
+%% Other helpers
 function fwhm_s = detectorJitterFWHM(det)
     % Returns FWHM in seconds (NaN if unavailable)
     if ~isempty(det.PDF)
@@ -231,6 +261,62 @@ function fwhm_s = detectorJitterFWHM(det)
     end
 end
 
+function printResultAtOffset(res, Env, wl_nm, offset, options)
+% offset as duration or seconds from res.time(1)
+    arguments
+        res (1,1) nodes.PassSimulationResult
+        Env
+        wl_nm (1,1) double
+        offset
+        options.Reference (1,1) string {mustBeMember(options.Reference,["start","firstLOS"])} = "start"
+    end
+
+    t = res.time;
+    if isempty(t) || all(ismissing(t))
+        error("Result has no 'time' data.");
+    end
+
+    switch options.Reference
+        case "start"
+            t0 = t(1);
+        case "firstLOS"
+            vis = res.elevation > 0;
+            i0 = find(vis, 1, "first");
+            if isempty(i0), error("No LOS (el>0) points in result."); end
+            t0 = t(i0);
+    end
+
+    if isa(offset, "duration")
+        tq = t0 + offset;
+    elseif isnumeric(offset)
+        tq = t0 + seconds(offset);
+    else
+        error("offset must be duration or numeric seconds.");
+    end
+
+    % absolute-time query logic
+    [~, idx] = min(abs(t - tq));
+
+    az = res.heading(idx);
+    el = res.elevation(idx);
+    zen = 90 - el;
+
+    rad = Env.Interp("spectral_radiance", az, el, wl_nm);
+
+    bg = NaN; dk = NaN;
+    for j = 1:numel(res.noise)
+        if string(res.noise(j).label) == "Background Counts"
+            bg = res.noise(j).values(idx);
+        elseif string(res.noise(j).label) == "Detector Dark Counts"
+            dk = res.noise(j).values(idx);
+        end
+    end
+
+    tt = t(idx);
+    tt.Format = 'dd-MMM-uuuu HH:mm:ss';
+    fprintf("offset=%s | t=%s | az=%.2f | el=%.2f | rad=%.3g | bg=%.3g cps | dark=%.3g cps\n", ...
+        string(t(idx) - t0), string(tt), az, el, rad, bg, dk);
+end
 
 
 
