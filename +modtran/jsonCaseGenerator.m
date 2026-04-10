@@ -7,6 +7,7 @@
 classdef jsonCaseGenerator
     methods (Static)
 
+        %% Build and write (normal cases)
         function [jsonOut, summaryTable] = buildAndWrite( ...
                 geom, aer, spec, surf, rt, atmosphere, ...
                 word, json_name, out_csv, options)
@@ -114,6 +115,103 @@ classdef jsonCaseGenerator
                 geom, allCases, allGeomIdx, locIdxPerCase, ...
                 aer, spec, surf, rt, atmStruct, aerosolsStruct, spectralStruct, surfaceStruct, ...
                 word, visStr, json_name, out_csv);
+        end
+
+        %% Build and write visibility sweep case
+        function [jsonOut, summaryTable] = buildAndWriteVisibilitySweep( ...
+                geom, aerBase, visList_km, spec, surf, rt, atmosphere, ...
+                word, json_name, out_csv, options)
+        
+            arguments
+                geom (:,1) modtran.parameters.geometry
+                aerBase (1,1) modtran.parameters.aerosol
+                visList_km (1,:) double {mustBePositive}
+        
+                spec (1,1) modtran.parameters.spectral
+                surf (1,1) modtran.parameters.surface
+                rt   (1,1) modtran.parameters.rt_options
+                atmosphere (1,1) modtran.parameters.atmosphere
+        
+                word (1,1) string = "Transm"
+                json_name (1,1) string = "modtran_visibility_sweep.json"
+                out_csv (1,1) string = "visibility_sweep_summary.csv"
+        
+                % output folder control (same as buildAndWrite)
+                options.saveDir (1,1) string = ""
+                options.makeJsonFolder (1,1) logical = true
+            end
+        
+            % Apply saveDir behavior
+            [json_name, out_csv] = modtran.jsonCaseGenerator.applySaveDir( ...
+                json_name, out_csv, options.saveDir, options.makeJsonFolder);
+        
+            % Convert parameters to structures that do not depend on visibility
+            atmStruct     = atmosphere.toStruct();
+            spectralStruct = spec.toStruct();
+            surfaceStruct  = surf.toStruct();
+        
+            allCases = struct([]);
+            allRows  = struct([]);
+        
+            % accumulate cases across all visibilities.
+            % create a fresh aerosol struct per visibility since it changes.
+        
+            for vi = 1:numel(visList_km)
+                vis_km = visList_km(vi);
+        
+                % Clone aerosol object and override visibility
+                aer = aerBase;
+                aer.visib_km = vis_km;
+        
+                aerosolsStruct = aer.toStruct();
+        
+                % Visibility string/token used in MODTRANINPUT.NAME and CSVPRNT
+                visStr = modtran.jsonCaseGenerator.formatVisibilityToken(aer.visib_km);
+        
+                % Build geometry cases from all locations, then assign loc1/loc2/... across the combined list.
+                % IMPORTANT: for a visibility sweep we need consistent loc indexing, so we recompute cases per vis
+                % but it will still assign loc indices based on lat/lon/alt tuples.
+                allGeomCases = struct([]);
+                allGeomIdx   = [];
+        
+                for gi = 1:numel(geom)
+                    c = geom(gi).buildGeometryCases();
+                    allGeomCases = [allGeomCases, c]; 
+                    allGeomIdx = [allGeomIdx; repmat(gi, numel(c), 1)]; 
+                end
+        
+                [locIdxPerCase, ~] = modtran.jsonCaseGenerator.assignLocationIndices(allGeomCases);
+        
+                % Build cases for this visibility and append
+                [jsonThis, tableThis] = modtran.jsonCaseGenerator.buildWriteManyNoIO( ...
+                    geom, allGeomCases, allGeomIdx, locIdxPerCase, ...
+                    aer, spec, surf, rt, atmStruct, aerosolsStruct, spectralStruct, surfaceStruct, ...
+                    word, visStr);
+        
+                allCases = [allCases, jsonThis.MODTRAN]; 
+                allRows  = [allRows; table2struct(tableThis)]; 
+            end
+        
+            % Final JSON output
+            jsonOut = struct();
+            jsonOut.MODTRAN = allCases;
+        
+            % Write JSON
+            jsonText = jsonencode(jsonOut, "PrettyPrint", true);
+            fid = fopen(json_name, "w");
+            if fid < 0
+                error("modtran_json:io","Failed to open JSON file '%s' for writing.", json_name);
+            end
+            fwrite(fid, jsonText, "char");
+            fclose(fid);
+        
+            % Write summary CSV
+            summaryTable = struct2table(allRows);
+            writetable(summaryTable, out_csv);
+        
+            fprintf("Generated %d cases (visibility sweep with %d vis values).\n", numel(allCases), numel(visList_km));
+            fprintf(" - JSON written to: %s\n", json_name);
+            fprintf(" - CSV summary written to: %s\n", out_csv);
         end
 
         %% Formatting functions
@@ -568,6 +666,102 @@ classdef jsonCaseGenerator
                 [p,n,e] = fileparts(out_csv);
                 csvNameThis = fullfile(p, n + "_" + tag + e);
             end
+        end
+
+        function [jsonOut, summaryTable] = buildWriteManyNoIO( ...
+                geomList, allCases, allGeomIdx, locIdxPerCase, ...
+                aer, spec, surf, rt, atmStruct, aerosolsStruct, spectralStruct, surfaceStruct, ...
+                word, visStr)
+            % Like buildWriteMany, but DOES NOT write JSON/CSV to disk.
+            % to allow for sweep functions (e.g., visibility sweep) and to
+            % aggregate many sets of cases into one combined JSON file.
+        
+            cases = cell(1, numel(allCases));
+            rows  = cell(1, numel(allCases));
+        
+            for k = 1:numel(allCases)
+                geomStruct = allCases(k).geom;
+                meta = allCases(k).meta;
+        
+                gi = allGeomIdx(k);
+                geomObj = geomList(gi);
+        
+                rtStruct = rt.toStructForSource(meta.source);
+        
+                % if geometry object has a label use it, else use loc{idx}
+                locationLabel = "";
+                if isprop(geomObj, "location_label")
+                    locationLabel = string(geomObj.location_label);
+                end
+                useCustomLabel = strlength(strtrim(locationLabel)) > 0;
+        
+                if useCustomLabel
+                    locToken = locationLabel;
+                else
+                    locToken = "loc" + string(locIdxPerCase(k));
+                end
+        
+                name = sprintf("%s_%s_%s_%s_%s_%s_zen%d_azi%d", ...
+                    word, ...
+                    locToken, ...
+                    visStr, ...
+                    aer.clouds, ...
+                    aer.aerosol_model, ...
+                    aer.strato_model, ...
+                    round(meta.los_zen_deg), ...
+                    round(meta.los_az_deg));
+        
+                csvFile = name + ".csv";
+        
+                mi = struct();
+                mi.NAME = string(name);
+                mi.DESCRIPTION = sprintf("Case %d - geom %d, LOS zen %.3f az %.3f", ...
+                    k, gi, meta.los_zen_deg, meta.los_az_deg);
+                mi.CASE = k;
+        
+                % apply per-LOS overrides
+                [geomStruct, rtStruct] = modtran.jsonCaseGenerator.applyLosOverrides( ...
+                    geomObj, meta, geomStruct, rtStruct);
+        
+                mi.RTOPTIONS = rtStruct;
+                mi.ATMOSPHERE = atmStruct;
+                mi.AEROSOLS = aerosolsStruct;
+                mi.GEOMETRY = geomStruct;
+                mi.SURFACE = surfaceStruct;
+                mi.SPECTRAL = spectralStruct;
+                mi.FILEOPTIONS = struct("CSVPRNT", string(csvFile));
+        
+                cases{k} = struct("MODTRANINPUT", mi);
+        
+                rows{k} = struct( ...
+                    "case_index", k, ...
+                    "geom_index", double(gi), ...
+                    "location_index", double(locIdxPerCase(k)), ...
+                    "location_label", string(locToken), ...
+                    "lat", meta.lat, ...
+                    "lon", meta.lon, ...
+                    "alt_m", meta.alt_m, ...
+                    "utc", char(geomObj.utcDT), ...
+                    "source", string(meta.source), ...
+                    "clouds", string(aer.clouds), ...
+                    "visib_km", double(aer.visib_km), ...
+                    "aerosol_model", string(aer.aerosol_model), ...
+                    "strato_model", string(aer.strato_model), ...
+                    "atmos_model", string(atmStruct.MODEL), ...
+                    "name", string(name), ...
+                    "los_zen_deg", double(meta.los_zen_deg), ...
+                    "los_az_deg", double(meta.los_az_deg), ...
+                    "rel_az_deg", modtran.jsonCaseGenerator.safeField(geomStruct,"PARM1"), ...
+                    "rel_zen_deg", modtran.jsonCaseGenerator.safeField(geomStruct,"PARM2"), ...
+                    "body_topo_az_deg", double(meta.body_topo_az_deg), ...
+                    "body_topo_zen_deg", double(meta.body_topo_zen_deg), ...
+                    "csv", string(csvFile) );
+            end
+        
+            jsonOut = struct();
+            jsonOut.MODTRAN = [cases{:}];
+        
+            summaryTable = struct2table([rows{:}]);
         end
     end
 end
