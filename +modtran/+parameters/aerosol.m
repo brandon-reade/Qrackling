@@ -13,7 +13,7 @@ classdef aerosol
             s.IHAZE  = modtran.parameters.aerosol.mapAerosolModel(obj.aerosol_model);
             s.IVULCN = modtran.parameters.aerosol.mapStratoModel(obj.strato_model);
             s.ICLD   = modtran.parameters.aerosol.mapCloudModel(obj.clouds);
-            s.ISEASN = obj.season;
+            s.ISEASN = modtran.parameters.aerosol.mapSeasonModel(obj.season);
             s.VIS    = double(obj.visib_km);
         end
     end
