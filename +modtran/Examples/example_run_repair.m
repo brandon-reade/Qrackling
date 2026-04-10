@@ -10,8 +10,8 @@ addpath(fullfile(repo_root));
 
 % JSON root
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
-json_root = "HOGS_moon_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
-json_file = "HOGS_moon_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30.json";
+json_root = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
+json_file = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30.json";
 cases_json = fullfile(jsonDir, json_root, json_file);
 
 % MODTRAN roots
@@ -47,8 +47,9 @@ opts.repairMaxPasses = 2;
 opts.repairOutJson = "E:\MODTRAN_RESULTS\collect\missing_only.json";
 opts.repairForceLbl = true;                                                 % optional LBL RT Option
 
+nv = utilities.structToNameValues(opts);
 modtran.parallelRunnerJSON.runCasesParallel( ...
-    cases_json, runs_dir, modtran_exe, modtran_data_dir, opts);
+    cases_json, runs_dir, modtran_exe, modtran_data_dir, nv{:});
 
 if options.dedupeCollect
     removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
