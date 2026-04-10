@@ -15,7 +15,7 @@ saveDir = fullfile(repo_root, "+modtran", "JSON_Cases");
 % ----------------------------
 % Location 1: HOGS (Edinburgh)
 % ----------------------------
-utcDT = datetime(2026,1,3,1,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second)
+utcDT = datetime(2026,1,3,8,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second)
 
 % Create the HOGS preset
 hogs = modtran.locations.HOGS(); 
@@ -36,11 +36,11 @@ hogs.forceLblAtZen0IfCorrelatedK = true;                                    % fo
 % hogs.capNstrAt8      = true;                                              % (only if LocationPreset supports it)
 
 % Source (sun/moon/none)
-hogs.source = "moon";
+hogs.source = "sun";
 % hogs.lun_phase_deg = [];                                                 % (only if LocationPreset/geometry supports it)
 
 % Aerosol / clouds (winter scenario)
-hogs.visib_km = 0.650;                                                    % MODTRAN uses 2% contrast visibility
+hogs.visib_km = 5;                                                    % MODTRAN uses 2% contrast visibility
 hogs.clouds = "none";
 hogs.aerosol_model = "urban";
 hogs.strato_model = "background";
@@ -67,7 +67,7 @@ spec.DV = 1;
 spec.FWHM = 2.5;
 
 %% 3. Output files
-word = "Transm";
+word = "Rad";
 
 % Recommended: auto-generate a base name that encodes the run setup.
 zenStepForName = geom1.zen_step;
