@@ -37,8 +37,15 @@ function out = TransmittanceRadiance(cases, options)
         'useTwoPanels', true, ...
         'radianceScale', 1/100, ...
         'showLegend', true, ...
-        'titlePrefix', "" ...
+        'titlePrefix', "", ...
+        'plotRadiance', true, ...                                           % master on/off for radiance plotting
+        'forceTransmittanceOnly', false ...                                 % convenience flag to disable radiance for "TR-only" CSVs
         ));
+
+    % disable radiance even if force transmittance only set
+    if isfield(options,'forceTransmittanceOnly') && options.forceTransmittanceOnly
+        options.plotRadiance = false;
+    end
 
     n = numel(cases);                                                       % count cases
     out = repmat(struct('wav', [], 'tr', [], 'rad', [],...                  % create structure template and copy it to for n cases as in an nx1 structure array: makes out(i)
@@ -66,12 +73,20 @@ function out = TransmittanceRadiance(cases, options)
         if strlength(file) == 0 || ~isfile(file)
             error('Case %d: file does not exist: %s', i, file);
         end
+
+        [wav, tr, rad, meta] = utilities.readModtranFile(file);
+
+        % if radiance plotting is disabled, ignore whatever is in "rad"
+        % (transmittance only MODTRAN CSVs place a different variable in that column)
+        if ~options.plotRadiance
+            rad = [];
+        end
         
         % parse data and check if it was successful
-        [wav, tr, rad, meta] = utilities.readModtranFile(file);
         if isempty(wav) || isempty(tr)
             error('Case %d: no numeric data parsed from file: %s', i, file);
         end
+        
         
         % assign values from parsed data
         wav = wav(:);
@@ -104,7 +119,8 @@ function out = TransmittanceRadiance(cases, options)
             label = string(current_case.label);
         else
             [~, name, ext] = fileparts(file);
-            label = name + ext;
+            label = string(name) + string(ext);   % string-safe concatenation
+            % alternatively: label = string([name ext]);
         end
 
         out(i).wav      = wav;
@@ -116,165 +132,175 @@ function out = TransmittanceRadiance(cases, options)
     end
 
     %% Plot
-    if options.useTwoPanels
-        % TWO PANEL SETTINGS
+   if options.useTwoPanels && options.plotRadiance
+       % TWO PANEL SETTINGS (radiance + transmittance)
         figure("Color", "w");
         tiledlayout(2, 1, "Padding","compact", "TileSpacing", "compact");
-
-        % set radiance parameters
+    
         ax1 = nexttile;
-        hold(ax1, 'on');
-        grid(ax1, 'on');
+        hold(ax1, 'on'); grid(ax1, 'on');
         xlabel(ax1, "Wavelength (nm)");
         ylabel(ax1, "Radiance (W m^{-2} sr^{-1} nm^{-1})");
         title(ax1, strtrim(options.titlePrefix + "Radiance vs Wavelength (nm)"));
-
-        % set transmittance parameters
+    
         ax2 = nexttile;
         hold(ax2, 'on'); grid(ax2, 'on');
         xlabel(ax2, "Wavelength (nm)");
         ylabel(ax2, "Transmittance");
         title(ax2, strtrim(options.titlePrefix + "Transmittance vs Wavelength (nm)"));
-        
-        % plot cases
+    
         for i = 1:n
             c = cases(i);
-    
             [col, ls, lw] = getStyle(c, i);
+    
+            % Radiance
             if ~isempty(out(i).rad)
                 plot(ax1, out(i).wav, out(i).rad, 'Color', col, 'LineStyle', ls, 'LineWidth', lw, ...
                     'DisplayName', out(i).label);
-            else
-                % If no radiance, skip radiance line but still keep legend entry in trans plot
             end
     
+            % Transmittance
             plot(ax2, out(i).wav, out(i).tr, 'Color', col, 'LineStyle', ls, 'LineWidth', lw, ...
                 'DisplayName', out(i).label);
         end
-        
-        % show legend if desired
+    
         if options.showLegend
             legend(ax2, 'Location', 'best');
             if any(arrayfun(@(s) ~isempty(s.rad), out))
                 legend(ax1, 'Location', 'best');
             end
         end
+    
     else
-        % SINGLE PANEL SETTINGS
+        % SINGLE PANEL SETTINGS (transmittance only OR combined axes)
         figure("Color","w");
         ax = axes; hold(ax,'on'); grid(ax,'on');
         xlabel(ax, "Wavelength (nm)");
-        title(ax, strtrim(options.titlePrefix + "Transmittance (left) and Radiance (right) vs Wavelength (nm)"));
     
-        yyaxis(ax, 'right');
-        ylabel(ax, "Radiance (W m^{-2} sr^{-1} nm^{-1})", 'FontWeight', 'bold');
+        if options.plotRadiance
+            title(ax, strtrim(options.titlePrefix + "Transmittance (left) and Radiance (right) vs Wavelength (nm)"));
     
-        yyaxis(ax, 'left');
-        ylabel(ax, "Transmittance", 'FontWeight', 'bold');
-        
-        % plot cases
+            yyaxis(ax, 'right');
+            ylabel(ax, "Radiance (W m^{-2} sr^{-1} nm^{-1})", 'FontWeight', 'bold');
+    
+            yyaxis(ax, 'left');
+            ylabel(ax, "Transmittance", 'FontWeight', 'bold');
+        else
+            title(ax, strtrim(options.titlePrefix + "Transmittance vs Wavelength (nm)"));
+            ylabel(ax, "Transmittance", 'FontWeight', 'bold');
+        end
+    
         for i = 1:n
             c = cases(i);
             [col, ls, lw] = getStyle(c, i);
     
-            yyaxis(ax, 'right');
-            if ~isempty(out(i).rad)
-                plot(ax, out(i).wav, out(i).rad, 'Color', col, 'LineStyle', '--', 'LineWidth', lw, ...
-                    'DisplayName', out(i).label + " (rad)");
+            if options.plotRadiance
+                yyaxis(ax, 'right');
+                if ~isempty(out(i).rad)
+                    plot(ax, out(i).wav, out(i).rad, 'Color', col, 'LineStyle', '--', 'LineWidth', lw, ...
+                        'DisplayName', out(i).label + " (rad)");
+                end
+                yyaxis(ax, 'left');
             end
     
-            yyaxis(ax, 'left');
+            if options.plotRadiance
+                dispName = out(i).label + " (tr)";
+            else
+                dispName = out(i).label;
+            end
+            
             plot(ax, out(i).wav, out(i).tr, 'Color', col, 'LineStyle', ls, 'LineWidth', lw, ...
-                'DisplayName', out(i).label + " (tr)");
+                'DisplayName', dispName);
         end
     
         if options.showLegend
             legend(ax, 'Location', 'best');
         end
-    end    
-end
-
-
-%% Functions
-% Finding MODTRAN CSVs from a directory
-function file = findModtranFile(modtran_dir, zen_deg, azi_deg)
-
-    % check if the directory exists
-    if ~isfolder(modtran_dir)
-        error('MODTRAN folder not found: %s', modtran_dir);
     end
 
-    % check if the CSVs exist
-    csvFiles = dir(fullfile(modtran_dir, '*Transm*.csv'));
-    if isempty(csvFiles)
-        csvFiles = dir(fullfile(modtran_dir, '*.csv'));
-    end
-    if isempty(csvFiles)
-        error('No MODTRAN CSVs found in: %s', modtran_dir);
-    end
 
-    % Parse the names
-    file = "";
-    for k = 1:numel(csvFiles)
-        name = csvFiles(k).name;
-        tokZen = regexp(name, 'zen[_-]?(\d+)', 'tokens', 'once', 'ignorecase');
-        if isempty(tokZen)
-            tokZen = regexp(name, 'zen(\d+)', 'tokens', 'once', 'ignorecase');
-        end
-        if isempty(tokZen), continue; end
-        zen = str2double(tokZen{1});
+    %% Functions
+    % Finding MODTRAN CSVs from a directory
+    function file = findModtranFile(modtran_dir, zen_deg, azi_deg)
     
-        tokAzi = regexp(name, 'azi[_-]?(\d+)', 'tokens', 'once', 'ignorecase');
-        if isempty(tokAzi)
-            azi = NaN;
+        % check if the directory exists
+        if ~isfolder(modtran_dir)
+            error('MODTRAN folder not found: %s', modtran_dir);
+        end
+    
+        % check if the CSVs exist
+        csvFiles = dir(fullfile(modtran_dir, '*Transm*.csv'));
+        if isempty(csvFiles)
+            csvFiles = dir(fullfile(modtran_dir, '*.csv'));
+        end
+        if isempty(csvFiles)
+            error('No MODTRAN CSVs found in: %s', modtran_dir);
+        end
+    
+        % Parse the names
+        file = "";
+        for k = 1:numel(csvFiles)
+            name = csvFiles(k).name;
+            tokZen = regexp(name, 'zen[_-]?(\d+)', 'tokens', 'once', 'ignorecase');
+            if isempty(tokZen)
+                tokZen = regexp(name, 'zen(\d+)', 'tokens', 'once', 'ignorecase');
+            end
+            if isempty(tokZen), continue; end
+            zen = str2double(tokZen{1});
+        
+            tokAzi = regexp(name, 'azi[_-]?(\d+)', 'tokens', 'once', 'ignorecase');
+            if isempty(tokAzi)
+                azi = NaN;
+            else
+                azi = str2double(tokAzi{1});
+            end
+        
+            if zen == zen_deg && ( (isnan(azi) && isnan(azi_deg)) || (~isnan(azi) && azi == azi_deg) )
+                file = fullfile(csvFiles(k).folder, csvFiles(k).name);
+                return;
+            end
+        end
+    
+        % helpful error to show which CSVs are available if given one not found
+        fprintf('No MODTRAN CSV matched zen=%g, azi=%g in %s\n', zen_deg, azi_deg, modtran_dir);
+        fprintf('Available CSVs:\n');
+        for k = 1:numel(csvFiles)
+            fprintf('  %s\n', csvFiles(k).name);
+        end
+        file = "";
+    end
+    
+    % setting the colours, styles, widths
+    function [col, ls, lw] = getStyle(c, idx)
+        % default colour cycle
+        colors = lines(12);
+        
+        if isfield(c,'color') && ~isempty(c.color)
+            col = c.color;
         else
-            azi = str2double(tokAzi{1});
+            col = colors(1 + mod(idx-1, size(colors,1)), :);
         end
+        if isfield(c,'style') && ~isempty(c.style)
+            ls = c.style;
+        else
+            ls = '-';
+        end
+        if isfield(c,'width') && ~isempty(c.width)
+            lw = c.width;
+        else
+            lw = 1.5;
+        end
+    end
     
-        if zen == zen_deg && ( (isnan(azi) && isnan(azi_deg)) || (~isnan(azi) && azi == azi_deg) )
-            file = fullfile(csvFiles(k).folder, csvFiles(k).name);
-            return;
+    % setting the defaults
+    function s = setDefaults(s, defaults)
+        fn = fieldnames(defaults);
+        for i = 1:numel(fn)
+            f = fn{i};
+            if ~isfield(s, f) || isempty(s.(f))
+                s.(f) = defaults.(f);
+            end
         end
     end
 
-    % helpful error to show which CSVs are available if given one not found
-    fprintf('No MODTRAN CSV matched zen=%g, azi=%g in %s\n', zen_deg, azi_deg, modtran_dir);
-    fprintf('Available CSVs:\n');
-    for k = 1:numel(csvFiles)
-        fprintf('  %s\n', csvFiles(k).name);
-    end
-    file = "";
-end
-
-% setting the colours, styles, widths
-function [col, ls, lw] = getStyle(c, idx)
-    % default colour cycle
-    colors = lines(12);
-    
-    if isfield(c,'color') && ~isempty(c.color)
-        col = c.color;
-    else
-        col = colors(1 + mod(idx-1, size(colors,1)), :);
-    end
-    if isfield(c,'style') && ~isempty(c.style)
-        ls = c.style;
-    else
-        ls = '-';
-    end
-    if isfield(c,'width') && ~isempty(c.width)
-        lw = c.width;
-    else
-        lw = 1.5;
-    end
-end
-
-% setting the defaults
-function s = setDefaults(s, defaults)
-    fn = fieldnames(defaults);
-    for i = 1:numel(fn)
-        f = fn{i};
-        if ~isfield(s, f) || isempty(s.(f))
-            s.(f) = defaults.(f);
-        end
-    end
 end
