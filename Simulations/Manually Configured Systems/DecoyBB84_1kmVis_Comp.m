@@ -24,12 +24,12 @@ addpath(fullfile(repo_root));
 %% 1. Choose parameters
 % plotting options
 plot_each_pass          = false;
-plot_compare            = true;
-plot_loss_comparison    = true;
+plot_compare            = false;
+plot_loss_comparison    = false;
 plot_detectors          = false;
 plot_spectral_radiance  = false;
 LOS_at_time             = false;
-plot_spectral_map       = false;
+plot_spectral_map       = true;
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
@@ -48,13 +48,13 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2140, 3000}, ...
+    'Wavelength', {1550, 2140, 2210}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
                         'SNSPD_NbTiN_2um', ...
                         'SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
     'txDiam', {0.1, 0.1, 0.1},...                                           % transmitter telescope diameter (0.08m for SPOQC)
-    'rxDiam', {0.7, 0.96, 1},...                                            % receiever telescope diameter (0.7m for HOGS)
-    'rxFOV', {37E-6, 37E-6, 5E-6},...                                       % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
+    'rxDiam', {0.7, 0.96, 1.00},...                                         % receiever telescope diameter (0.7m for HOGS)
+    'rxFOV', {37E-6, 30E-6, 30E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
     'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12}...
                         );
 
