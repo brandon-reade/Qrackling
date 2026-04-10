@@ -8,8 +8,9 @@ repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');
 addpath(fullfile(repo_root));  
 
 % set the file name
-json_root = "E:\MODTRAN_RESULTS\HOGS_moon_Jan3_1am_500mvis_100to10000_zenstep10_azistep30";
-filename = "HOGS_moon_Jan3_1am_500mvis_100to10000_zenstep10_azistep30";
+json_root = fullfile(repo_root, "+modtran","JSON_Cases",...
+    "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30");
+filename = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
 
 % set the json file to input into modtran
 cases_json = fullfile(json_root, filename+".json");                         % using E: drive to try to subvert file permissions on C:
@@ -20,13 +21,13 @@ modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";                     % ch
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";                                   % change to wherver the MODTRAN data files are (depends on install)
 
 % Optional shared collection
-collect_dir = fullfile(json_root, "collect_" + filename);                    % choose where to collect the files of interest
+collect_dir = fullfile(repo_root,"+modtran","Data","HOGS", filename);    % choose where to collect the files of interest); 
 collect_glob = "*_scan.csv";                                                % set the files of interest to be the csv scan files
 
 %% Use the parallel runner
 results = modtran.parallelRunnerJSON.runCasesParallel( ...
     cases_json, runs_dir, modtran_exe, modtran_data_dir, ...                % configuring files and dirs
-    maxWorkers=8, ...                                                       % maximum workers   
+    maxWorkers=12, ...                                                       % maximum workers   
     outputMode="shared", ...                                                % outputs are copied into a shared location
     collectDir=collect_dir, ...                                             % dir for desired output files
     collectGlob=collect_glob, ...                                           % file of interest
@@ -34,7 +35,6 @@ results = modtran.parallelRunnerJSON.runCasesParallel( ...
     keepWorkdirs=false, ...                                                 % delete directores of all runs
     resume=true, ...                                                        % check for 'done' flag, go to next case if it has been 'done'
     verifyCollect=true,...                                                  % check that all output files are present as expected
-    rerunMissing=true, ...                                                  % rerun missing cases if they are missing
     dedupeCollect=true, ...                                                 % check and remove any duplicate output files
     printTotalElapsed=true, ...                                             % prints total elapsed time
     collectPrefixMode="index_name", ...                                     % e.g. "000021_<caseName>__file.csv"
