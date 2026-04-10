@@ -15,10 +15,10 @@ classdef LocationPreset
         source (1,1) string = "none"
         zen_min  (1,1) double {mustBeGreaterThanOrEqual(zen_min,0), mustBeLessThanOrEqual(zen_min,180)} = 0
         zen_max  (1,1) double {mustBeGreaterThanOrEqual(zen_max,0), mustBeLessThanOrEqual(zen_max,180)} = 90
-        zen_step (1,1) double {mustBePositive} = 10
+        zen_step (1,1) double  = 10
         azi_min  (1,1) double {mustBeGreaterThanOrEqual(azi_min,0), mustBeLessThan(azi_min,360)} = 0
         azi_max  (1,1) double {mustBeGreaterThanOrEqual(azi_max,0), mustBeLessThanOrEqual(azi_max,360)} = 330
-        azi_step (1,1) double {mustBePositive} = 30
+        azi_step (1,1) double = 30
 
         % by default overrides zen0 case to be line-by-line
         enableLosOverrides (1,1) logical = true
