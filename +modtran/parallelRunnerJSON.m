@@ -274,6 +274,7 @@ classdef parallelRunnerJSON
                             results(i) = rr;
                         end
                     end
+                end
 
                 % Re-write summary after repairs
                 summaryPath = fullfile(runs_dir, "summary.json");
