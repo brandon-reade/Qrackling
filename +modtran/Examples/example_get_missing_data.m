@@ -49,8 +49,9 @@ opts.requiredWorkdirGlob = "*_scan.csv";
 opts.rerunIfMissingRequiredOutputs = true;
 opts.maxRerunsMissingRequiredOutputs = 2;
 
+nv = utilities.structToNameValues(opts);
 modtran.parallelRunnerJSON.runCasesParallel( ...
-    cases_json, runs_dir, modtran_exe, modtran_data_dir, opts);
+    cases_json, runs_dir, modtran_exe, modtran_data_dir, nv{:});
 
 if options.dedupeCollect
     removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
