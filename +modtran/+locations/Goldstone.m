@@ -1,6 +1,7 @@
 %% Pseudo OGS for Goldstone Deep Space Communications Complex (California, USA)
 %   - located in the Mojave Desert
 %   - primarily a radio-frequency hub for NASA's Deep Space Network
+%   - need to add desert windspeed settings
 function p = Goldstone(varargin)
     p = modtran.locations.LocationPreset();
     p.label = "Goldstone";

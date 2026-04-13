@@ -276,7 +276,7 @@ classdef Satellite < nodes.Located_Object & nodes.QKD_Receiver & nodes.QKD_Trans
             lon = LLATData(2,:);
             alt = LLATData(3,:) * 1000; %conversion to m from km
             %time must now conform to being a datetime object
-            t = datetime(LLATData(4,:),'ConvertFrom','epochtime','Epoch',datetime(2026,1,3,0,0,0));     % this was originall datetime(2023,1,1,0,0,0)
+            t = datetime(LLATData(4,:),'ConvertFrom','epochtime','Epoch',datetime(2026,1,3,1,0,0));     % this was originally datetime(2023,1,1,0,0,0)
         end
 
         function [Satellite, lat, lon, alt, t, vE, vN, vU] = ...
