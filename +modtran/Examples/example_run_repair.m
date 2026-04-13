@@ -10,9 +10,9 @@ addpath(fullfile(repo_root));
 
 % JSON root
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
-json_root = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
+filename = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
 json_file = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30.json";
-cases_json = fullfile(jsonDir, json_root, json_file);
+cases_json = fullfile(jsonDir, filename, json_file);
 
 % MODTRAN roots
 runs_dir = "E:\MODTRAN_RESULTS\runs_tmp";
