@@ -10,17 +10,17 @@ addpath(fullfile(repo_root));
 
 % JSON root
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
-json_root = "HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30";
-json_file = "HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30.json";
-cases_json = fullfile(jsonDir, json_root, json_file);
+filename = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
+json_file = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30.json";
+cases_json = fullfile(jsonDir, filename, json_file);
 
 % MODTRAN roots
 runs_dir = "E:\MODTRAN_RESULTS\runs_tmp";
 modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";
 
-% collection root
-collect_dir = fullfile(repo_root, "+modtran", "Data", "collect_" + filename);
+% collection dir
+collect_dir = fullfile(repo_root,"+modtran","Data","HOGS", filename);
 collect_glob = "*_scan.csv";                                                % file type to collect
 
 % repair root
@@ -39,6 +39,7 @@ opts.requireCollectedPerCase = 1;
 opts.dedupeCollect = true;
 opts.verifyCollect = true;
 
+opts.repairForceLbl =  true;                                                % force line-by-line on a repair
 opts.repairMissing = true;                                                 % repair based on the missing data points in the collection dir
 opts.repairMaxPasses = 3;
 opts.repairOutJson = fullfile(runs_dir, "missing_only.json");
