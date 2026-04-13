@@ -5,6 +5,14 @@ classdef aerosol
         aerosol_model (1,1) string = "urban"
         strato_model (1,1) string = "background"
         season (1,1) string = "SEASN_FALL_WINTER"
+
+        % Army Vertical Structure Algorithm (VSA)
+        enableVSA (1,1) logical = false                                     % maps to IVSA to enable it
+        vsa_cloud_ceiling_km double = []                                    % cloud/fog base (ceiling) height, -1 for starting at ground, maps to ZCVSA
+        vsa_cloud_thickness_km double = []                                  % cloud/fog thichness, maps to ZTVSA
+        vsa_inversion_layer_height_km double = []                           % inversion height / boundary layer top, maps to ZINVSA
+        % note that "[]" allows us to omit this from JSON (as zero already
+        % has a defined behaviour)
     end
 
     methods
@@ -15,6 +23,15 @@ classdef aerosol
             s.ICLD   = modtran.parameters.aerosol.mapCloudModel(obj.clouds);
             s.ISEASN = modtran.parameters.aerosol.mapSeasonModel(obj.season);
             s.VIS    = double(obj.visib_km);
+
+            % VSA
+            if obj.enableVSA
+                s.IVSA = true;                                              % enables VSA
+    
+                if ~isempty(obj.vsa_cloud_ceiling_km),  s.ZCVSA  = double(obj.vsa_cloud_ceiling_km);  end
+                if ~isempty(obj.vsa_cloud_thickness_km),  s.ZTVSA  = double(obj.vsa_cloud_thickness_km);  end
+                if ~isempty(obj.vsa_inversion_layer_height_km), s.ZINVSA = double(obj.vsa_inversion_layer_height_km); end
+            end
         end
     end
 
