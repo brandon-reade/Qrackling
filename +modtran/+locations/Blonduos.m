@@ -1,6 +1,7 @@
 %% Pseudo OGS for Blönduós (Iceland)
 %   - located near the town of Blönduós
 %   - area is characterized by a volcanic basalt landscape and harsh winter weather
+%   - NEED TO ADD IN THE REST, NOT READY YET
 function p = Blonduos(varargin)
     p = modtran.locations.LocationPreset();
     p.label = "Goldstone";
