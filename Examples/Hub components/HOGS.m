@@ -6,6 +6,7 @@ function HOGS = HOGS(Wavelength,options)
 arguments
     Wavelength {mustBeMember(Wavelength,[785,808,1550])}
     options.BeaconCamera {mustBeMember(options.BeaconCamera,{'Coarse','Fine'})} = 'Coarse'
+    options.Environment = []
 end
 
 %% parameters and components
