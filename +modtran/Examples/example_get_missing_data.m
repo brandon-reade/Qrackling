@@ -28,6 +28,7 @@ repair_json = fullfile(runs_dir, "repair_json", filename + "__missing_only.json"
 
 %% Choose options
 opts = struct();
+opts.maxWorkers = 12;
 opts.skipInitialRun = true;                                                 % skip initial run (assume already done)
 
 opts.outputMode = "shared";
