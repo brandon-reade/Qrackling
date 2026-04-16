@@ -33,27 +33,28 @@ classdef Turbulence_Model
 
                 hv.Magnitudes = options.Magnitudes;
                 hv.Heights = options.Heights;
-            end
+            else
 
-            %% otherwise, use a preset
-            switch options.Preset
-                case 'HV5-7'
-                    %HV5-7 normal sea level
-                    hv.Magnitudes = [17e-15,27e-17,3.59e-53];
-
-                case '2HV5-7'
-                    %2 * HV5-7 bad day at sea level
-                    hv.Magnitudes = [34e-15,54e-17,7.18e-53];
-
-                case 'HV10-10'
-                    %HV10-10 astronomical average
-                    hv.Magnitudes = [4.5e-15,9e-17,2e-53];
-
-                case 'HV15-12'
-                    %HV15-12 an excellent site
-                    hv.Magnitudes = [2e-15,7e-17,1.54e-53];
-                otherwise
-                    error('GHV preset must be one of "2HV5-7","HV5-7","HV10-10" or "HV15-12"')
+                %% otherwise, use a preset
+                switch options.Preset
+                    case 'HV5-7'
+                        %HV5-7 normal sea level
+                        hv.Magnitudes = [17e-15,27e-17,3.59e-53];
+    
+                    case '2HV5-7'
+                        %2 * HV5-7 bad day at sea level
+                        hv.Magnitudes = [34e-15,54e-17,7.18e-53];
+    
+                    case 'HV10-10'
+                        %HV10-10 astronomical average
+                        hv.Magnitudes = [4.5e-15,9e-17,2e-53];
+    
+                    case 'HV15-12'
+                        %HV15-12 an excellent site
+                        hv.Magnitudes = [2e-15,7e-17,1.54e-53];
+                    otherwise
+                        error('GHV preset must be one of "2HV5-7","HV5-7","HV10-10" or "HV15-12"')
+                end
             end
         end
 
