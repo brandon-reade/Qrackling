@@ -15,7 +15,7 @@ saveDir = fullfile(repo_root, "+modtran", "JSON_Cases");
 % ----------------------------
 % Location 1: HOGS (Edinburgh)
 % ----------------------------
-utcDT = datetime(2026,1,3,8,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second)
+utcDT = datetime(2026,1,3,1,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second)
 
 % Create the HOGS preset
 hogs = modtran.locations.HOGS(); 
@@ -36,7 +36,7 @@ hogs.forceLblAtZen0IfCorrelatedK = true;                                    % fo
 % hogs.capNstrAt8      = true;                                              % (only if LocationPreset supports it)
 
 % Source (sun/moon/none)
-hogs.source = "sun";
+hogs.source = "moon";
 % hogs.lun_phase_deg = [];                                                 % (only if LocationPreset/geometry supports it)
 
 % Aerosol / clouds (winter scenario)
