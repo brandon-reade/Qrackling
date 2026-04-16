@@ -6,13 +6,13 @@
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
-modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
+modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
     'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full
 
-modtran_dir = fullfile(repo_root,...
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am
                                                 
 
@@ -25,12 +25,13 @@ addpath(fullfile(repo_root));
 % plotting options
 plot_each_pass              = false;
 plot_compare                = true;
-plot_loss_comparison        = false;
+plot_loss_comparison        = true;
 plot_detectors              = false;
 plot_spectral_radiance      = false;
-plot_2D_spectral_map        = true;
+plot_trans_rad              = false;
+plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
-plot_spectral_comparison    = true;
+plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
@@ -40,7 +41,7 @@ Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 1E-6;
 Rep_Rate                    = 1E9;
 %Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
-Spectral_Filter_Width       = 10;                                          % spectral width in nm
+Spectral_Filter_Width       = 12;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -54,9 +55,9 @@ QKDsystems = struct( ...
     'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
                         'SNSPD_NbTiN_2um', ...
                         'SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'txDiam', {0.1, 0.1, 0.1},...                                           % transmitter telescope diameter (0.08m for SPOQC)
+    'txDiam', {0.35, 0.35, 0.35},...                                           % transmitter telescope diameter (0.08m for SPOQC)
     'rxDiam', {0.7, 0.96, 1.00},...                                         % receiever telescope diameter (0.7m for HOGS)
-    'rxFOV', {37E-6, 30E-6, 30E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
+    'rxFOV', {37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
     'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12}...
                         );
 
@@ -138,33 +139,34 @@ plots.compare.BackgroundCountsComparison(Results, ...
     'MaskMode', "active", ...
     'FigureName', "Background Counts Comparison (Vis 1km)");
 
-%% Plot Radiance and Transmittance vs Zenith (10 deg steps) at fixed azimuth
-labels  = arrayfun(@(x) sprintf('%dnm', x), [QKDsystems.Wavelength], 'UniformOutput', false);
-colours = lines(numel(QKDsystems));
-
-plots.compare.RadTranVsZenith(Env, ...
-    'Labels', labels, 'Colors', colours, 'ShowMarkers', true, ...
-    'AzimuthDeg', 180, 'ZenithDeg', 0:10:90, ...
-    'Wavelength', [QKDsystems.Wavelength], ...
-    'TwoPanel', false, 'UseYYAxis', true);
-
-%% Plot Radiance and Transmission Profiles
-zen_angles = 0:30:60; 
-azi = 30;
-
-clear cases;
-
-% create a unique case for each zenith
-for i = 1:length(zen_angles)
-    cases(i).dir     = modtran_dir;
-    cases(i).zen_deg = zen_angles(i);
-    cases(i).azi_deg = azi;
-    cases(i).label   = sprintf('%d° Zen', zen_angles(i));
+%% Plot Radiance and Transmittance Profiles
+% compare transmittance and radiance at different wavelengths and zeniths
+% for a given azimuth
+if plot_trans_rad
+    labels  = arrayfun(@(x) sprintf('%dnm', x), [QKDsystems.Wavelength], 'UniformOutput', false);
+    colours = lines(numel(QKDsystems));
+    
+    plots.compare.RadTranVsZenith(Env, ...
+        'Labels', labels, 'Colors', colours, 'ShowMarkers', true, ...
+        'AzimuthDeg', 180, 'ZenithDeg', 0:10:90, ...
+        'Wavelength', [QKDsystems.Wavelength], ...
+        'TwoPanel', false, 'UseYYAxis', true);
+    
+    % Plot Radiance and Transmission Profiles
+    zen_angles = 0:30:60; 
+    azi = 30;
+    clear cases;
+    for i = 1:length(zen_angles)
+        cases(i).dir     = modtran_dir;
+        cases(i).zen_deg = zen_angles(i);
+        cases(i).azi_deg = azi;
+        cases(i).label   = sprintf('%d° Zen', zen_angles(i));
+    end
+    % Set options and plot
+    opts.useTwoPanels = true;
+    opts.titlePrefix = sprintf('Atmospheric Profile (azi=%d): ', azi);
+    plots.TransmittanceRadiance(cases, opts);
 end
-% Set options and plot
-opts.useTwoPanels = true;
-opts.titlePrefix = sprintf('Atmospheric Profile (azi=%d): ', azi);
-plots.TransmittanceRadiance(cases, opts);
 
 %% Plot Environment spectral radiance
 if plot_spectral_radiance
@@ -231,6 +233,15 @@ function Env = buildEnvironment(env_dir)
         end
     end
 
+    % optionally set a turbulence model
+    Env.turbulence_model = environment.Turbulence_Model('Preset','HV10-10');   % or 'HV5-7': sea level, '2HV5-7': bad day at sea level,  'HV10-10': typical astronomical , 'HV15-12' excellent site
+    
+    %{
+    Env.turbulence_model = environment.Turbulence_Model( ...
+    'Preset','none', ...
+    'Magnitudes',[17e-15, 27e-17, 3.59e-53], ...
+    'Heights',   [100,   1500,   1000]);
+    %}
 end
 
 % Satellite
@@ -243,8 +254,29 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
         'Probability_Decoy',  SPs(2), ...
         'State_Prep_Error', state_prep_error);     
     TxTelescope = components.Telescope(TxDia);                              % transmitter telescope
+
+    % using LLAT
+    %%{
     SimSat = nodes.Satellite(TxTelescope, 'Source', Src,...                 % satellite
         'OrbitDataFileLocation', OrbitDataFileLocation);
+    %}
+
+    % Using start/stop time
+    %{
+    % choose date
+    StartTime = datetime(2025,12,25,6,40,0); %datetime(2026,1,31,4,0,0);
+    StopTime = datetime(2025,12,25,7,20,0);   %datetime(2026,1,31,5,0,0);
+    SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
+    'semiMajorAxis', 600e3 + earthRadius, ...
+    'eccentricity', 0, ...
+    'inclination', 97.065055549, ...
+    'rightAscensionOfAscendingNode', -1.5, ...
+    'argumentOfPeriapsis', 0, ...
+    'trueAnomaly', 0, ...
+    'StartTime', StartTime, ...
+    'StopTime', StopTime, ...
+    'sampleTime', seconds(1));
+    %}
 end
 
 % Detector
