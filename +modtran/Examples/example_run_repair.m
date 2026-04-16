@@ -10,8 +10,8 @@ addpath(fullfile(repo_root));
 
 % JSON root
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
-filename = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
-json_file = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30.json";
+filename = "Goldstone_moon_Jun21_1am_23kmvis_300to10000_zenstep10_azistep30";
+json_file = "Goldstone_moon_Jun21_1am_23kmvis_300to10000_zenstep10_azistep30.json";
 cases_json = fullfile(jsonDir, filename, json_file);
 
 % MODTRAN roots
@@ -25,7 +25,7 @@ collect_glob = "*_scan.csv";                                                % fi
 
 %% Define options
 opts = struct();
-opts.maxWorkers = 12;
+opts.maxWorkers = 11;
 
 opts.outputMode = "shared";
 opts.collectDir = collect_dir;
