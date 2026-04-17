@@ -1,5 +1,5 @@
 % Author: Brandon Reade
-% Date: 26/03/2026 (Updated 09/04/2026)
+% Date: 26/03/2026 (Updated 17/04/2026)
 % Generating a JSON containing missing data from a previous input file 
 % and running only missing cases
 
@@ -10,8 +10,8 @@ addpath(fullfile(repo_root));
 
 % JSON root
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
-filename = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30";
-json_file = "HOGS_sun_Jan3_8am_5kmvis_300to10000_zenstep10_azistep30.json";
+filename = "Goldstone_moon_Jun21_1am_23kmvis_300to10000_zenstep10_azistep30";
+json_file = "Goldstone_moon_Jun21_1am_23kmvis_300to10000_zenstep10_azistep30.json";
 cases_json = fullfile(jsonDir, filename, json_file);
 
 % MODTRAN roots
@@ -20,7 +20,7 @@ modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";
 
 % collection dir
-collect_dir = fullfile(repo_root,"+modtran","Data","HOGS", filename);
+collect_dir = fullfile(repo_root,"+modtran","Data","Goldstone", filename);
 collect_glob = "*_scan.csv";                                                % file type to collect
 
 % repair root
@@ -36,6 +36,10 @@ opts.collectDir = collect_dir;
 opts.collectGlob = collect_glob;
 opts.collectPrefixMode = "index";                                           % collect by index case
 opts.requireCollectedPerCase = 1;
+
+% check that there is no "nan" data
+opts.checkCollectedQuality = true;
+opts.deleteBadCollected = true;
 
 opts.dedupeCollect = true;
 opts.verifyCollect = true;
@@ -54,7 +58,7 @@ nv = utilities.structToNameValues(opts);
 modtran.parallelRunnerJSON.runCasesParallel( ...
     cases_json, runs_dir, modtran_exe, modtran_data_dir, nv{:});
 
-if options.dedupeCollect
+if opts.dedupeCollect
     removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
     fprintf("De-dupe removed: %d\n", removed);
 end
