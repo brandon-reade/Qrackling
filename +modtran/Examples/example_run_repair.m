@@ -36,6 +36,10 @@ opts.requireCollectedPerCase = 1;
 opts.dedupeCollect = true;
 opts.verifyCollect = true;
 
+% check that there is no "nan" data
+opts.checkCollectedQuality = true;
+opts.deleteBadCollected = true;
+
 % detect "rc==0 but CSV missing" and auto retry per-case:
 opts.requiredWorkdirGlob = "*_scan.csv";
 opts.rerunIfMissingRequiredOutputs = true;
@@ -51,7 +55,7 @@ nv = utilities.structToNameValues(opts);
 modtran.parallelRunnerJSON.runCasesParallel( ...
     cases_json, runs_dir, modtran_exe, modtran_data_dir, nv{:});
 
-if options.dedupeCollect
+if opts.dedupeCollect
     removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
     fprintf("De-dupe removed: %d\n", removed);
 end
