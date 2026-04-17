@@ -47,6 +47,13 @@ classdef parallelRunnerJSON
                 % verification options
                 options.verifyCollect (1,1) logical = true                  % checks if the collection file has all the outputs expected
                 options.dedupeCollect (1,1) logical = false                 % used to enable deletion of duplicate output files
+                options.checkCollectedQuality (1,1) logical = true          % used to check if the generated data is actually real (non-nan results)
+                options.deleteBadCollected (1,1) logical = false
+                options.qualityReportPath (1,1) string = ""                 % default: <runs_dir>/quality_report.json
+                options.qualityMinTrans (1,1) double = 0                    % allow 0
+                options.qualityMaxTrans (1,1) double = 1                    % allow 1
+                options.qualityAllowNegativeRadianceTol (1,1) double = 0    % minimum radiance allowed is zero
+                options.qualityAllowNaN (1,1) logical = false
 
                 % other options
                 options.keepWorkdirs (1,1) logical = false
@@ -916,6 +923,186 @@ classdef parallelRunnerJSON
                     try rmdir(p, "s"); catch, end
                 else
                     try delete(p); catch, end
+                end
+            end
+        end
+
+        function [badCaseIdx, badFiles, report] = scanCollectedOutputsForProblems(collectDir, options)
+            % Scan collected CSVs and identify files/cases that are unusable for Environment building.
+            arguments
+                collectDir (1,1) string
+                options.collectGlob (1,:) string = "*.csv"
+                options.allowNaN (1,1) logical = false
+                options.transMin (1,1) double = 0
+                options.transMax (1,1) double = 1
+                options.negRadianceTol (1,1) double = 0
+            end
+        
+            files = modtran.parallelRunnerJSON.expandGlobs(collectDir, options.collectGlob);
+        
+            badFiles = struct( ...
+                'file', {}, ...
+                'case_index', {}, ...
+                'reasons', {}, ...
+                'wav_min', {}, 'wav_max', {}, ...
+                'tr_min', {}, 'tr_max', {}, 'tr_oob_count', {}, ...
+                'rad_min', {}, 'rad_max', {}, 'rad_neg_count', {}, ...
+                'has_rad', {}, ...
+                'error', {} );
+        
+            badCaseSet = containers.Map("KeyType","double","ValueType","logical");
+        
+            for k = 1:numel(files)
+                fp = string(fullfile(files(k).folder, files(k).name));
+                nm = string(files(k).name);
+        
+                % Extract case index from prefix
+                idx = NaN;
+                m = regexp(nm, "^(?<idx>\d{6})", "names", "once");
+                if ~isempty(m)
+                    idx = str2double(m.idx);
+                end
+        
+                reasons = strings(0,1);
+        
+                try
+                    [wav, tr, rad, meta] = utilities.readModtranFile(fp);
+        
+                    if isempty(wav) || ~any(isfinite(wav))
+                        reasons(end+1) = "missing_wavelength";
+                    end
+                    if isempty(tr) || ~any(isfinite(tr))
+                        reasons(end+1) = "missing_transmittance";
+                    end
+        
+                    wav_min = NaN; wav_max = NaN;
+                    tr_min = NaN; tr_max = NaN;
+                    rad_min = NaN; rad_max = NaN;
+        
+                    if ~isempty(wav), wav_min = min(wav,[],'omitnan'); wav_max = max(wav,[],'omitnan'); end
+                    if ~isempty(tr),  tr_min  = min(tr,[],'omitnan');  tr_max  = max(tr,[],'omitnan');  end
+        
+                    has_rad = isfield(meta,"has_rad") && meta.has_rad && ~isempty(rad);
+                    if has_rad
+                        rad_min = min(rad,[],'omitnan');
+                        rad_max = max(rad,[],'omitnan');
+                    end
+        
+                    % NaN/Inf checks
+                    if ~options.allowNaN
+                        if (~isempty(wav) && any(~isfinite(wav))) || ...
+                           (~isempty(tr)  && any(~isfinite(tr)))  || ...
+                           (has_rad       && any(~isfinite(rad)))
+                            reasons(end+1) = "nan_or_inf";
+                        end
+                    end
+        
+                    % Transmittance range check
+                    tr_oob_count = 0;
+                    if ~isempty(tr)
+                        tr_oob_count = sum((tr < options.transMin | tr > options.transMax) & isfinite(tr));
+                        if tr_oob_count > 0
+                            reasons(end+1) = "transmittance_out_of_bounds";
+                        end
+                    end
+        
+                    % Radiance negative check (tolerance)
+                    rad_neg_count = 0;
+                    if has_rad
+                        rad_neg_count = sum((rad < -options.negRadianceTol) & isfinite(rad));
+                        if rad_neg_count > 0
+                            reasons(end+1) = "radiance_negative";
+                        end
+                    end
+        
+                    if ~isempty(reasons)
+                        badFiles(end+1) = struct( ... 
+                            'file', fp, ...
+                            'case_index', idx, ...
+                            'reasons', reasons, ...
+                            'wav_min', wav_min, 'wav_max', wav_max, ...
+                            'tr_min', tr_min, 'tr_max', tr_max, 'tr_oob_count', tr_oob_count, ...
+                            'rad_min', rad_min, 'rad_max', rad_max, 'rad_neg_count', rad_neg_count, ...
+                            'has_rad', has_rad, ...
+                            'error', "" );
+                        if isfinite(idx)
+                            badCaseSet(idx) = true;
+                        end
+                    end
+        
+                catch ME
+                    reasons = ["read_error"];
+                    badFiles(end+1) = struct( ... 
+                        'file', fp, ...
+                        'case_index', idx, ...
+                        'reasons', reasons, ...
+                        'wav_min', NaN, 'wav_max', NaN, ...
+                        'tr_min', NaN, 'tr_max', NaN, 'tr_oob_count', NaN, ...
+                        'rad_min', NaN, 'rad_max', NaN, 'rad_neg_count', NaN, ...
+                        'has_rad', false, ...
+                        'error', string(ME.message) );
+                    if isfinite(idx)
+                        badCaseSet(idx) = true;
+                    end
+                end
+            end
+        
+            % Produce outputs
+            keys = badCaseSet.keys;
+            badCaseIdx = sort(cell2mat(keys(:)));
+            report = struct();
+            report.collectDir = collectDir;
+            report.collectGlob = options.collectGlob;
+            report.allowNaN = options.allowNaN;
+            report.transMin = options.transMin;
+            report.transMax = options.transMax;
+            report.negRadianceTol = options.negRadianceTol;
+            report.badCaseIdx = badCaseIdx;
+            report.badFiles = badFiles;
+        end
+        
+        function deleted = deleteCollectedCases(collectDir, collectGlob, badCaseIdx)
+            % Delete all collected files for each bad case index.
+            arguments
+                collectDir (1,1) string
+                collectGlob (1,:) string
+                badCaseIdx (:,1) double
+            end
+        
+            deleted = 0;
+        
+            for ii = 1:numel(badCaseIdx)
+                idx = badCaseIdx(ii);
+        
+                % Delete both prefix styles to be safe:
+                %  000013__<glob>
+                %  000013_*__<glob>
+                pats = [ ...
+                    sprintf("%06d__%s", idx, collectGlob), ...
+                    sprintf("%06d_*__%s", idx, collectGlob) ...
+                ];
+        
+                for p = pats
+                    m = dir(fullfile(collectDir, p));
+                    for k = 1:numel(m)
+                        if m(k).isdir, continue; end
+                        try
+                            delete(fullfile(m(k).folder, m(k).name));
+                            deleted = deleted + 1;
+                        catch
+                        end
+                    end
+                end
+            end
+        end
+        
+        function files = expandGlobs(dirPath, globs)
+            % Returns a concatenated dir() listing for multiple globs
+            files = dir.empty;
+            for g = globs
+                d = dir(fullfile(dirPath, string(g)));
+                if ~isempty(d)
+                    files = [files; d]; 
                 end
             end
         end
