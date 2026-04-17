@@ -263,7 +263,20 @@ classdef PassSimulationResult
             nexttile()
             title('Link performance')
             total_loss_db = result.loss.TotalLoss.dB;
-            semilogy(total_loss_db(mask), result.secret_key_rate(mask), 'k-')
+            x = total_loss_db(mask);
+
+            % replaced semilogy(total_loss_db(mask),result.secret_key_rate(mask), 'k-') 
+            % to allow for approach and departure labelling
+            y = result.secret_key_rate(mask);
+            t = result.time(mask);
+            
+            [~, iMin] = min(x); % around closest approach (typically min loss)
+            i1 = 1:iMin;
+            i2 = iMin:numel(x);
+            
+            semilogy(x(i1), y(i1), 'k-'); hold on;
+            semilogy(x(i2), y(i2), 'k--');
+            legend('Approach','Departure');
             xlabel('Link Loss (dB)')
             ylabel('Secret Key Rate (bps)')
             xlim([ ...
