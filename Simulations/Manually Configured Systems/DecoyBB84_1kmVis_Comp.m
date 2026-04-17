@@ -1,18 +1,18 @@
 % Author: Brandon Reade
 % Date: 11/03/2026
-% Last update: 13/04/2026
+% Last update: 17/04/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
 
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
-modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
+modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
     'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full
 
-modtran_dir1 = fullfile(repo_root,...
+modtran_dir = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am
                                                 
 
@@ -23,9 +23,10 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = false;
+plot_each_pass              = true;
 plot_compare                = true;
 plot_loss_comparison        = true;
+plot_link_loss_comparison   = true;
 plot_detectors              = false;
 plot_spectral_radiance      = false;
 plot_trans_rad              = false;
@@ -34,14 +35,21 @@ plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
+% system configuration
+small_sat                   = true;                                        % false for cubesat settings
+
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
-Transmitter_Telescope_Diameter=0.1;                                        % diameters in m
+if small_sat
+    Transmitter_Telescope_Diameter=0.35;                                        % diameters in m
+else
+    Transmitter_Telescope_Diameter=0.1;
+end
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 1E-6;
 Rep_Rate                    = 1E9;
 %Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
-Spectral_Filter_Width       = 12;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
+Spectral_Filter_Width       = 10;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -55,7 +63,7 @@ QKDsystems = struct( ...
     'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
                         'SNSPD_NbTiN_2um', ...
                         'SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'txDiam', {0.35, 0.35, 0.35},...                                           % transmitter telescope diameter (0.08m for SPOQC)
+    'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter},...     % transmitter telescope diameter (0.08m for SPOQC)
     'rxDiam', {0.7, 0.96, 1.00},...                                         % receiever telescope diameter (0.7m for HOGS)
     'rxFOV', {37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
     'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12}...
@@ -206,6 +214,36 @@ if plot_spectral_comparison
     'AzimuthDeg',(0:30:330)', ...
     'ZenithDeg',(0:10:90)', ...
     'Title',"Radiance relative to 1550 nm");
+end
+
+%% Plot Link Loss Comparison
+
+if plot_link_loss_comparison
+    % Key rate vs loss (SKR right axis, QBER left)
+    plots.compare.LinkLossComparison(Results, ...
+        'Wavelengths', [QKDsystems.Wavelength], ...
+        'Mode', "LossVsSKR", ...
+        'Mask', "None", ...
+        'PlotSifted', false, ...
+        'PlotQBER', false, ...
+        'SplitBranches', true);
+    
+    % PLOB vs loss in bits/s
+    plots.compare.TheoreticalLimitComparison(Results, ...
+        'Wavelengths', [QKDsystems.Wavelength], ...
+        'RepRates', Rep_Rate, ...
+        'X', "LossdB", ...
+        'Mask', "Line of sight", ...
+        'YUnit', "bits_per_second", ...
+        'FigureName', "Achieved SKR vs PLOB (vs loss)");
+    
+    % PLOB vs elevation in bits/pulse
+    plots.compare.TheoreticalLimitComparison(Results, ...
+        'Wavelengths', [QKDsystems.Wavelength], ...
+        'X', "Elevation", ...
+        'Mask', "Line of sight", ...
+        'YUnit', "bits_per_pulse", ...
+        'FigureName', "PLOB bound vs elevation (bits/pulse)");
 end
 
 %% Functions to build QKD Systems
