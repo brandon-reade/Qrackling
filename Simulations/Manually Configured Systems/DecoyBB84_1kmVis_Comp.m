@@ -6,13 +6,13 @@
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
-modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
+modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
     'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full
 
-modtran_dir1 = fullfile(repo_root,...
+modtran_dir = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am
                                                 
 
@@ -23,7 +23,7 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = false;
+plot_each_pass              = true;
 plot_compare                = false;
 plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
@@ -85,7 +85,7 @@ Env = buildEnvironment(modtran_dir);
 for i = 1:nQKDSystems
     % Create satellite
     Sat{i} = createSatellite(QKDsystems(i).Wavelength, OrbitDataFileLocation,...
-        Rep_Rate, QKDsystems(i).txDiam, MPNs, SPs, state_prep_error);
+        Rep_Rate, QKDsystems(i).txDiam, MPNs, SPs, state_prep_error, ideal_pass);
     
     % Create detector
     Det{i} = createPresetDetector(QKDsystems(i).Wavelength, Rep_Rate,...
@@ -160,7 +160,8 @@ if plot_orbit_summary
         PolarData="spectral_radiance", ...
         WavelengthNm=QKDsystems(index).Wavelength, ...
         SurfaceMetric="loss:atmospheric",...                                  % "skr", "loss:atmospheric"
-        SurfacePlotType="scatter");
+        SurfacePlotType="scatter", ...
+        Mask="Communication");
 end
 
 %% Plot Radiance and Transmittance Profiles
@@ -287,7 +288,7 @@ function Env = buildEnvironment(env_dir)
 end
 
 % Satellite
-function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionRate, TxDia, MPNs, SPs, state_prep_error)
+function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionRate, TxDia, MPNs, SPs, state_prep_error, pass_type)
     Src = components.Source(Wavelength, ...                                 % tx source
         'Repetition_Rate', RepetitionRate, ...
         'MPN_Signal',      MPNs(1), ...
@@ -298,7 +299,7 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
     TxTelescope = components.Telescope(TxDia);                              % transmitter telescope
 
     % using LLAT
-    if ideal_pass
+    if pass_type
         SimSat = nodes.Satellite(TxTelescope, 'Source', Src,...                 % satellite
             'OrbitDataFileLocation', OrbitDataFileLocation);
     else
