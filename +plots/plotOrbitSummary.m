@@ -31,7 +31,7 @@ arguments
     options.Mask (1,1) string {mustBeMember(options.Mask, ["Elevation","Communication","Line of sight","None"])} = "Elevation"
 
     options.PolarOverlay (1,1) string {mustBeMember(options.PolarOverlay, ...
-        ["none","pass_points","sky_points","sky_field"])} = "pass_points"
+        ["none","pass_points","sky_points","sky_field"])} = "sky_points"
 
     options.PolarData (1,1) string {mustBeMember(options.PolarData, ...
         ["transmittance","attenuation","attenuation dB","spectral_radiance"])} = "transmittance"
