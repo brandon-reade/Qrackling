@@ -1,18 +1,18 @@
 % Author: Brandon Reade
 % Date: 11/03/2026
-% Last update: 17/04/2026
+% Last update: 19/04/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
 
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
-modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
+modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
     'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full
 
-modtran_dir = fullfile(repo_root,...
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am
                                                 
 
@@ -23,12 +23,13 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = true;
-plot_compare                = true;
-plot_loss_comparison        = true;
-plot_link_loss_comparison   = true;
+plot_each_pass              = false;
+plot_compare                = false;
+plot_loss_comparison        = false;
+plot_link_loss_comparison   = false;
+plot_background_counts      = false;
+plot_orbit_summary          = true;
 plot_detectors              = false;
-plot_spectral_radiance      = false;
 plot_trans_rad              = false;
 plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
@@ -36,7 +37,8 @@ plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
 % system configuration
-small_sat                   = true;                                        % false for cubesat settings
+small_sat                   = false;                                        % false for cubesat settings
+ideal_pass                  = true;                                         % satellite pass
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 if small_sat
@@ -142,10 +144,24 @@ if plot_loss_comparison
         'FigureName', "Loss Components Comparison (Vis 1km)");
 end
 
-plots.compare.BackgroundCountsComparison(Results, ...
-    'Wavelengths', [QKDsystems.Wavelength], ...
-    'MaskMode', "active", ...
-    'FigureName', "Background Counts Comparison (Vis 1km)");
+if plot_background_counts
+    plots.compare.BackgroundCountsComparison(Results, ...
+        'Wavelengths', [QKDsystems.Wavelength], ...
+        'MaskMode', "active", ...
+        'FigureName', "Background Counts Comparison (Vis 1km)");
+end
+
+%% Plot Orbit Summary
+if plot_orbit_summary
+    index=1;
+    plots.plotOrbitSummary(Results{index}, Env, ...
+        IncludeTimeSeries=false, ...
+        PolarOverlay="sky_points", ...        
+        PolarData="spectral_radiance", ...
+        WavelengthNm=QKDsystems(index).Wavelength, ...
+        SurfaceMetric="loss:atmospheric",...                                  % "skr", "loss:atmospheric"
+        SurfacePlotType="scatter");
+end
 
 %% Plot Radiance and Transmittance Profiles
 % compare transmittance and radiance at different wavelengths and zeniths
@@ -177,10 +193,6 @@ if plot_trans_rad
 end
 
 %% Plot Environment spectral radiance
-if plot_spectral_radiance
-    Plot(Env,"spectral radiance");
-end
-
 if plot_2D_spectral_map
     plots.plotRadianceMap(Env, [QKDsystems(1).Wavelength, QKDsystems(2).Wavelength, QKDsystems(3).Wavelength], ...
     'View',"2D", ...
@@ -236,14 +248,6 @@ if plot_link_loss_comparison
         'Mask', "Line of sight", ...
         'YUnit', "bits_per_second", ...
         'FigureName', "Achieved SKR vs PLOB (vs loss)");
-    
-    % PLOB vs elevation in bits/pulse
-    plots.compare.TheoreticalLimitComparison(Results, ...
-        'Wavelengths', [QKDsystems.Wavelength], ...
-        'X', "Elevation", ...
-        'Mask', "Line of sight", ...
-        'YUnit', "bits_per_pulse", ...
-        'FigureName', "PLOB bound vs elevation (bits/pulse)");
 end
 
 %% Functions to build QKD Systems
@@ -294,27 +298,24 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
     TxTelescope = components.Telescope(TxDia);                              % transmitter telescope
 
     % using LLAT
-    %%{
-    SimSat = nodes.Satellite(TxTelescope, 'Source', Src,...                 % satellite
-        'OrbitDataFileLocation', OrbitDataFileLocation);
-    %}
-
-    % Using start/stop time
-    %{
-    % choose date
-    StartTime = datetime(2025,12,25,6,40,0); %datetime(2026,1,31,4,0,0);
-    StopTime = datetime(2025,12,25,7,20,0);   %datetime(2026,1,31,5,0,0);
-    SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
-    'semiMajorAxis', 600e3 + earthRadius, ...
-    'eccentricity', 0, ...
-    'inclination', 97.065055549, ...
-    'rightAscensionOfAscendingNode', -1.5, ...
-    'argumentOfPeriapsis', 0, ...
-    'trueAnomaly', 0, ...
-    'StartTime', StartTime, ...
-    'StopTime', StopTime, ...
-    'sampleTime', seconds(1));
-    %}
+    if ideal_pass
+        SimSat = nodes.Satellite(TxTelescope, 'Source', Src,...                 % satellite
+            'OrbitDataFileLocation', OrbitDataFileLocation);
+    else
+        % Using start/stop time
+        StartTime = datetime(2025,12,25,6,40,0); %datetime(2026,1,31,4,0,0);
+        StopTime = datetime(2025,12,25,7,20,0);   %datetime(2026,1,31,5,0,0);
+        SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
+        'semiMajorAxis', 600e3 + earthRadius, ...
+        'eccentricity', 0, ...
+        'inclination', 97.065055549, ...
+        'rightAscensionOfAscendingNode', -1.5, ...
+        'argumentOfPeriapsis', 0, ...
+        'trueAnomaly', 0, ...
+        'StartTime', StartTime, ...
+        'StopTime', StopTime, ...
+        'sampleTime', seconds(1));
+    end
 end
 
 % Detector
