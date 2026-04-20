@@ -56,6 +56,6 @@ modtran.parallelRunnerJSON.runCasesParallel( ...
     cases_json, runs_dir, modtran_exe, modtran_data_dir, nv{:});
 
 if opts.dedupeCollect
-    removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
+    removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(opts.collectDir);
     fprintf("De-dupe removed: %d\n", removed);
 end
