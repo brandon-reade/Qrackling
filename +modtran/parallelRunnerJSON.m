@@ -91,6 +91,9 @@ classdef parallelRunnerJSON
                 options.repairMaxPasses (1,1) double = 1                    % maximum passes done for repair
                 options.repairForceLbl (1,1) logical = false                % forces repairs to be line-by-line RT option
                 options.repairLblToken (1,1) string = "RT_LINE_BY_LINE"     % allows the RT option name to be changed (can be used to override the setting for other RT options)
+                options.repairForceZenEps (1,1) logical = false             % force zenith override
+                options.repairZenTol_deg (1,1) double = 1e-12               % set the tolerance (anything under this will be overriden)
+                options.repairZenEps_deg (1,1) double = 1e-3                % set the new value for a zenith value
 
                 % preserve original indices when running missing-only JSON
                 options.preserveOriginalIndicesInRepair (1,1) logical = true
@@ -205,7 +208,38 @@ classdef parallelRunnerJSON
             end
 
             % --------------------------
-            % 3. Verify + Repair loop (multi-pass)
+            % 3. Quality scan for "NaN"s
+            % --------------------------
+            if options.outputMode == "shared" && options.checkCollectedQuality
+                fprintf("\nScanning collected outputs for NaN/out-of-range issues in: %s\n", options.collectDir);
+            
+                [badIdx, badFiles, report] = modtran.parallelRunnerJSON.scanCollectedOutputsForProblems( ...
+                    options.collectDir, ...
+                    collectGlob=options.collectGlob, ...
+                    allowNaN=options.qualityAllowNaN, ...
+                    transMin=options.qualityMinTrans, ...
+                    transMax=options.qualityMaxTrans, ...
+                    negRadianceTol=options.qualityAllowNegativeRadianceTol);
+            
+                if strlength(strtrim(options.qualityReportPath)) == 0
+                    options.qualityReportPath = fullfile(runs_dir, "quality_report.json");
+                end
+                modtran.parallelRunnerJSON.writeText(options.qualityReportPath, jsonencode(report, "PrettyPrint", true));
+                fprintf("Quality report written: %s\n", options.qualityReportPath);
+            
+                if ~isempty(badIdx)
+                    fprintf("Quality scan found %d bad cases.\n", numel(badIdx));
+                    if options.deleteBadCollected
+                        deleted = modtran.parallelRunnerJSON.deleteCollectedCases(options.collectDir, options.collectGlob, badIdx);
+                        fprintf("Deleted %d collected files from bad cases.\n", deleted);
+                    end
+                else
+                    fprintf("Quality scan: no bad cases detected.\n");
+                end
+            end
+
+            % --------------------------
+            % 4. Verify + Repair loop (multi-pass)
             % --------------------------
             %     verify -> write missing_only.json -> rerun missing indices -> verify -> repeat up to repairMaxPasses
             if options.outputMode == "shared" && (options.verifyCollect || options.repairMissing)
@@ -273,6 +307,10 @@ classdef parallelRunnerJSON
                             caseObj = cases{i};
                             if options.repairForceLbl
                                 caseObj = modtran.parallelRunnerJSON.forceCaseLbl(caseObj, options.repairLblToken);
+                            end
+
+                            if isfield(options,"repairForceZenEps") && options.repairForceZenEps
+                                caseObj = modtran.parallelRunnerJSON.forceCaseZenEps(caseObj, options.repairZenTol_deg, options.repairZenEps_deg);
                             end
                     
                             rr = modtran.parallelRunnerJSON.runOneCase( ...
@@ -426,6 +464,11 @@ classdef parallelRunnerJSON
                 % Apply repair-time patching BEFORE submission (so each worker gets correct caseObj)
                 if isfield(options, "repairForceLbl") && options.repairForceLbl
                     caseObj = modtran.parallelRunnerJSON.forceCaseLbl(caseObj, options.repairLblToken);
+                end
+
+                % Apply zenith change patch BEFORE submission
+                if isfield(options, "repairForceZenEps") && options.repairForceZenEps
+                    caseObj = modtran.parallelRunnerJSON.forceCaseZenEps(caseObj, options.repairZenTol_deg, options.repairZenEps_deg);
                 end
         
                 f(j,1) = parfeval( ...
@@ -987,6 +1030,12 @@ classdef parallelRunnerJSON
                         rad_min = min(rad,[],'omitnan');
                         rad_max = max(rad,[],'omitnan');
                     end
+
+                    if has_rad
+                        if all(~isfinite(rad))
+                            reasons(end+1) = "radiance_all_nan";
+                        end
+                    end
         
                     % NaN/Inf checks
                     if ~options.allowNaN
@@ -1098,12 +1147,26 @@ classdef parallelRunnerJSON
         
         function files = expandGlobs(dirPath, globs)
             % Returns a concatenated dir() listing for multiple globs
-            files = dir.empty;
+            files = [];
             for g = globs
                 d = dir(fullfile(dirPath, string(g)));
                 if ~isempty(d)
                     files = [files; d]; 
                 end
+            end
+        end
+
+        function case2 = forceCaseZenEps(caseObj, zenTol, zenEps)
+            case2 = caseObj;
+            try
+                if isstruct(caseObj) && isfield(caseObj,"MODTRANINPUT") && isfield(caseObj.MODTRANINPUT,"GEOMETRY")
+                    g = caseObj.MODTRANINPUT.GEOMETRY;
+                    if isfield(g,"OBSZEN") && isfinite(g.OBSZEN) && abs(double(g.OBSZEN)) <= zenTol
+                        g.OBSZEN = double(zenEps);
+                        case2.MODTRANINPUT.GEOMETRY = g;
+                    end
+                end
+            catch
             end
         end
     end
