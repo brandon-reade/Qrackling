@@ -1,5 +1,6 @@
-% Author: Brandon Reade
-% Date: 26/03/2026 (Updated 17/04/2026)
+% Author:   Brandon Reade
+% Date:     26/03/2026 
+% Updated:  17/04/2026
 % Generating a JSON containing missing data from a previous input file 
 % and running only missing cases
 
@@ -41,6 +42,10 @@ opts.requireCollectedPerCase = 1;
 opts.checkCollectedQuality = true;
 opts.deleteBadCollected = true;
 
+% force zenith change for "nan" cases
+opts.repairForceZenEps = true;
+opts.repairZenEps_deg = 1;                                               % try 1e-2 if still NaN
+
 opts.dedupeCollect = true;
 opts.verifyCollect = true;
 
@@ -59,6 +64,6 @@ modtran.parallelRunnerJSON.runCasesParallel( ...
     cases_json, runs_dir, modtran_exe, modtran_data_dir, nv{:});
 
 if opts.dedupeCollect
-    removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(options.collectDir);
+    removed = modtran.parallelRunnerJSON.dedupeCollectedFiles(opts.collectDir);
     fprintf("De-dupe removed: %d\n", removed);
 end
