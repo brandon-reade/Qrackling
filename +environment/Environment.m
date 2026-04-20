@@ -184,6 +184,8 @@ classdef Environment
             switch data
             case 'attenuation'
                 Array = Env.attenuation;
+            case 'attenuation dB'
+                Array = Env.attenuation;
             case 'spectral_radiance'
                 Array = Env.spectral_radiance;
             end

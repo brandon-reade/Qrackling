@@ -15,6 +15,20 @@ function varargout = polarpcolor(Theta, R, Z, options)
         options.Interpreter, {'tex', 'latex', 'none'})} = 'tex'
         options.Offset {mustBeNumeric} = 0
         options.Normalisation = [];
+
+        % colour scaling controls
+        options.CLimMode {mustBeMember(options.CLimMode, {'quantile','range'})} = 'quantile'
+        options.Quantiles (1,2) double = [0.01 0.99]
+    end
+
+    % enforce vectors
+    Theta = Theta(:).';
+    R = R(:).';
+
+    if ~isequal(size(Z), [numel(Theta), numel(R)])
+        error("polarpcolor:SizeMismatch", ...
+            "Z must be size [numel(Theta) x numel(R)] = [%d x %d], got [%d x %d].", ...
+            numel(Theta), numel(R), size(Z,1), size(Z,2));
     end
 
     [r_min, r_max] = extrema(R);
@@ -32,25 +46,26 @@ function varargout = polarpcolor(Theta, R, Z, options)
 
     origin = defineOrigin(true, r_scale, r_min);
     [ring_position, n_rings] = defineRings( ...
-        ring_position, n_rings, ring_ticks, ring_tick_labels, r_min);
+        ring_position, n_rings, ring_ticks, ring_tick_labels, r_min, r_max);
 
     if isempty(ring_position)
         ring_position = linspace(r_min, r_max, n_rings);
     end
 
-    new_plot = newplot;
+    ax = newplot;
     [r_norm, r_range] = normalise(r_scale, origin, R);
 
     theta = 90 + Theta;
 
     [RR, TT] = meshgrid(r_norm, theta);
 
-    [~] = pcolor(RR.*cosd(TT), RR.*sind(TT), Z);
+    % pcolor object handle
+    h = pcolor(RR.*cosd(TT), RR.*sind(TT), Z);
 
     shading interp;
-    set(new_plot, 'dataaspectratio', [1, 1, 1]);
+    set(ax, 'dataaspectratio', [1, 1, 1]);
     axis off;
-    hold(new_plot, 'on');
+    hold(ax, 'on');
 
     [~] = drawSpokes( ...
         t_min, t_max, R(1), r_range, n_spokes, origin, ring_position, ...
@@ -62,36 +77,89 @@ function varargout = polarpcolor(Theta, R, Z, options)
 
     annotateFigure(ring_tick_labels, contours1, n_rings, ...
         Interpreter=options.Interpreter, Offset=options.Offset);
-    clim([quantile(Z(:), 0.01), quantile(Z(:), 0.99)]);
 
-    if options.Colourbar == true
-        c = colorbar(location = 'WestOutside');
-        if isempty(options.Normalisation)
-            clim([quantile(Z(:), 0.01), quantile(Z(:), 0.99)]);
-        else
-            clim([options.Normalisation(1), options.Normalisation(2)]);
+    % colour limits
+    Zflat = Z(:);
+    Zflat = Zflat(isfinite(Zflat));
+    if isempty(Zflat)
+        Zflat = 0;
+    end
+
+    if ~isempty(options.Normalisation)
+        clim(ax, [options.Normalisation(1), options.Normalisation(2)]);
+    else
+        switch options.CLimMode
+            case 'quantile'
+                qlo = options.Quantiles(1);
+                qhi = options.Quantiles(2);
+                clim(ax, [quantile(Zflat, qlo), quantile(Zflat, qhi)]);
+            case 'range'
+                clim(ax, [min(Zflat), max(Zflat)]);
         end
     end
 
-    if ~isempty(options.ColourBarLabel)
-        c.Label.String = options.ColourBarLabel;
+    % colourbar
+    cb = [];
+    if options.Colourbar
+        cb = colorbar(ax, location='WestOutside');
     end
 
-    if contains(options.Interpreter, 'latex')
-        c.Label.Interpreter = options.Interpreter;
-        c.TickLabelInterpreter = options.Interpreter;
+    if options.Colourbar && ~isempty(options.ColourBarLabel)
+        cb.Label.String = options.ColourBarLabel;
+    end
+
+    if options.Colourbar && contains(options.Interpreter, 'latex')
+        cb.Label.Interpreter = options.Interpreter;
+        cb.TickLabelInterpreter = options.Interpreter;
     end
 
     if ~isempty(options.Title)
-        title(options.Title);
+        title(ax, options.Title);
     end
 
-    nargoutchk(0, 2)
-    varargout{1} = new_plot;
-    if options.Colourbar == true
-        varargout{2} = c;
+    % Return mapping info so callers can overlay points in the same coordinate system
+    map = struct();
+    map.ThetaOffsetDeg = 90;
+    map.Origin = origin;
+    map.RRange = r_range;
+    map.R0 = R(1);
+    map.Scale = r_scale;
+    map.R = R;
+    map.normaliseR = @(rVals) localNormaliseR(r_scale, origin, R, rVals);
+
+    nargoutchk(0, 4)
+    varargout{1} = ax;
+    if nargout >= 2
+        varargout{2} = cb;
+    end
+    if nargout >= 3
+        varargout{3} = map;
+    end
+    if nargout >= 4
+        varargout{4} = h;
     end
 
+end
+
+function r_norm = localNormaliseR(scale, origin, Rref, rVals)
+    % Match the normalise() behavior for arbitrary r values (vectorised).
+    % This uses the same "distance" definition as normalise(): range(Rref).
+    dist = range(Rref);
+    switch lower(scale)
+        case {'linear','lin'}
+            r_norm = rVals - Rref(1) + origin;
+            norm_max = max(r_norm(:));
+            norm_distance = max(Rref ./ dist);
+            r_norm = r_norm / norm_max * norm_distance;
+        case {'logarithmic','log'}
+            r_norm = log10(rVals);
+            r_norm = r_norm - log10(Rref(1));
+            norm_max = max(r_norm(:));
+            norm_distance = max(Rref ./ dist);
+            r_norm = r_norm / norm_max * norm_distance;
+        otherwise
+            error("Unsupported scale '%s'", scale);
+    end
 end
 
 function annotateFigure(R_Tick_Labels, Contours, N_Rings, options)
