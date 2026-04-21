@@ -82,7 +82,7 @@ if options.IncludeTimeSeries
     plot(axTS, Result.time(mask), 100*Result.qber(mask), "-", "LineWidth", 1.0);
     ylabel(axTS, "QBER (%)");
 
-    title(axTS, "Key rates + QBER");
+    title(axTS, "Key rates and QBER");
     legend(axTS, ["Secret key rate","Sifted key rate","QBER"], "Location","best");
 end
 
@@ -111,7 +111,7 @@ switch Result.direction
         geoplot(gx, Result.transmitter_location.Latitude, Result.transmitter_location.Longitude);
         geoplot(gx, Result.transmitter_location.Latitude(mask), Result.transmitter_location.Longitude(mask), "g");
 
-        labels = ["Satellite path", options.Mask + " window"];
+        labels = ["Satellite path", options.Mask];
         rIdx = 1;
         for rx_loc = Result.receiver_location
             axes(gx); %#ok<LAXES>
@@ -128,10 +128,10 @@ switch Result.direction
         geoplot(gx, Result.receiver_location.Latitude, Result.receiver_location.Longitude);
         geoplot(gx, Result.receiver_location.Latitude(mask), Result.receiver_location.Longitude(mask), "g");
 
-        labels = ["Satellite path", options.Mask + " window"];
+        labels = ["Satellite path", options.Mask];
         tIdx = 1;
         for tx_loc = Result.transmitter_location
-            axes(gx); %#ok<LAXES>
+            axes(gx);
             nodes.PassSimulationResult.PlotLOS(tx_loc, mean(Result.receiver_location.Altitude), Result.elevation_limit(1));
             labels(end+1:end+2) = [Result.transmitter_name{tIdx}, "Line-of-Sight"];
             tIdx = tIdx + 1;
@@ -141,7 +141,7 @@ switch Result.direction
         geolimits(gx, mean([Result.transmitter_location.Latitude]) + [-4, 4], ...
                       mean([Result.transmitter_location.Longitude]) + [-4, 4]);
 end
-title(gx, "Ground track + window");
+title(gx, "Ground track");
 
 %% Polar coordinates tile
 posPolar = axTilePolar.Position;
@@ -194,7 +194,7 @@ switch lower(string(options.PolarOverlay))
         legend(pax, "Location","southoutside");
 
     case "sky_points"
-        % All environment samples as points + pass line overlay (recommended for correctness)
+        % All environment samples as points + pass line overlay
         pax = localCreatePolarAxes(panelPolar);
         hold(pax, "on");
 
@@ -227,7 +227,7 @@ switch lower(string(options.PolarOverlay))
             "g-", "LineWidth", 2, "DisplayName","Pass");
 
         localFormatPolarAxes(pax);
-        title(pax, "Sky points + pass overlay");
+        title(pax, "OGS tracking with Sky points");
         legend(pax, "Location","southoutside");
 
     case "sky_field" % THIS NEEDS FIXING
@@ -279,7 +279,7 @@ switch lower(string(options.PolarOverlay))
 
         plot(axUsed, x, y, "g-", "LineWidth", 2, "DisplayName","Pass");
 
-        title(axUsed, "Sky field + pass overlay");
+        title(axUsed, "OGS tracking with Sky field");
         legend(axUsed, "Location","southoutside");
 
     otherwise
