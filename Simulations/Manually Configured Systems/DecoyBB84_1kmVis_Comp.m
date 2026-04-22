@@ -6,13 +6,22 @@
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
-modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
+% 1k vis
+modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
     'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full
 
-modtran_dir = fullfile(repo_root,...
+% 10k vis
+modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
+    'atmospheric transmittance', 'raw modtran data',...
+    'HOGS_WinterClear_Lunar_angles', 'HOGS_WinterClear-10kVis',...
+    'moon_jan3rd_2026_800to3000_1am_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
+                                               % moon_jan3rd_2026_800to3000_1am_full 
+
+% dawn
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am
                                                 
 
@@ -23,14 +32,14 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = true;
-plot_compare                = false;
+plot_each_pass              = false;
+plot_compare                = true;
 plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
 plot_background_counts      = false;
 plot_orbit_summary          = true;
 plot_detectors              = false;
-plot_trans_rad              = false;
+plot_trans_rad              = true;
 plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
@@ -38,7 +47,7 @@ LOS_at_time                 = false;
 
 % system configuration
 small_sat                   = false;                                        % false for cubesat settings
-ideal_pass                  = true;                                         % satellite pass
+ideal_pass                  = false;                                         % satellite pass
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 if small_sat
@@ -127,6 +136,21 @@ for i = 1:nQKDSystems
     if LOS_at_time
         printResultAtOffset(Results{i}, Env, QKDsystems(i).Wavelength, minutes(7)+seconds(30));
     end
+
+
+    %% Plot Orbit Summary
+    if plot_orbit_summary
+        index=1;
+        plots.plotOrbitSummary(Results{i}, Env, ...
+            IncludeTimeSeries=false, ...
+            PolarOverlay="sky_points", ...        
+            PolarData="spectral_radiance", ...
+            WavelengthNm=QKDsystems(i).Wavelength, ...
+            SurfaceMetric="loss:atmospheric",...                                  % "skr", "loss:atmospheric"
+            SurfacePlotType="scatter", ...
+            Mask="Communication");
+    end
+
 end
 
 %% Plot results for multiple QKD systems
@@ -150,20 +174,6 @@ if plot_background_counts
         'MaskMode', "active", ...
         'FigureName', "Background Counts Comparison (Vis 1km)");
 end
-
-%% Plot Orbit Summary
-if plot_orbit_summary
-    index=1;
-    plots.plotOrbitSummary(Results{index}, Env, ...
-        IncludeTimeSeries=false, ...
-        PolarOverlay="sky_points", ...        
-        PolarData="spectral_radiance", ...
-        WavelengthNm=QKDsystems(index).Wavelength, ...
-        SurfaceMetric="loss:atmospheric",...                                  % "skr", "loss:atmospheric"
-        SurfacePlotType="scatter", ...
-        Mask="Communication");
-end
-
 %% Plot Radiance and Transmittance Profiles
 % compare transmittance and radiance at different wavelengths and zeniths
 % for a given azimuth
