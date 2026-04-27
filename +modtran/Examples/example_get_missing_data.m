@@ -11,8 +11,8 @@ addpath(fullfile(repo_root));
 
 % JSON root
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
-filename = "Goldstone_moon_Jun21_1am_23kmvis_300to10000_zenstep10_azistep30";
-json_file = "Goldstone_moon_Jun21_1am_23kmvis_300to10000_zenstep10_azistep30.json";
+filename = "HOGS_moon_Jan3_1am_5kmvis_300to10000_zenstep10_azistep30";
+json_file = "HOGS_moon_Jan3_1am_5kmvis_300to10000_zenstep10_azistep30.json";
 cases_json = fullfile(jsonDir, filename, json_file);
 
 % MODTRAN roots
@@ -21,7 +21,7 @@ modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";
 
 % collection dir
-collect_dir = fullfile(repo_root,"+modtran","Data","Goldstone", filename);
+collect_dir = fullfile(repo_root,"+modtran","Data","HOGS", filename);
 collect_glob = "*_scan.csv";                                                % file type to collect
 
 % repair root
