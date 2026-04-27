@@ -37,8 +37,9 @@ function T = runQKDSweep(Env, QKDsystems, options)
         options.TxDiameters (:,1) double = []
         options.RxDiameters (:,1) double = []
     
-        % detector preset selection
-        options.DetectorPresetFcn = [] % function_handle or empty
+        % detector presets selection
+        options.DetectorPresetFcn = []
+        options.TimeGateWidthFcn = []
     
         % performance/masking
         options.Mask (1,1) string {mustBeMember(options.Mask, ...
@@ -173,6 +174,10 @@ function Trow = localRunJob(Env, QKDsystems, options, job)
     sys.txDiam = job.TxDiam_m;
     if job.HasRxOuter
         sys.rxDiam = job.RxDiam_m;
+    end
+
+    if ~isempty(options.TimeGateWidthFcn)
+        sys.TimeGateWidth = options.TimeGateWidthFcn(sys.Wavelength);
     end
     
     % sweep override
