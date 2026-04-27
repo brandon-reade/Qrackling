@@ -297,8 +297,9 @@ function m = localSummarise(res, maskMode)
     m.total_sifted_keys = total_sifted;
     
     m.peak_skr_bps = localSafeMax(res.secret_key_rate(mask));
-    m.mean_qber    = localSafeMean(res.qber(mask));
-    m.max_qber     = localSafeMax(res.qber(mask));
+    q = res.qber(mask & comm);
+    m.mean_qber = localSafeMeanNaN(q);
+    m.max_qber  = localSafeMaxNaN(q);
     
     loss_db = res.loss.TotalLoss().dB();
     m.mean_loss_db = localSafeMean(loss_db(mask));
@@ -499,4 +500,19 @@ function y = localSafeMean(x)
     x = x(:);
     x = x(isfinite(x));
     if isempty(x), y = 0; else, y = mean(x); end
+end
+
+function y = localSafeMaxNaN(x)
+x = x(:); x = x(isfinite(x));
+if isempty(x), y = NaN; else, y = max(x); end
+end
+
+function y = localSafeMinNaN(x)
+x = x(:); x = x(isfinite(x));
+if isempty(x), y = NaN; else, y = min(x); end
+end
+
+function y = localSafeMeanNaN(x)
+x = x(:); x = x(isfinite(x));
+if isempty(x), y = NaN; else, y = mean(x); end
 end
