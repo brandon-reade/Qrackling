@@ -7,14 +7,14 @@
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
 % 1k vis
-modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
+modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
     'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
                                                % moon_jan3rd_2026_1am_800to3000nm_full
 
 % 10k vis
-modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
+modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_WinterClear-10kVis',...
     'moon_jan3rd_2026_800to3000_1am_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
@@ -33,11 +33,11 @@ addpath(fullfile(repo_root));
 %% 1. Choose parameters
 % plotting options
 plot_each_pass              = false;
-plot_compare                = true;
+plot_compare                = false;
 plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
 plot_background_counts      = false;
-plot_orbit_summary          = true;
+plot_orbit_summary          = false;
 plot_detectors              = false;
 plot_trans_rad              = true;
 plot_2D_spectral_map        = false;
