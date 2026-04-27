@@ -46,6 +46,12 @@ hogs.aerosol_model = "urban";
 hogs.strato_model = "background";
 hogs.season = "winter";
 
+% Army Vertical Structure Algorithm (VSA)
+hogs.enableVSA = true;                                     % maps to IVSA to enable it
+hogs.vsa_cloud_ceiling_km =                                    % cloud/fog base (ceiling) height, -1 for starting at ground, maps to ZCVSA
+hogs.vsa_cloud_thickness_km =                                   % cloud/fog thichness, maps to ZTVSA
+hogs.vsa_inversion_layer_height_km =                           % inversion height / boundary layer top, maps to ZINVSA
+
 % Atmosphere (winter scenario)
 hogs.atm_MODEL = "ATM_MIDLAT_WINTER";
 hogs.M2_RHC = true;                                                       % humidity correction
