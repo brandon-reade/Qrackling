@@ -17,6 +17,7 @@ arguments
     options.FigureName (1,1) string = "Sweep Heatmap"
     options.ColorScale (1,1) string {mustBeMember(options.ColorScale,["linear","log"])} = "linear"
     options.Interp (1,1) string {mustBeMember(options.Interp,["none","nearest"])} = "none"
+    options.Combine (1,1) string {mustBeMember(options.Combine,["max","min","mean"])} = "max"
 end
 
 metric = options.Metric;
@@ -59,15 +60,45 @@ for g = 1:nG
 
     % Build grid (y rows, x cols)
     Z = nan(numel(yU), numel(xU));
-    for i = 1:height(Tg)
+
+    % For mean-combine, we need sum + count
+    if options.Combine == "mean"
+        Zsum = zeros(numel(yU), numel(xU));
+        Zcnt = zeros(numel(yU), numel(xU));
+    end
+
+        for i = 1:height(Tg)
         xi = find(xU==x(i), 1);
         yi = find(yU==y(i), 1);
-        % If duplicates exist, take max (often desired for metrics)
-        if isnan(Z(yi,xi))
-            Z(yi,xi) = z(i);
-        else
-            Z(yi,xi) = max(Z(yi,xi), z(i));
+        if isempty(xi) || isempty(yi)
+            continue;
         end
+
+        zi = z(i);
+        if ~isfinite(zi)
+            continue;
+        end
+
+        if options.Combine == "mean"
+            Zsum(yi,xi) = Zsum(yi,xi) + zi;
+            Zcnt(yi,xi) = Zcnt(yi,xi) + 1;
+        else
+            if isnan(Z(yi,xi))
+                Z(yi,xi) = zi;
+            else
+                switch options.Combine
+                    case "max"
+                        Z(yi,xi) = max(Z(yi,xi), zi);
+                    case "min"
+                        Z(yi,xi) = min(Z(yi,xi), zi);
+                end
+            end
+        end
+    end
+
+    if options.Combine == "mean"
+        Z(Zcnt > 0) = Zsum(Zcnt > 0) ./ Zcnt(Zcnt > 0);
+        % Z remains NaN where count==0
     end
 
     if options.ColorScale == "log"
@@ -81,13 +112,20 @@ for g = 1:nG
     end
 
     ax = nexttile(tl, g);
+    set(ax,'Color','k');                                                    %  black for NaNs
+    h = imagesc(ax, xU, yU, Zshow);
+    set(ax,'YDir','normal');
+
+    % NaN transparent, so black background shows through
+    set(h,'AlphaData', ~isnan(Zshow));
+
+    % for "nearest" interpolation
     if options.Interp == "nearest"
-        imagesc(ax, xU, yU, Zshow);
-        set(ax,'YDir','normal');
-    else
-        % 'none' => show as pixels but aligned
-        imagesc(ax, xU, yU, Zshow);
-        set(ax,'YDir','normal');
+        try
+            h.Interpolation = 'nearest';
+        catch
+            % older MATLAB version so do nothing
+        end
     end
 
     xlabel(ax, xv);
