@@ -40,17 +40,17 @@ hogs.source = "moon";
 % hogs.lun_phase_deg = [];                                                 % (only if LocationPreset/geometry supports it)
 
 % Aerosol / clouds (winter scenario)
-hogs.visib_km = 5;                                                    % MODTRAN uses 2% contrast visibility
+hogs.visib_km = 0.2;                                                          % MODTRAN uses 2% contrast visibility
 hogs.clouds = "none";
-hogs.aerosol_model = "urban";
+hogs.aerosol_model = "fog_advective";
 hogs.strato_model = "background";
 hogs.season = "winter";
 
 % Army Vertical Structure Algorithm (VSA)
-hogs.enableVSA = true;                                     % maps to IVSA to enable it
-hogs.vsa_cloud_ceiling_km =                                    % cloud/fog base (ceiling) height, -1 for starting at ground, maps to ZCVSA
-hogs.vsa_cloud_thickness_km =                                   % cloud/fog thichness, maps to ZTVSA
-hogs.vsa_inversion_layer_height_km =                           % inversion height / boundary layer top, maps to ZINVSA
+hogs.enableVSA = false;                                                     % maps to IVSA to enable it
+hogs.vsa_cloud_ceiling_km = -1;                                             % cloud/fog base (ceiling) height, -1 for starting at ground, maps to ZCVSA
+hogs.vsa_cloud_thickness_km = 0.2;                                          % cloud/fog thichness, maps to ZTVSA
+hogs.vsa_inversion_layer_height_km = 1.0;                                   % inversion height / boundary layer top, maps to ZINVSA
 
 % Atmosphere (winter scenario)
 hogs.atm_MODEL = "ATM_MIDLAT_WINTER";
@@ -64,6 +64,7 @@ hogs.NSTR = 8;                                                              % 8 
 
 % Materialize MODTRAN parameter objects from the preset + utcDT
 [geom1, atm, aer, surf, rt] = hogs.makeParams(utcDT);
+% aer.vsa_label = "HaarFog";                                                  % include the VSA label if required
 
 %% 2. Spectral parameters (run-specific)
 spec = modtran.parameters.spectral();
