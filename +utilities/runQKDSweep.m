@@ -289,6 +289,11 @@ function m = localSummarise(res, maskMode)
     
     comm = ~(isnan(res.secret_key_rate(:)) | (res.secret_key_rate(:) <= 0));
     use = mask & comm;
+
+    if sum(use) == 0
+        m.mean_qber = NaN;
+        m.max_qber  = NaN;
+    end
     
     [total_secret, total_sifted] = localTotalKeysNoWarn(res, use);
     
@@ -296,15 +301,16 @@ function m = localSummarise(res, maskMode)
     m.total_secret_keys = total_secret;
     m.total_sifted_keys = total_sifted;
     
-    m.peak_skr_bps = localSafeMax(res.secret_key_rate(mask));
+    m.peak_skr_bps = localSafeMaxNaN(res.secret_key_rate(mask & comm));
     q = res.qber(mask & comm);
     m.mean_qber = localSafeMeanNaN(q);
     m.max_qber  = localSafeMaxNaN(q);
     
     loss_db = res.loss.TotalLoss().dB();
-    m.mean_loss_db = localSafeMean(loss_db(mask));
-    m.min_loss_db  = localSafeMin(loss_db(mask));
-    m.max_loss_db  = localSafeMax(loss_db(mask));
+    ld = loss_db(mask & comm);
+    m.mean_loss_db = localSafeMeanNaN(ld);
+    m.min_loss_db  = localSafeMinNaN(ld);
+    m.max_loss_db  = localSafeMaxNaN(ld);
     
     m.n_comm_samples = sum(use);
     end
