@@ -10,8 +10,8 @@ addpath(fullfile(repo_root));
 
 % JSON root
 jsonDir = fullfile(repo_root, "+modtran", "JSON_Cases");
-filename = "Goldstone_sun_Jun21_12pm_23kmvis_300to10000_zenstep10_azistep30";
-json_file = "Goldstone_sun_Jun21_12pm_23kmvis_300to10000_zenstep10_azistep30.json";
+filename = "HOGS_sun_Jun21_4am_5kmvis_300to10000_zenstep10_azistep30";
+json_file = "HOGS_sun_Jun21_4am_5kmvis_300to10000_zenstep10_azistep30.json";
 cases_json = fullfile(jsonDir, filename, json_file);
 
 % MODTRAN roots
@@ -20,12 +20,12 @@ modtran_exe = "E:\MODTRAN\MODTRAN6\x86_64\mod6con.exe";
 modtran_data_dir = "E:\MODTRAN\MOD6DATA";
 
 % collection dir
-collect_dir = fullfile(repo_root,"+modtran","Data","Goldstone", filename);
+collect_dir = fullfile(repo_root,"+modtran","Data","HOGS", filename);
 collect_glob = "*_scan.csv";                                                % file type to collect
 
 %% Define options
 opts = struct();
-opts.maxWorkers = 11;
+opts.maxWorkers = 12;
 
 opts.outputMode = "shared";
 opts.collectDir = collect_dir;
@@ -47,7 +47,7 @@ opts.maxRerunsMissingRequiredOutputs = 2;
 
 % Multi-pass repair with only missing cases JSON:
 opts.repairMissing = true;
-opts.repairMaxPasses = 2;
+opts.repairMaxPasses = 3;
 opts.repairOutJson = "E:\MODTRAN_RESULTS\collect\missing_only.json";
 opts.repairForceLbl = true;                                                 % optional LBL RT Option
 
