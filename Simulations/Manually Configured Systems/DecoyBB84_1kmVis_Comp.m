@@ -34,10 +34,10 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = false;
+plot_each_pass              = true;
 plot_compare                = true;
 plot_loss_comparison        = true;
-plot_link_loss_comparison   = true;
+plot_link_loss_comparison   = false;
 plot_background_counts      = true;
 plot_orbit_summary          = true;
 plot_detectors              = false;
@@ -62,7 +62,7 @@ Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 1E-6;
 Rep_Rate                    = 1E9;
 %Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
-Spectral_Filter_Width       = 10;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
+Spectral_Filter_Width       = 0.5;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -72,12 +72,12 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2210, 2310}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'Wavelength', {1550, 2210, 3700}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
                         'SNSPD_NbTiN_2um', ...
-                        'SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
+                        'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
     'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter},...     % transmitter telescope diameter (0.08m for SPOQC)
-    'rxDiam', {0.7, 0.96, 1.00},...                                         % receiever telescope diameter (0.7m for HOGS)
+    'rxDiam', {0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
     'rxFOV', {37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
     'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12}...
                         );
