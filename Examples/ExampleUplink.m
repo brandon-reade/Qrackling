@@ -46,11 +46,11 @@ SimGround_Station=nodes.Ground_Station(Transmitter_Telescope,...
                                 'Source',Transmitter_Source,...
                                 'LLA',[55.909723, -3.319995,10],...
                                 'Name','HOGS');
-
+SimGround_Station.Environment = Env;
 
 %% 3 Compose and run the PassSimulation
 %3.1 run simulation, first argument is receiver
-result = nodes.QkdPassSimulation(SimSatellite, SimGround_Station, protocol.decoyBB84,'Environment',Env);
+result = nodes.QkdPassSimulation(SimSatellite, SimGround_Station, protocol.decoyBB84);
 %3.2 plot results
 
 result.plot('x_axis','Elevation','mask','Line of sight')
