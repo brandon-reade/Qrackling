@@ -11,6 +11,7 @@ classdef aerosol
         vsa_cloud_ceiling_km double = []                                    % cloud/fog base (ceiling) height, -1 for starting at ground, maps to ZCVSA
         vsa_cloud_thickness_km double = []                                  % cloud/fog thichness, maps to ZTVSA
         vsa_inversion_layer_height_km double = []                           % inversion height / boundary layer top, maps to ZINVSA
+        vsa_label (1,1) string = ""                                         % optional label for json file name for VSA usage, If empty and enableVSA=true it defaults to "VSA"
         % note that "[]" allows us to omit this from JSON (as zero already
         % has a defined behaviour)
     end

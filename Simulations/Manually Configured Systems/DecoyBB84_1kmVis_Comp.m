@@ -14,7 +14,7 @@ modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...
                                                % moon_jan3rd_2026_1am_800to3000nm_full
 
 % 10k vis
-modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...                              
+modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
     'atmospheric transmittance', 'raw modtran data',...
     'HOGS_WinterClear_Lunar_angles', 'HOGS_WinterClear-10kVis',...
     'moon_jan3rd_2026_800to3000_1am_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
@@ -24,6 +24,8 @@ modtran_dir = fullfile(repo_root, 'Examples', 'Data', ...
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am
                                                 
+modtran_dir = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_4am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 4am summer
 
 if ~isfolder(modtran_dir)
     error('MODTRAN folder not found: %s', modtran_dir);
@@ -32,22 +34,22 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = false;
-plot_compare                = false;
-plot_loss_comparison        = false;
+plot_each_pass              = true;
+plot_compare                = true;
+plot_loss_comparison        = true;
 plot_link_loss_comparison   = false;
-plot_background_counts      = false;
-plot_orbit_summary          = false;
+plot_background_counts      = true;
+plot_orbit_summary          = true;
 plot_detectors              = false;
 plot_trans_rad              = true;
-plot_2D_spectral_map        = false;
+plot_2D_spectral_map        = true;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
 % system configuration
-small_sat                   = false;                                        % false for cubesat settings
-ideal_pass                  = false;                                         % satellite pass
+small_sat                   = true;                                        % false for cubesat settings
+ideal_pass                  = true;                                         % satellite pass
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 if small_sat
@@ -60,7 +62,7 @@ Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 1E-6;
 Rep_Rate                    = 1E9;
 %Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
-Spectral_Filter_Width       = 10;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
+Spectral_Filter_Width       = 0.5;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -70,12 +72,12 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2210, 2310}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'Wavelength', {1550, 2210, 3700}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
                         'SNSPD_NbTiN_2um', ...
-                        'SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
+                        'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
     'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter},...     % transmitter telescope diameter (0.08m for SPOQC)
-    'rxDiam', {0.7, 0.96, 1.00},...                                         % receiever telescope diameter (0.7m for HOGS)
+    'rxDiam', {0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
     'rxFOV', {37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
     'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12}...
                         );

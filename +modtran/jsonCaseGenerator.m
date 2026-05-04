@@ -232,7 +232,7 @@ classdef jsonCaseGenerator
             end
         end
 
-        function baseName = makeJsonBaseName(siteName, source, utcDT, visib_km, clouds, wmin_nm, wmax_nm, zen_step_deg, azi_step_deg)
+        function baseName = makeJsonBaseName(siteName, source, utcDT, visib_km, clouds, wmin_nm, wmax_nm, zen_step_deg, azi_step_deg, variantLabel)
             % Creates a base JSON file name:
             % sitename_source_date_time_visibility_cloud_wminNmtoWmaxNm_zenstepX_azistepY
             %
@@ -240,8 +240,22 @@ classdef jsonCaseGenerator
             %   HOGS_sun_Jan3_1pm_10kmvis_100to10000_zenstep10_azistep10
             %   HOGS_moon_Jan3_1am_500mvis_cirrus_100to10000_zenstep10_azistep10
 
+            % site name and source
             siteName = modtran.jsonCaseGenerator.sanitizeToken(siteName);
             source = modtran.jsonCaseGenerator.sanitizeToken(lower(string(source)));
+
+            % variant label (set by VSA usage in +aerosol, etc.)
+            if nargin < 10
+                variantLabel = "";
+            end
+            variantLabel = modtran.jsonCaseGenerator.sanitizeToken(variantLabel);
+            includeVariant = strlength(strtrim(variantLabel)) > 0;
+
+            if includeVariant
+                sourceToken = source + "_" + variantLabel;
+            else
+                sourceToken = source;
+            end
 
             % Date token: "Jan3"
             dateToken = string(datestr(utcDT, "mmm")) + string(day(utcDT));
@@ -282,9 +296,9 @@ classdef jsonCaseGenerator
             aziStepToken = "azistep" + modtran.jsonCaseGenerator.formatNumericToken(azi_step_deg);
 
             if includeClouds
-                baseName = siteName + "_" + source + "_" + dateToken + "_" + timeToken + "_" + visToken + "_" + cloudsToken + "_" + waveToken + "_" + zenStepToken + "_" + aziStepToken;
+                baseName = siteName + "_" + sourceToken + "_" + dateToken + "_" + timeToken + "_" + visToken + "_" + cloudsToken + "_" + waveToken + "_" + zenStepToken + "_" + aziStepToken;
             else
-                baseName = siteName + "_" + source + "_" + dateToken + "_" + timeToken + "_" + visToken + "_" + waveToken + "_" + zenStepToken + "_" + aziStepToken;
+                baseName = siteName + "_" + sourceToken + "_" + dateToken + "_" + timeToken + "_" + visToken + "_" + waveToken + "_" + zenStepToken + "_" + aziStepToken;
             end
         end
     end

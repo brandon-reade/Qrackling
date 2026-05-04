@@ -32,6 +32,13 @@ classdef LocationPreset
         strato_model  (1,1) string = "background"
         season (1,1) string = "winter"
 
+        % VSA defaults
+        enableVSA (1,1) logical = false                                     
+        vsa_cloud_ceiling_km double = []                                   
+        vsa_cloud_thickness_km double = []                                  
+        vsa_inversion_layer_height_km double = []                          
+        vsa_label (1,1) string = ""                                         
+
         % Atmosphere defaults
         atm_MODEL (1,1) string = "ATM_MIDLAT_WINTER"
         M2_RHC (1,1) logical = true
@@ -82,6 +89,13 @@ classdef LocationPreset
             aer.aerosol_model = obj.aerosol_model;
             aer.strato_model  = obj.strato_model;
             aer.season        = obj.season;
+
+            % VSA
+            aer.enableVSA = obj.enableVSA;                                
+            aer.vsa_cloud_ceiling_km = obj.vsa_cloud_ceiling_km;                                    
+            aer.vsa_cloud_thickness_km = obj.vsa_cloud_thickness_km;                                
+            aer.vsa_inversion_layer_height_km = obj.vsa_inversion_layer_height_km;                          
+            aer.vsa_label = obj.vsa_label;                                 
 
             % Atmosphere
             atm = modtran.parameters.atmosphere();

@@ -28,6 +28,13 @@ function p = HOGS(varargin)
     p.strato_model  = "background";
     p.clouds = "none";
 
+    % VSA
+    p.enableVSA = false;                                
+    p.vsa_cloud_ceiling_km = [];                                    
+    p.vsa_cloud_thickness_km = [];                                
+    p.vsa_inversion_layer_height_km = [];                          
+    p.vsa_label = "";     
+
     % Surface & RT
     p.CSALB = "LAMB_URBAN";
     p.NSTR = 8;

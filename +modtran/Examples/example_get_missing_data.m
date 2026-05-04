@@ -43,13 +43,13 @@ opts.checkCollectedQuality = true;
 opts.deleteBadCollected = true;
 
 % force zenith change for "nan" cases
-opts.repairForceZenEps = true;
+opts.repairForceZenEps = false;
 opts.repairZenEps_deg = 1;                                               % try 1e-2 if still NaN
 
 opts.dedupeCollect = true;
 opts.verifyCollect = true;
 
-opts.repairForceLbl =  true;                                                % force line-by-line on a repair
+opts.repairForceLbl =  false;                                                % force line-by-line on a repair
 opts.repairMissing = true;                                                 % repair based on the missing data points in the collection dir
 opts.repairMaxPasses = 3;
 opts.repairOutJson = fullfile(runs_dir, "missing_only.json");
