@@ -52,9 +52,19 @@ function results = QkdPassSimulation(receivers, transmitters, qkd_protocol)
                     current_time = transmitters(transmitter_index).Times;
                 case nodes.LinkDirection.Uplink
                     [current_headings,current_elevations,current_ranges] = RelativeHeadingAndElevation(receivers(receiver_index),transmitters(transmitter_index));
-                    current_time = transmitters(transmitter_index).Times;
+                    current_time = receivers(receiver_index).Times;
             end
-            current_elevation_flags = current_elevations > receivers(receiver_index).Elevation_Limit;
+
+            % Elevation limit is defined at the ground station
+            if utilities.isSubclassOf(receivers(receiver_index), 'nodes.Ground_Station')
+                elevation_limit = receivers(receiver_index).Elevation_Limit;
+            elseif utilities.isSubclassOf(transmitters(transmitter_index), 'nodes.Ground_Station')
+                elevation_limit = transmitters(transmitter_index).Elevation_Limit;
+            else
+                error('Elevation limit requires a Ground_Station on either end of the link');
+            end
+            
+            current_elevation_flags = current_elevations > elevation_limit;
             num_time_steps = numel(current_time);
 
             
@@ -75,8 +85,8 @@ function results = QkdPassSimulation(receivers, transmitters, qkd_protocol)
             elevation_flags(transmitter_index,receiver_index,1:num_time_steps) = current_elevation_flags;
         end
 
-        %record elevation limit of this receiver
-        elevation_limits(receiver_index)=receivers(receiver_index).Elevation_Limit;
+        %record elevation limit of this receiver (at ground station end)
+        elevation_limits(receiver_index) = elevation_limit;
     end
 
     %% specifically calculate where all elevation limits are met
