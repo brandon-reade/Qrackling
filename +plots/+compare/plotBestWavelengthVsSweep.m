@@ -8,7 +8,7 @@ function fig = plotBestWavelengthVsSweep(T, options)
     %   T : table returned by runQKDSweep
     %
     % Options
-    %   Metric      : table column to optimize and plot (e.g., "TotalSecretKeys", "PeakSKR_bps")
+    %   Metric      : table column to optimize and plot (e.g., "TotalSecretKeys", "PeakSKR_bps", "MeanQBER", "MinLoss_dB")
     %   GroupBy     : grouping vars for separate lines (e.g., ["TxDiam_m"])
     %   BestMode    : "max" | "min"   (use "min" for QBER-type metrics)
     %   ShowBestWavelengthLabels : annotate points with best wavelength (nm)
