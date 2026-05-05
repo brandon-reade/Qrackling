@@ -14,7 +14,7 @@ saveDir = fullfile(repo_root, "+modtran", "JSON_Cases");
 % ----------------------------
 % Location 1: HOGS (Edinburgh)
 % ----------------------------
-utcDT = datetime(2026,6,21,4,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second) - summer solstice 21st of Juna (~4:30 sunrise)
+utcDT = datetime(2026,6,21,3,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second) - summer solstice 21st of Juna (~4:30 sunrise - LOCAL TIME NOT UTCDT so need to minus 1 hr)
 
 % Create the HOGS preset
 hogs = modtran.locations.HOGS(); 

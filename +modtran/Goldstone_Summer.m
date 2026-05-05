@@ -15,7 +15,7 @@ saveDir = fullfile(repo_root, "+modtran", "JSON_Cases");
 % ----------------------------
 % Location 1: Goldstone (Summer)
 % ----------------------------
-utcDT = datetime(2026,6,5,3,25,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second): 21st of June is Summer Solstice (sunrise at 5:38am, Sunset at 8:05pm)
+utcDT = datetime(2026,5,6,10,25,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second): 21st of June is Summer Solstice (sunrise at 5:38am, Sunset at 8:05pm) - for LOCAL TIME minus 7 hrs
 
 % Create the HOGS preset
 ogs = modtran.locations.Goldstone(); 
@@ -36,7 +36,7 @@ ogs.forceLblAtZen0IfCorrelatedK = true;                                    % for
 % hogs.capNstrAt8      = true;                                              % (only if LocationPreset supports it)
 
 % Source (sun/moon/none)
-ogs.source = "sun";
+ogs.source = "moon";
 % hogs.lun_phase_deg = [];                                                 % (only if LocationPreset/geometry supports it)
 
 % Aerosol / clouds (summer scenario)
@@ -49,7 +49,7 @@ ogs.atm_MODEL = "ATM_MIDLAT_SUMMER";
 ogs.M2_RHC = true;                                                       % humidity correction
 
 % Surface (can be site-only in preset, but safe to override here too)
-ogs.CSALB = "LAMB_URBAN";
+ogs.CSALB = "LAMB_DESERT";
 
 % RT options
 ogs.NSTR = 8;                                                              % 8 gave negative scattering values? Try 16?
