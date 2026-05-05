@@ -22,10 +22,11 @@ modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...
 
 % dawn
 modtran_dir1 = fullfile(repo_root,...
-    '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am
-                                                
-modtran_dir = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am                                          
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_4am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 4am summer
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_4am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
 
 if ~isfolder(modtran_dir)
     error('MODTRAN folder not found: %s', modtran_dir);
@@ -34,17 +35,17 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = true;
-plot_compare                = true;
-plot_loss_comparison        = true;
+plot_each_pass              = false;
+plot_compare                = false;
+plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
-plot_background_counts      = true;
+plot_background_counts      = false;
 plot_orbit_summary          = true;
 plot_detectors              = false;
 plot_trans_rad              = true;
 plot_2D_spectral_map        = true;
 plot_3D_spectral_map        = false;
-plot_spectral_comparison    = false;
+plot_spectral_comparison    = true;
 LOS_at_time                 = false;
 
 % system configuration
