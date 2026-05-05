@@ -2,6 +2,7 @@
 %   - located in the Mojave Desert
 %   - primarily a radio-frequency hub for NASA's Deep Space Network
 %   - need to add desert windspeed settings
+%   - SPOQC has good overhead pass from N to S on: 2026-05-06T10:24:54.941Z (which is ~3:25 am on 06/05/2026 in Goldstone)
 function p = Goldstone(varargin)
     p = modtran.locations.LocationPreset();
     p.label = "Goldstone";

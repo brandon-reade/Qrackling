@@ -1,6 +1,6 @@
 % Author:   Brandon Reade
 % Date:     16/04/2026
-% Updated:  16/04/2026
+% Updated:  05/05/2026
 % MODTRAN case generator for Goldstone Summer
 % Note that visibility in MODTRAN is 2% contrast not 5%
 
@@ -15,7 +15,7 @@ saveDir = fullfile(repo_root, "+modtran", "JSON_Cases");
 % ----------------------------
 % Location 1: Goldstone (Summer)
 % ----------------------------
-utcDT = datetime(2026,6,21,12,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second): 21st of June is Summer Solstice (sunrise at 5:38am, Sunset at 8:05pm)
+utcDT = datetime(2026,6,5,3,25,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second): 21st of June is Summer Solstice (sunrise at 5:38am, Sunset at 8:05pm)
 
 % Create the HOGS preset
 ogs = modtran.locations.Goldstone(); 
@@ -52,7 +52,7 @@ ogs.M2_RHC = true;                                                       % humid
 ogs.CSALB = "LAMB_URBAN";
 
 % RT options
-hogs.NSTR = 8;                                                              % 8 gave negative scattering values? Try 16?
+ogs.NSTR = 8;                                                              % 8 gave negative scattering values? Try 16?
 
 % Materialize MODTRAN parameter objects from the preset + utcDT
 [geom1, atm, aer, surf, rt] = ogs.makeParams(utcDT);
