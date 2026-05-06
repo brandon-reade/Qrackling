@@ -24,7 +24,8 @@ function plotRadianceMap(Env, wavelength_nm, options)
 
         % Figure mode
         options.FigureMode (1,1) string {mustBeMember(options.FigureMode, ["separate","subplots"])} = "separate"
-        options.SubplotShape (1,2) double = [NaN NaN]   % [rows cols], NaN makes it auto
+        options.SubplotShape (1,2) double = [NaN NaN]                       % [rows cols], NaN makes it auto
+        options.IndependentColorbars (1,1) logical = true                   % if true, each subplot uses its own CLim and colorbar scaling
 
         % Comparison controls
         options.CompareMode (1,1) string {mustBeMember(options.CompareMode, ["none","ratio","diff","dB"])} = "none"
@@ -107,7 +108,9 @@ function plotRadianceMap(Env, wavelength_nm, options)
     end
 
     % Determine shared color scaling when using subplots (unless user provides ColorLimits)
-    useSharedCLim = (options.FigureMode == "subplots") && any(isnan(options.ColorLimits));
+    useSharedCLim = (options.FigureMode == "subplots") ...
+                && ~options.IndependentColorbars ...
+                && any(isnan(options.ColorLimits));
     if useSharedCLim
         shared_cmin = min(plotData(:), [], "omitnan");
         shared_cmax = max(plotData(:), [], "omitnan");
@@ -121,6 +124,17 @@ function plotRadianceMap(Env, wavelength_nm, options)
 
     for ip = 1:nPlots
         Zplot = plotData(:,:,ip);
+
+        if options.IndependentColorbars || options.FigureMode ~= "subplots"
+            cmin = min(Zplot(:), [], "omitnan");
+            cmax = max(Zplot(:), [], "omitnan");
+            if ~isfinite(cmin) || ~isfinite(cmax) || cmin == cmax
+                cmin = 0; cmax = cmin + 1;
+            end
+            local_clim = [cmin cmax];
+        else
+            local_clim = shared_clim;
+        end
 
         if options.FigureMode == "subplots"
             ax = nexttile(tl);
@@ -146,8 +160,8 @@ function plotRadianceMap(Env, wavelength_nm, options)
 
                     % Use shared limits (subplots) or per-plot limits (separate) for color mapping
                     if options.FigureMode == "subplots"
-                        zmin = shared_clim(1);
-                        zmax = shared_clim(2);
+                        zmin = local_clim(1);
+                        zmax = local_clim(2);
                     else
                         zmin = min(Zplot(:), [], 'omitnan');
                         zmax = max(Zplot(:), [], 'omitnan');
@@ -197,7 +211,7 @@ function plotRadianceMap(Env, wavelength_nm, options)
             cb = colorbar(ax);
             ylabel(cb, plotLabel);
 
-            applyCLim(ax, shared_clim);
+            applyCLim(ax, local_clim);
             title(ax, composeTitle(options.Title, legendNames(ip)));
 
             hold(ax, "off");
@@ -218,8 +232,8 @@ function plotRadianceMap(Env, wavelength_nm, options)
 
                     % Use shared limits (subplots) or per-plot limits (separate) for color mapping
                     if options.FigureMode == "subplots"
-                        cmin = shared_clim(1);
-                        cmax = shared_clim(2);
+                        cmin = local_clim(1);
+                        cmax = local_clim(2);
                     else
                         cmin = min(Zplot(:), [], 'omitnan');
                         cmax = max(Zplot(:), [], 'omitnan');
@@ -259,7 +273,7 @@ function plotRadianceMap(Env, wavelength_nm, options)
             cb = colorbar(ax);
             ylabel(cb, plotLabel);
 
-            applyCLim(ax, shared_clim);
+            applyCLim(ax, local_clim);
 
             grid(ax, 'on');
             hold(ax, "off");

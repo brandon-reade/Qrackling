@@ -170,7 +170,7 @@ classdef Satellite < nodes.Located_Object & nodes.QKD_Receiver & nodes.QKD_Trans
                 varargout{1} = scenario;
                 if ~isempty(options.TLE)
                     [Satellite, lat, lon, alt, t, vE, vN, vU] = llatAndVelFromScenario(...
-                        Satellite, 'scenario', scenario, 'TLE', TLE);
+                        Satellite, scenario=scenario, TLE=options.TLE);
                     hasVelocity = true;
 
                 elseif ~isempty(KeplerElements)
@@ -286,7 +286,7 @@ classdef Satellite < nodes.Located_Object & nodes.QKD_Receiver & nodes.QKD_Trans
                 Satellite
                 options.satCommsSatellite = nan;
                 options.scenario = nan;
-                options.TLE = nan;
+                options.TLE = [];
                 options.KeplerElements = nan;
             end
 
@@ -301,8 +301,10 @@ classdef Satellite < nodes.Located_Object & nodes.QKD_Receiver & nodes.QKD_Trans
             % of {latitiude, longitude, altitude}, velocities in a 'North-East-
             % Down' format and time in matlab datetime
 
-            if ~isempty(options.scenario) && isnan(options.TLE) ...
-                    && isempty(options.KeplerElements)
+            if ~isempty(options.scenario) && isempty(options.TLE) ...
+                && isempty(options.KeplerElements)
+
+                
 
                 % First case: we have been supplied with only a satCommsToolbox
                 % satellite object, get its position, velocity and time 
@@ -311,20 +313,66 @@ classdef Satellite < nodes.Located_Object & nodes.QKD_Receiver & nodes.QKD_Trans
                                             'CoordinateFrame', 'geographic');
                 Satellite.Name = options.satCommsSatellite.Name;
 
-            elseif ~any([isempty(options.scenario), isnan(options.TLE)])
-
+            elseif ~isempty(options.scenario) && ~isempty(options.TLE)
                 % Second case: we have been supplied with a satCommsToolbox
                 % scenario along with some TLE data. So, use the scenario and
                 % the TLE data to construct a satellite and get its position, 
                 % velocity and time steps
 
+                % when TLE handling we accept either a file path or 2-line TLE
+                tleIn = options.TLE;
+                
+                % filename passed that exists so we can use this
+                if (ischar(tleIn) || (isstring(tleIn) && isscalar(tleIn))) && isfile(tleIn)
+                    tleFile = char(tleIn);
+                
+                else
+                    % two TLE lines passed so create a temp file and use it
+                    tleLines = tleIn;
+                
+                    if ischar(tleLines)
+                        tleLines = string(tleLines);
+                    elseif iscell(tleLines)
+                        tleLines = string(tleLines);
+                    end
+                    tleLines = tleLines(:);
+                
+                    % If supplied as one multiline string, split into lines
+                    if isstring(tleLines) && isscalar(tleLines) && contains(tleLines, newline)
+                        tleLines = splitlines(tleLines);
+                        tleLines = tleLines(tleLines ~= "");
+                        tleLines = tleLines(:);
+                    end
+                
+                    assert(isstring(tleLines) && numel(tleLines) == 2, ...
+                        "TLE must be a 2-line string/cellstr, or a path to a .tle file.");
+                
+                    % Write a temporary TLE file
+                    tleFile = fullfile(tempdir, "qrackling_temp.tle");
+                    fid = fopen(tleFile, "w");
+                    assert(fid > 0, "Failed to create temp TLE file: %s", tleFile);
+                    fprintf(fid, "%s\n", tleLines(1));
+                    fprintf(fid, "%s\n", tleLines(2));
+                    fclose(fid);
+                end
+                
+                % for TLE, do NOT force two-body-keplerian
+                sc_sat = satellite(options.scenario, tleFile, "Name", Satellite.Name);
+                
+                [position, velocity, t] = states(sc_sat, 'CoordinateFrame', 'geographic');
+                Satellite.Name = sc_sat.Name;
+
+                % originally used in this part was this
+                %{
                 sc_sat = satellite(options.scenario, options.TLE, ...
                                    "Name", Satellite.Name, ...
                                    "OrbitPropagator", "two-body-keplerian");
+                
 
                 [position, velocity, t] = states(...
                                     sc_sat, 'CoordinateFrame', 'geographic');
                 Satellite.Name = sc_sat.satellite(1).Name;
+                %}
 
             elseif ~isempty(options.scenario) ...
                    && ~isempty(options.KeplerElements)
