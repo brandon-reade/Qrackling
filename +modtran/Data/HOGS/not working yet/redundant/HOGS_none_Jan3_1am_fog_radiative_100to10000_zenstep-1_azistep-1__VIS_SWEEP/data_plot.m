@@ -4,7 +4,7 @@ addpath(fullfile(repo_root));
 json_root = fullfile(repo_root, "+modtran","JSON_Cases",...
     "HOGS_none_Jan3_1am_200mvis_100to10000_zenstep-1_azistep-1__VIS_SWEEP");
 filename = "HOGS_none_Jan3_1am_fog_radiative_100to10000_zenstep-1_azistep-1__VIS_SWEEP";
-collect_dir = fullfile(repo_root,"+modtran","Data","HOGS", filename);
+collect_dir = fullfile(repo_root,"+modtran","Data","HOGS", "not working yet", "redundant", filename);
 
 d = dir(fullfile(collect_dir, "*_scan.csv"));
 cases = repmat(struct("file","","label",""), numel(d), 1);
@@ -26,5 +26,4 @@ opts.forceTransmittanceOnly = true;                                         % do
 opts.showLegend = true;
 opts.titlePrefix = "HOGS visibility sweep - ";
 
-out = plots.TransmittanceRadiance(cases, opts);
 out = plots.TransmittanceRadiance(cases, opts);
