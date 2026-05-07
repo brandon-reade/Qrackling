@@ -3,6 +3,10 @@
 % Last update: 19/04/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
 
+% Should change the TLE satellite.m script from:
+%  sc_sat = satellite(options.scenario, options.TLE, "OrbitPropagator", "two-body-keplerian");
+%   to use SGP4 instead
+
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
@@ -23,10 +27,10 @@ modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...
 % dawn
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am                                          
+modtran_dir = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 4am summer
 modtran_dir1 = fullfile(repo_root,...
-    '+modtran\Data\HOGS\HOGS_sun_Jun21_4am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 4am summer
-modtran_dir1 = fullfile(repo_root,...
-    '+modtran\Data\HOGS\HOGS_sun_Jun21_4am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
 
 if ~isfolder(modtran_dir)
     error('MODTRAN folder not found: %s', modtran_dir);
@@ -35,22 +39,28 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = false;
-plot_compare                = false;
+plot_each_pass              = true;
+plot_compare                = true;
 plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
-plot_background_counts      = false;
+plot_background_counts      = true;
 plot_orbit_summary          = true;
 plot_detectors              = false;
 plot_trans_rad              = true;
-plot_2D_spectral_map        = true;
+plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
-plot_spectral_comparison    = true;
+plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
 % system configuration
 small_sat                   = true;                                        % false for cubesat settings
-ideal_pass                  = true;                                         % satellite pass
+ideal_pass                  = false;                                         % satellite pass
+
+% tle
+tle = [
+"1 68423U 26067H   26125.81533466  .00005781  00000-0  28377-3 0  9997"
+"2 68423  97.4486  84.9092 0002633  85.9306 274.2229 15.18469238  5516"
+];
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 if small_sat
@@ -63,7 +73,7 @@ Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 1E-6;
 Rep_Rate                    = 1E9;
 %Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
-Spectral_Filter_Width       = 0.5;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
+Spectral_Filter_Width       = 0.1;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -97,7 +107,7 @@ Env = buildEnvironment(modtran_dir);
 for i = 1:nQKDSystems
     % Create satellite
     Sat{i} = createSatellite(QKDsystems(i).Wavelength, OrbitDataFileLocation,...
-        Rep_Rate, QKDsystems(i).txDiam, MPNs, SPs, state_prep_error, ideal_pass);
+        Rep_Rate, QKDsystems(i).txDiam, MPNs, SPs, state_prep_error, tle, ideal_pass);
     
     % Create detector
     Det{i} = createPresetDetector(QKDsystems(i).Wavelength, Rep_Rate,...
@@ -215,6 +225,7 @@ if plot_2D_spectral_map
     'UseLogZ', false, ...
     'AzimuthDeg',(0:30:330)', ...
     'ZenithDeg',(0:10:90)', ...
+    'IndependentColorbars', true, ...
     'Title',"MODTRAN spectral radiance maps");
 end
 
@@ -264,6 +275,9 @@ if plot_link_loss_comparison
         'FigureName', "Achieved SKR vs PLOB (vs loss)");
 end
 
+%% Visualize satellite
+
+
 %% Functions to build QKD Systems
 % Environments
 function Env = buildEnvironment(env_dir)
@@ -301,7 +315,7 @@ function Env = buildEnvironment(env_dir)
 end
 
 % Satellite
-function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionRate, TxDia, MPNs, SPs, state_prep_error, pass_type)
+function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionRate, TxDia, MPNs, SPs, state_prep_error, tle, pass_type)
     Src = components.Source(Wavelength, ...                                 % tx source
         'Repetition_Rate', RepetitionRate, ...
         'MPN_Signal',      MPNs(1), ...
@@ -317,8 +331,18 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
             'OrbitDataFileLocation', OrbitDataFileLocation);
     else
         % Using start/stop time
-        StartTime = datetime(2025,12,25,6,40,0); %datetime(2026,1,31,4,0,0);
-        StopTime = datetime(2025,12,25,7,20,0);   %datetime(2026,1,31,5,0,0);
+        StartTime = datetime(2026,5,8,3,0,0,'TimeZone','UTC');
+        StopTime  = datetime(2026,5,8,4,0,0,'TimeZone','UTC');
+        
+        SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
+            'TLE', tle, ...
+            'startTime', StartTime, ...
+            'stopTime', StopTime, ...
+            'sampleTime', seconds(1));
+
+        %{
+        StartTime = datetime(2026,5,7,2,0,0); %datetime(2026,1,31,4,0,0);
+        StopTime = datetime(2026,5,7,5,0,0);   %datetime(2026,1,31,5,0,0);
         SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
         'semiMajorAxis', 600e3 + earthRadius, ...
         'eccentricity', 0, ...
@@ -329,6 +353,7 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
         'StartTime', StartTime, ...
         'StopTime', StopTime, ...
         'sampleTime', seconds(1));
+        %}
     end
 end
 
