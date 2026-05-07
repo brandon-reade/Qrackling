@@ -28,12 +28,12 @@ hogs.enableLosOverrides = false;
 hogs.source = "none";
 
 % Visibility sweep (km)
-visList_km = [0.2 0.3 0.4 0.5 0.65 0.8 1.0];
+visList_km = [0.5, 1, 2, 3, 4, 5, 7, 10, 15, 23];
 
 % Aerosol / clouds (winter scenario) - BASE settings (vis will be overridden by the sweep)
-hogs.visib_km = 0.650;                                                      % placeholder base value
+hogs.visib_km = 0.5;                                                      % placeholder base value
 hogs.clouds = "none";
-hogs.aerosol_model = "fog_radiative";
+hogs.aerosol_model = "urban";
 hogs.strato_model = "background";
 hogs.season = "winter";
 
