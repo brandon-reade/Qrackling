@@ -2,8 +2,6 @@
 % Date: 21/03/2026
 % MODTRAN JSON case generator class
 
-% to do: change naming scheme for no zen/azi stepping (atm shows as "-1")
-
 classdef jsonCaseGenerator
     methods (Static)
 
@@ -237,8 +235,8 @@ classdef jsonCaseGenerator
             % sitename_source_date_time_visibility_cloud_wminNmtoWmaxNm_zenstepX_azistepY
             %
             % Examples:
-            %   HOGS_sun_Jan3_1pm_10kmvis_100to10000_zenstep10_azistep10
-            %   HOGS_moon_Jan3_1am_500mvis_cirrus_100to10000_zenstep10_azistep10
+            %   Goldstone_moon_May6_10h25_23kmvis_300to10000_zenstep10_azistep30
+            %       - note this is NOT 10:25 AM, it is BASE UTC!!!
 
             % site name and source
             siteName = modtran.jsonCaseGenerator.sanitizeToken(siteName);
@@ -257,36 +255,29 @@ classdef jsonCaseGenerator
                 sourceToken = source;
             end
 
-            % Date token: "Jan3"
+            % Ensure utcDT is actually UTC time
+            if isa(utcDT, "datetime")
+                if isempty(utcDT.TimeZone)
+                    utcDT.TimeZone = "UTC";
+                else
+                    utcDT = datetime(utcDT, "TimeZone", "UTC");
+                end
+            end
+            
+            % Date token such as "May6"
             dateToken = string(datestr(utcDT, "mmm")) + string(day(utcDT));
-
-            % Time token: "1am", "1pm", "13h30" (use hour + am/pm if minute==0)
+            
+            % Time token such as "10h25"
             hh = hour(utcDT);
             mm = minute(utcDT);
-            if mm == 0
-                isPM = hh >= 12;
-                hh12 = mod(hh,12);
-                if hh12 == 0
-                    hh12 = 12;
-                end
-            
-                if isPM
-                    suffix = "pm";
-                else
-                    suffix = "am";
-                end
-            
-                timeToken = string(hh12) + suffix;
-            else
-                timeToken = sprintf("%02dh%02d", hh, mm);
-            end
+            timeToken = sprintf("%02dh%02d", hh, mm);
 
             visToken = modtran.jsonCaseGenerator.formatVisibilityToken(visib_km);
 
             cloudsToken = modtran.jsonCaseGenerator.sanitizeToken(lower(string(clouds)));
             includeClouds = strlength(strtrim(cloudsToken)) > 0 && cloudsToken ~= "none";
 
-            % Wavelength tokens (always nm for Qrackling)
+            % Wavelength tokens (always in nm for Qrackling)
             w1 = modtran.jsonCaseGenerator.formatNumericToken(wmin_nm);
             w2 = modtran.jsonCaseGenerator.formatNumericToken(wmax_nm);
             waveToken = w1 + "to" + w2;
