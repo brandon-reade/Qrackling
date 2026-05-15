@@ -3,10 +3,6 @@
 % Last update: 19/04/2026
 % Comparison of a simulation of a Decoy BB84 pass at 1km visibility
 
-% Should change the TLE satellite.m script from:
-%  sc_sat = satellite(options.scenario, options.TLE, "OrbitPropagator", "two-body-keplerian");
-%   to use SGP4 instead
-
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
@@ -31,6 +27,9 @@ modtran_dir = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 4am summer
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\Goldstone\Goldstone_moon_May6_10h25_23kmvis_300to10000_zenstep10_azistep30');
+
 
 if ~isfolder(modtran_dir)
     error('MODTRAN folder not found: %s', modtran_dir);
@@ -39,21 +38,21 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = true;
-plot_compare                = true;
-plot_loss_comparison        = false;
+plot_each_pass              = false;
+plot_compare                = false;
+plot_loss_comparison        = true;
 plot_link_loss_comparison   = false;
-plot_background_counts      = true;
-plot_orbit_summary          = true;
+plot_background_counts      = false;
+plot_orbit_summary          = false;
 plot_detectors              = false;
-plot_trans_rad              = true;
+plot_trans_rad              = false;
 plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
 % system configuration
-small_sat                   = true;                                        % false for cubesat settings
+small_sat                   = false;                                        % false for cubesat settings
 ideal_pass                  = false;                                         % satellite pass
 
 % tle
@@ -83,7 +82,7 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2210, 3700}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'Wavelength', {1550, 2210, 3000}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
                         'SNSPD_NbTiN_2um', ...
                         'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
@@ -118,10 +117,14 @@ for i = 1:nQKDSystems
         QKDsystems(i).Wavelength, QKDsystems(i).rxFOV, Receiver_Jitter, ...
         Env, [55.909723,-3.319995,10], 'Heriot-Watt');
 
+    % RX TELESCOPE DEBUG
     tel = GS{i}.Telescope;
-    fprintf("(%dnm) Acceptance FOV = %.3g urad, Receiver jitter = %.3g urad\n", ...         % diffraction-limited is automatically calculated
+    fprintf("RX: (%dnm) Acceptance FOV = %.3g urad, Receiver jitter = %.3g urad\n", ...         % diffraction-limited is automatically calculated
         QKDsystems(i).Wavelength, tel.FOV*1e6, tel.Pointing_Jitter*1e6);                    % otherwise when it is fixed it is an acceptance angle
     
+    % TX TELESCOPE DEBUG
+    fprintf("TX: FOV = %.3g urad\n", Sat{i}.Telescope.FOV*1e6);
+
     % Run simulation
     Results{i} = nodes.QkdPassSimulation(GS{i}, Sat{i}, protocol.decoyBB84);
 
@@ -331,8 +334,8 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
             'OrbitDataFileLocation', OrbitDataFileLocation);
     else
         % Using start/stop time
-        StartTime = datetime(2026,5,8,3,0,0,'TimeZone','UTC');
-        StopTime  = datetime(2026,5,8,4,0,0,'TimeZone','UTC');
+        StartTime = datetime(2026,6,8,3,0,0,'TimeZone','UTC');
+        StopTime  = datetime(2026,6,8,4,0,0,'TimeZone','UTC');
         
         SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
             'TLE', tle, ...
