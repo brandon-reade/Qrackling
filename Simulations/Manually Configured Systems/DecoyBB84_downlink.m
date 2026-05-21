@@ -23,10 +23,20 @@ modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...
 % dawn
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am                                          
-modtran_dir = fullfile(repo_root,...
-    '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 4am summer
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 5am summer
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_04h00_10kmvis_300to10000_zenstep10_azistep30');
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_04h00_10kmvis_cirrus_300to10000_zenstep10_azistep30');
+
+% daytime
+modtran_dir = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_2pm_23kmvis_300to10000_zenstep10_azistep30');
+
+% goldstone
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\Goldstone\Goldstone_moon_May6_10h25_23kmvis_300to10000_zenstep10_azistep30');
 
@@ -38,14 +48,14 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = false;
-plot_compare                = false;
+plot_each_pass              = true;
+plot_compare                = true;
 plot_loss_comparison        = true;
 plot_link_loss_comparison   = false;
 plot_background_counts      = false;
-plot_orbit_summary          = false;
+plot_orbit_summary          = true;
 plot_detectors              = false;
-plot_trans_rad              = false;
+plot_trans_rad              = true;
 plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
@@ -82,7 +92,7 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2210, 3000}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'Wavelength', {1550, 2210, 2440}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
                         'SNSPD_NbTiN_2um', ...
                         'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
@@ -334,8 +344,8 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
             'OrbitDataFileLocation', OrbitDataFileLocation);
     else
         % Using start/stop time
-        StartTime = datetime(2026,6,8,3,0,0,'TimeZone','UTC');
-        StopTime  = datetime(2026,6,8,4,0,0,'TimeZone','UTC');
+        StartTime = datetime(2026,5,8,3,0,0,'TimeZone','UTC');
+        StopTime  = datetime(2026,5,8,4,0,0,'TimeZone','UTC');
         
         SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
             'TLE', tle, ...
