@@ -31,7 +31,7 @@ function [loss, spot_size, link_length] = GeometricLoss(kind, receiver, transmit
             + link_length ...
             * transmitter.Telescope.FOV);
 
-        loss = (sqrt(pi) / 8) * (receiver.Telescope.Diameter ./ spot_size) .^2;
+        loss = (1 / 2) * (receiver.Telescope.Diameter ./ spot_size) .^2;     % changed coefficient to 1/2 to be consistent with Wiki
         loss = min(loss, 1); %make sure loss cannot be positive
     end
 

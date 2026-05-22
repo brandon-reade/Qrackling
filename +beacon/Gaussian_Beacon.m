@@ -52,7 +52,7 @@ classdef Gaussian_Beacon < beacon.Beacon
 
             GeoSpotDiameter = 2 * Gaussian_Beacon.Divergence_Half_Angle * Range;
 
-            GeoLoss = ( sqrt(pi) / 8 ) ...
+            GeoLoss = 2 ...                                                 % changed to be consistent with Qinsim branch, though I think this is still incorrect
                 * Camera.Collecting_Area ...
                 ./ (pi * (GeoSpotDiameter / 2) .^ 2);
         end
