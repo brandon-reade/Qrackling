@@ -4,7 +4,7 @@
 
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');
 modtran_dir = fullfile(repo_root,...
-    '+modtran\Data\Goldstone\Goldstone_moon_May6_10h25_23kmvis_300to10000_zenstep10_azistep30');
+    '+modtran\Data\HOGS\HOGS_moon_May15_03h05_10kmvis_300to10000_zenstep10_azistep30');
 
 if ~isfolder(modtran_dir)
     error('MODTRAN folder not found: %s', modtran_dir);

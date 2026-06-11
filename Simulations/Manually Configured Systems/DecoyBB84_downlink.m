@@ -6,19 +6,9 @@
 %% Configure MODTRAN Data
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
-% 1k vis
-modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
-    'atmospheric transmittance', 'raw modtran data',...
-    'HOGS_WinterClear_Lunar_angles', 'HOGS_Winter-1kVis',...
-    'moon_jan3rd_2026_1am_800to3000nm_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
-                                               % moon_jan3rd_2026_1am_800to3000nm_full
-
-% 10k vis
-modtran_dir1 = fullfile(repo_root, 'Examples', 'Data', ...                              
-    'atmospheric transmittance', 'raw modtran data',...
-    'HOGS_WinterClear_Lunar_angles', 'HOGS_WinterClear-10kVis',...
-    'moon_jan3rd_2026_800to3000_1am_full');   % sun_jan3rd_2026_1pm_800to3000nm_full
-                                               % moon_jan3rd_2026_800to3000_1am_full 
+% Night
+modtran_dir = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_moon_May15_03h05_10kmvis_300to10000_zenstep10_azistep30');
 
 % dawn
 modtran_dir1 = fullfile(repo_root,...
@@ -32,8 +22,9 @@ modtran_dir1 = fullfile(repo_root,...
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_04h00_10kmvis_cirrus_300to10000_zenstep10_azistep30');
 
+
 % daytime
-modtran_dir = fullfile(repo_root,...
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_2pm_23kmvis_300to10000_zenstep10_azistep30');
 
 % goldstone
@@ -48,14 +39,14 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = true;
+plot_each_pass              = false;
 plot_compare                = true;
-plot_loss_comparison        = true;
+plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
 plot_background_counts      = false;
-plot_orbit_summary          = true;
+plot_orbit_summary          = false;
 plot_detectors              = false;
-plot_trans_rad              = true;
+plot_trans_rad              = false;
 plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
@@ -92,14 +83,15 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2210, 2440}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
-    'DetectorPreset', { 'QuantumOpus1550_RoomTempAmplifier', ...
+    'Wavelength', {1550, 2210, 2310, 2440}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'DetectorPreset', { 'mod_QuantumOpus1550_RoomTempAmplifier', ...                  % dead-time according to: https://doi.org/10.48550/arXiv.2103.14086 for 1550nm
                         'SNSPD_NbTiN_2um', ...
+                        'SNSPD_NbTiN_2um',...
                         'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter},...     % transmitter telescope diameter (0.08m for SPOQC)
-    'rxDiam', {0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
-    'rxFOV', {37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
-    'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12}...
+    'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter},...     % transmitter telescope diameter (0.08m for SPOQC)
+    'rxDiam', {0.7, 0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
+    'rxFOV', {37E-6, 37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
+    'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12, 28.6E-12}...
                         );
 
 % Preallocate results and objects

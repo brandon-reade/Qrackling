@@ -19,6 +19,8 @@
 % - Zenith: 0=up, 90=horizon
 % - Altitude = 90 - zenith
 
+% You've got to wonder why I used NEU and not ENU...will have to change.
+
 classdef deriveRelativeAngles
     methods (Static)
         function out = computeSunMoonRelativeAngles(lat_deg, lon_deg, alt_m, utcDT, losZen_deg, losAz_deg)
