@@ -7,7 +7,7 @@
 repo_root = utilities.addUserPath('~\Documents\GitHub\Qrackling');         
 
 % Night
-modtran_dir = fullfile(repo_root,...
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_moon_May15_03h05_10kmvis_300to10000_zenstep10_azistep30');
 
 % dawn
@@ -19,7 +19,7 @@ modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_04h00_10kmvis_300to10000_zenstep10_azistep30');
-modtran_dir1 = fullfile(repo_root,...
+modtran_dir = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_04h00_10kmvis_cirrus_300to10000_zenstep10_azistep30');
 
 
@@ -29,7 +29,7 @@ modtran_dir1 = fullfile(repo_root,...
 
 % goldstone
 modtran_dir1 = fullfile(repo_root,...
-    '+modtran\Data\Goldstone\Goldstone_moon_May6_10h25_23kmvis_300to10000_zenstep10_azistep30');
+    '+modtran\Data\Goldstone\Goldstone_moon_May6_10h25_23kmvis_300to10000_zenstep10_azistep30'); % 03:25am local time in Goldstone
 
 
 if ~isfolder(modtran_dir)
@@ -43,23 +43,25 @@ plot_each_pass              = false;
 plot_compare                = true;
 plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
-plot_background_counts      = false;
-plot_orbit_summary          = false;
+plot_background_counts      = true;
+plot_orbit_summary          = true;
 plot_detectors              = false;
-plot_trans_rad              = false;
-plot_2D_spectral_map        = false;
-plot_3D_spectral_map        = false;
+plot_trans_rad              = true;
+plot_2D_spectral_map        = true;
+plot_3D_spectral_map        = true;
 plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
 % system configuration
-small_sat                   = false;                                        % false for cubesat settings
+small_sat                   = true;                                        % false for cubesat settings
 ideal_pass                  = false;                                         % satellite pass
 
 % tle
+
+
 tle = [
-"1 68423U 26067H   26125.81533466  .00005781  00000-0  28377-3 0  9997"
-"2 68423  97.4486  84.9092 0002633  85.9306 274.2229 15.18469238  5516"
+"1 68423U 26067H   26167.85318104  .00003824  00000-0  18679-3 0  9997"         %  Taken in May:    "1 68423U 26067H   26125.81533466  .00005781  00000-0  28377-3 0  9997"
+"2 68423  97.4507 126.3372 0001306  88.6179 271.5205 15.18855094 11897"         %                   "2 68423  97.4486  84.9092 0002633  85.9306 274.2229 15.18469238  5516"
 ];
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
@@ -83,7 +85,7 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2210, 2310, 2440}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'Wavelength', {1550, 2210, 2310, 3703}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'mod_QuantumOpus1550_RoomTempAmplifier', ...                  % dead-time according to: https://doi.org/10.48550/arXiv.2103.14086 for 1550nm
                         'SNSPD_NbTiN_2um', ...
                         'SNSPD_NbTiN_2um',...
@@ -223,19 +225,19 @@ end
 
 %% Plot Environment spectral radiance
 if plot_2D_spectral_map
-    plots.plotRadianceMap(Env, [QKDsystems(1).Wavelength, QKDsystems(2).Wavelength, QKDsystems(3).Wavelength], ...
+    plots.plotRadianceMap(Env, [QKDsystems(1).Wavelength, QKDsystems(2).Wavelength, QKDsystems(3).Wavelength, QKDsystems(4).Wavelength], ...
     'View',"2D", ...
     'TwoDStyle',"tiles",...                                                 % "tiles" or "pcolour"
     'FigureMode', 'subplots',...
     'UseLogZ', false, ...
     'AzimuthDeg',(0:30:330)', ...
     'ZenithDeg',(0:10:90)', ...
-    'IndependentColorbars', true, ...
+    'IndependentColorbars', false, ...
     'Title',"MODTRAN spectral radiance maps");
 end
 
 if plot_3D_spectral_map
-    plots.plotRadianceMap(Env, [QKDsystems(1).Wavelength, QKDsystems(2).Wavelength, QKDsystems(3).Wavelength], ...
+    plots.plotRadianceMap(Env, [QKDsystems(1).Wavelength, QKDsystems(2).Wavelength, QKDsystems(3).Wavelength, QKDsystems(4).Wavelength], ...
     'View',"3D", ...
     'TwoDStyle',"tiles",...                                                 % "tiles" or "pcolour"
     'FigureMode', 'subplots',...
@@ -247,7 +249,7 @@ if plot_3D_spectral_map
 end
 
 if plot_spectral_comparison
-    plots.plotRadianceMap(Env, [QKDsystems(2).Wavelength, QKDsystems(3).Wavelength], ...
+    plots.plotRadianceMap(Env, [QKDsystems(2).Wavelength, QKDsystems(3).Wavelength, QKDsystems(4).Wavelength], ...
     'View',"2D", ...
     'TwoDStyle',"tiles",...                                                 % "tiles" or "pcolour"
     'FigureMode', "subplots",...
@@ -336,8 +338,10 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
             'OrbitDataFileLocation', OrbitDataFileLocation);
     else
         % Using start/stop time
-        StartTime = datetime(2026,5,8,3,0,0,'TimeZone','UTC');
-        StopTime  = datetime(2026,5,8,4,0,0,'TimeZone','UTC');
+        StartTime = datetime(2026,6,23,3,0,0,'TimeZone','UTC');
+        StopTime  = datetime(2026,6,23,5,0,0,'TimeZone','UTC'); 
+        %StartTime = datetime(2026,5,8,3,0,0,'TimeZone','UTC');
+        %StopTime  = datetime(2026,5,8,4,0,0,'TimeZone','UTC');
         
         SimSat = nodes.Satellite(TxTelescope, 'Source', Src, ...
             'TLE', tle, ...
