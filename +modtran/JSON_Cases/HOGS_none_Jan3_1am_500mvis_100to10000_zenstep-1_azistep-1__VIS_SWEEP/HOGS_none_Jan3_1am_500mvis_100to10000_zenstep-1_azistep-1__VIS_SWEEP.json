@@ -1,0 +1,604 @@
+{
+  "MODTRAN": [
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_500mvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 0.5
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_500mvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 1
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_1kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_2kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 2
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_2kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_3kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 3
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_3kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_4kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 4
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_4kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_5kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 5
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_5kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_7kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 7
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_7kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_10kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 10
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_10kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_15kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 15
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_15kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    },
+    {
+      "MODTRANINPUT": {
+        "NAME": "Transm_HOGS_23kmvis_none_urban_background_zen0_azi0",
+        "DESCRIPTION": "Case 1 - geom 1, LOS zen 0.000 az 0.000",
+        "CASE": 1,
+        "RTOPTIONS": {
+          "MODTRN": "RT_CORRK_FAST",
+          "LYMOLC": false,
+          "T_BEST": false,
+          "IMULT": "RT_DISORT_AT_OBS",
+          "DISALB": true,
+          "NSTR": 8,
+          "SOLCON": 0,
+          "IEMSCT": "RT_TRANSMITTANCE"
+        },
+        "ATMOSPHERE": {
+          "MODEL": "ATM_MIDLAT_WINTER",
+          "M2_RHC": true,
+          "CO2MX": 0
+        },
+        "AEROSOLS": {
+          "IHAZE": "AER_URBAN",
+          "IVULCN": "STRATO_BACKGROUND",
+          "ICLD": "CLOUD_NONE",
+          "ISEASN": "SEASN_FALL_WINTER",
+          "VIS": 23
+        },
+        "GEOMETRY": {
+          "ITYPE": 3,
+          "H1ALT": 0.1,
+          "H2ALT": 0,
+          "OBSZEN": 0,
+          "HRANGE": 0,
+          "BETA": 0,
+          "BCKZEN": 0,
+          "IDAY": 3
+        },
+        "SURFACE": {
+          "SURFTYPE": "REFL_LAMBER_MODEL",
+          "NSURF": 1,
+          "SURFP": {
+            "CSALB": "LAMB_URBAN"
+          }
+        },
+        "SPECTRAL": {
+          "V1": 100,
+          "V2": 10000,
+          "DV": 1,
+          "FWHM": 2.5,
+          "XFLAG": "N",
+          "FLAGS": "NGAA  F",
+          "MLFLX": -1,
+          "LBMNAM": "T",
+          "BMNAME": "p1_2013"
+        },
+        "FILEOPTIONS": {
+          "CSVPRNT": "Transm_HOGS_23kmvis_none_urban_background_zen0_azi0.csv"
+        }
+      }
+    }
+  ]
+}
