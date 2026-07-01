@@ -159,7 +159,7 @@ if p.Results.TwoPanel
 
     for k = 1:nSeries
         [Env_k, w_k] = getSeries(Envs, w, seriesMode, k);
-        rad = Env_k.Interp("spectral_radiance", az_vec, el_deg, w_k);
+        rad = Env_k.interp("spectral_radiance", az_vec, el_deg, w_k);
 
         if useLog
             semilogy(zen_deg, rad, 'Color', colors(k,:), 'LineWidth', lw, ...
@@ -181,7 +181,7 @@ if p.Results.TwoPanel
 
     for k = 1:nSeries
         [Env_k, w_k] = getSeries(Envs, w, seriesMode, k);
-        att = Env_k.Interp("attenuation", az_vec, el_deg, w_k);
+        att = Env_k.interp("attenuation", az_vec, el_deg, w_k);
 
         plot(zen_deg, att, 'Color', colors(k,:), 'LineWidth', lw, ...
             'DisplayName', labels(k), 'Marker', marker);
@@ -203,7 +203,7 @@ else
     % Transmittance solid
     for k = 1:nSeries
         [Env_k, w_k] = getSeries(Envs, w, seriesMode, k);
-        att = Env_k.Interp("attenuation", az_vec, el_deg, w_k);
+        att = Env_k.interp("attenuation", az_vec, el_deg, w_k);
 
         plot(zen_deg, att, '-', 'Color', colors(k,:), 'LineWidth', lw, ...
             'DisplayName', labels(k), 'Marker', marker);
@@ -217,7 +217,7 @@ else
     % Radiance dashed
     for k = 1:nSeries
         [Env_k, w_k] = getSeries(Envs, w, seriesMode, k);
-        rad = Env_k.Interp("spectral_radiance", az_vec, el_deg, w_k);
+        rad = Env_k.interp("spectral_radiance", az_vec, el_deg, w_k);
 
         if useLog && ~p.Results.UseYYAxis
         end

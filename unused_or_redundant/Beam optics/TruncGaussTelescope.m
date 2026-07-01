@@ -198,7 +198,7 @@ classdef TruncGaussTelescope
             radius = obj.diameter / 2;
             waist = radius / obj.truncation_ratio;
 
-            fov = 2*((0.2428 * (obj.wavelength * 1e-9)) / waist) * sqrt( ...
+            fov = 2*((0.2428 * (obj.wavelength * 1e-9)) / waist) * sqrt( ...            % need to add the far field divergence coefficient in
                 exp(1) / (1 - exp(-(radius / (1.0271 * waist))^2 )) ...
             -1);
 

@@ -143,9 +143,19 @@ function fig = LossComparison(Results, varargin)
             x_axis = R.time;
     
             if strcmp(loss_name, 'TotalLoss')
-                y = R.loss.TotalLoss.dB;
+                y = R.loss.total_loss.dB;
             else
-                y = R.loss.(loss_name).dB;
+                % Retrieve named loss from LossResult
+                try
+                    lossObj = R.loss.get(loss_name);
+                    lossObj = lossObj{1};        % get() returns a cell
+                    y = lossObj.dB;
+        
+                catch
+                    warning('Loss "%s" not found for result %d. Skipping.', ...
+                            loss_name, i);
+                    continue
+                end
             end
     
             plot(x_axis(mask), y(mask), 'Color', colors(i,:), ...

@@ -41,7 +41,7 @@ addpath(fullfile(repo_root));
 % plotting options
 plot_each_pass              = false;
 plot_compare                = true;
-plot_loss_comparison        = false;
+plot_loss_comparison        = true;
 plot_link_loss_comparison   = false;
 plot_background_counts      = true;
 plot_orbit_summary          = true;
@@ -57,12 +57,12 @@ small_sat                   = true;                                        % fal
 ideal_pass                  = false;                                         % satellite pass
 
 % tle
-
-
 tle = [
 "1 68423U 26067H   26167.85318104  .00003824  00000-0  18679-3 0  9997"         %  Taken in May:    "1 68423U 26067H   26125.81533466  .00005781  00000-0  28377-3 0  9997"
 "2 68423  97.4507 126.3372 0001306  88.6179 271.5205 15.18855094 11897"         %                   "2 68423  97.4486  84.9092 0002633  85.9306 274.2229 15.18469238  5516"
 ];
+
+
 
 % as per: https://digital-library.theiet.org/doi/10.1049/icp.2025.2223
 if small_sat
@@ -122,15 +122,15 @@ for i = 1:nQKDSystems
         Env, [55.909723,-3.319995,10], 'Heriot-Watt');
 
     % RX TELESCOPE DEBUG
-    tel = GS{i}.Telescope;
+    tel = GS{i}.telescope;
     fprintf("RX: (%dnm) Acceptance FOV = %.3g urad, Receiver jitter = %.3g urad\n", ...         % diffraction-limited is automatically calculated
-        QKDsystems(i).Wavelength, tel.FOV*1e6, tel.Pointing_Jitter*1e6);                    % otherwise when it is fixed it is an acceptance angle
+        QKDsystems(i).Wavelength, tel.fov*1e6, tel.pointing_jitter*1e6);                    % otherwise when it is fixed it is an acceptance angle
     
     % TX TELESCOPE DEBUG
-    fprintf("TX: FOV = %.3g urad\n", Sat{i}.Telescope.FOV*1e6);
+    fprintf("TX: FOV = %.3g urad\n", Sat{i}.telescope.fov*1e6);
 
     % Run simulation
-    Results{i} = nodes.QkdPassSimulation(GS{i}, Sat{i}, protocol.decoyBB84);
+    Results{i} = nodes.qkdPassSimulation(GS{i}, Sat{i}, protocol.DecoyBB84);
 
     if plot_each_pass
         % Plot + rename the figure that the library creates
@@ -293,7 +293,7 @@ function Env = buildEnvironment(env_dir)
     if ~isempty(envFile)
         fprintf("Found environment...\n")
         try
-            Env = environment.Environment.Load(fullfile(envFile(1).folder, envFile(1).name));
+            Env = environment.Environment.load(fullfile(envFile(1).folder, envFile(1).name));
         catch ME
             warning('Failed to load Environment from %s: %s', fullfile(envFile(1).folder, envFile(1).name, ME.message));
         end
@@ -311,7 +311,7 @@ function Env = buildEnvironment(env_dir)
     end
 
     % optionally set a turbulence model
-    Env.turbulence_model = environment.Turbulence_Model('Preset','HV10-10');   % or 'HV5-7': sea level, '2HV5-7': bad day at sea level,  'HV10-10': typical astronomical , 'HV15-12' excellent site
+    Env.turbulence_model = environment.TurbulenceModel('Preset','HV10-10');   % or 'HV5-7': sea level, '2HV5-7': bad day at sea level,  'HV10-10': typical astronomical , 'HV15-12' excellent site
     
     %{
     Env.turbulence_model = environment.Turbulence_Model( ...
@@ -375,11 +375,11 @@ end
 % Ground Station
 function SimGS = createGroundStation(Detector, RxDiameter, Wavelength, FOV, Jitter, Env, LLA, Name)
     RxTelescope = components.Telescope(RxDiameter, 'FOV', FOV,...          % receiver telescope
-        'Pointing_Jitter', Jitter, ...
+        'pointing_jitter', Jitter, ...
         'Wavelength', Wavelength);
-    SimGS = nodes.Ground_Station(RxTelescope, 'Detector', Detector,...      % ground station
+    SimGS = nodes.GroundStation(RxTelescope, 'Detector', Detector,...      % ground station
         'LLA', LLA, 'Name', Name);
-    SimGS.Environment = Env;                                                % environment
+    SimGS.environment = Env;                                                % environment
 end
 
 %% Other helpers

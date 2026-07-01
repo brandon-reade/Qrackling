@@ -2,7 +2,7 @@
 % Date: 19/04/2026
 % Summary dashboard for a satellite pass including environment data
 
-function fig = plotOrbitSummary(Result, Env, options)
+function fig = plotOrbitSummary(result, Env, options)
 % Options:
 %   Mask              : "Elevation" | "Communication" | "Line of sight" | "None"
 %   PolarOverlay      : "none" | "pass_points" | "sky_points" | "sky_field"
@@ -16,7 +16,7 @@ function fig = plotOrbitSummary(Result, Env, options)
 %     - transmittance/attenuation are the same (0..1)
 %     - attenuation dB as loss in dB: -10*log10(transmittance)
 %
-%   WavelengthNm      : scalar wavelength for Env.Interp
+%   WavelengthNm      : scalar wavelength for Env.interp
 %   PolarPointSize    : marker size for polarscatter
 %   PolarCLim         : [min max] for color scaling (optional)
 %   SurfaceMetric     : metric string for plots.plotOrbitSurface
@@ -25,7 +25,7 @@ function fig = plotOrbitSummary(Result, Env, options)
 %   FigureName        : string
 
 arguments
-    Result (1,1) nodes.PassSimulationResult
+    result (1,1) nodes.PassSimulationResult
     Env (1,1) environment.Environment
 
     options.Mask (1,1) string {mustBeMember(options.Mask, ["Elevation","Communication","Line of sight","None"])} = "Elevation"
@@ -50,7 +50,7 @@ arguments
     options.GeoBasemap (1,1) string = "topographic"
 end
 
-mask = localMask(Result, options.Mask);
+mask = localMask(result, options.Mask);
 
 if isnan(options.WavelengthNm)
     options.WavelengthNm = Env.wavelengths(end);
@@ -73,13 +73,13 @@ if options.IncludeTimeSeries
     hold(axTS, "on"); grid(axTS, "on");
 
     yyaxis(axTS, "left");
-    plot(axTS, Result.time(mask), Result.secret_key_rate(mask), "-", "LineWidth", 1.4);
-    plot(axTS, Result.time(mask), Result.sifted_key_rate(mask), ":", "LineWidth", 1.4);
+    plot(axTS, result.time(mask), result.secret_key_rate(mask), "-", "LineWidth", 1.4);
+    plot(axTS, result.time(mask), result.sifted_key_rate(mask), ":", "LineWidth", 1.4);
     ylabel(axTS, "Key rate (bits/s)");
     xlabel(axTS, "Time");
 
     yyaxis(axTS, "right");
-    plot(axTS, Result.time(mask), 100*Result.qber(mask), "-", "LineWidth", 1.0);
+    plot(axTS, result.time(mask), 100*result.qber(mask), "-", "LineWidth", 1.0);
     ylabel(axTS, "QBER (%)");
 
     title(axTS, "Key rates and QBER");
@@ -106,40 +106,57 @@ gx = geoaxes(panelMap, "Units","normalized", "Position",[0.07 00.08 0.8 0.8]);
 geobasemap(gx, options.GeoBasemap);
 hold(gx, "on");
 
-switch Result.direction
+switch result.direction
     case nodes.LinkDirection.Downlink
-        geoplot(gx, Result.transmitter_location.Latitude, Result.transmitter_location.Longitude);
-        geoplot(gx, Result.transmitter_location.Latitude(mask), Result.transmitter_location.Longitude(mask), "g");
+        geoplot(gx, result.transmitter.latitude, result.transmitter.longitude);
+        geoplot(gx, result.transmitter.latitude(mask), result.transmitter.longitude(mask), "g");
 
         labels = ["Satellite path", options.Mask];
         rIdx = 1;
-        for rx_loc = Result.receiver_location
-            axes(gx); %#ok<LAXES>
-            nodes.PassSimulationResult.PlotLOS(rx_loc, mean(Result.transmitter_location.Altitude), Result.elevation_limit(1));
-            labels(end+1:end+2) = [Result.receiver_name{rIdx}, "Line-of-Sight"];
+
+        %{ 
+        old potentially unsafe as iterates over receiver proerties, not number of receivers
+        for rx_loc = result.receiver
+            axes(gx); 
+            nodes.PassSimulationResult.plotLOS(rx_loc, mean(result.transmitter.altitude), result.elevation_limit(1));
+            labels(end+1:end+2) = [result.receiver_name{rIdx}, "Line-of-Sight"];
             rIdx = rIdx + 1;
+        end
+        %}
+
+        receivers = result.receiver;
+        for k = 1:numel(receivers)
+            rx_loc = receivers(k);
+        
+            nodes.PassSimulationResult.plotLOS( ...
+                rx_loc, ...
+                mean(result.transmitter.altitude), ...
+                result.elevation_limit(1));
+        
+            labels(end+1:end+2) = [string(rx_loc.name), "Line-of-Sight"];
         end
 
         legend(gx, labels, "Location","southwest");
-        geolimits(gx, mean([Result.receiver_location.Latitude]) + [-4, 4], ...
-                      mean([Result.receiver_location.Longitude]) + [-4, 4]);
+        geolimits(gx, ...
+            mean([result.receiver.latitude]) + [-4,4], ...
+            mean([result.receiver.longitude]) + [-4,4]);
 
     otherwise
-        geoplot(gx, Result.receiver_location.Latitude, Result.receiver_location.Longitude);
-        geoplot(gx, Result.receiver_location.Latitude(mask), Result.receiver_location.Longitude(mask), "g");
+        geoplot(gx, result.receiver.latitude, result.receiver.longitude);
+        geoplot(gx, result.receiver.latitude(mask), result.receiver.longitude(mask), "g");
 
         labels = ["Satellite path", options.Mask];
         tIdx = 1;
-        for tx_loc = Result.transmitter_location
+        for tx_loc = result.transmitter
             axes(gx);
-            nodes.PassSimulationResult.PlotLOS(tx_loc, mean(Result.receiver_location.Altitude), Result.elevation_limit(1));
-            labels(end+1:end+2) = [Result.transmitter_name{tIdx}, "Line-of-Sight"];
+            nodes.PassSimulationResult.plotLOS(tx_loc, mean(result.receiver.Altitude), result.elevation_limit(1));
+            labels(end+1:end+2) = [result.transmitter.name{tIdx}, "Line-of-Sight"];
             tIdx = tIdx + 1;
         end
 
         legend(gx, labels, "Location","southwest");
-        geolimits(gx, mean([Result.transmitter_location.Latitude]) + [-4, 4], ...
-                      mean([Result.transmitter_location.Longitude]) + [-4, 4]);
+        geolimits(gx, mean([result.transmitter.Latitude]) + [-4, 4], ...
+                      mean([result.transmitter.Longitude]) + [-4, 4]);
 end
 title(gx, "Ground track");
 
@@ -155,7 +172,7 @@ switch lower(string(options.PolarOverlay))
     case "none"
         pax = localCreatePolarAxes(panelPolar);
         hold(pax, "on");
-        polarplot(pax, deg2rad(Result.heading(mask)), Result.elevation(mask), "g-", ...
+        polarplot(pax, deg2rad(result.heading(mask)), result.elevation(mask), "g-", ...
             "LineWidth", 2, "DisplayName","Pass");
         localFormatPolarAxes(pax);
         title(pax, "Pass (polar)");
@@ -165,11 +182,11 @@ switch lower(string(options.PolarOverlay))
         pax = localCreatePolarAxes(panelPolar);
         hold(pax, "on");
 
-        th = deg2rad(Result.heading(mask));
-        rr = Result.elevation(mask);
+        th = deg2rad(result.heading(mask));
+        rr = result.elevation(mask);
 
         [envVals, cLabel] = localInterpEnvForPlot(Env, options.PolarData, ...
-            abs(Result.heading(mask)), abs(Result.elevation(mask)), wl);
+            abs(result.heading(mask)), abs(result.elevation(mask)), wl);
 
         polarscatter(pax, th, rr, options.PolarPointSize, envVals, "filled", ...
             "DisplayName","Pass points");
@@ -223,7 +240,7 @@ switch lower(string(options.PolarOverlay))
         localApplyColorbarRange(cb, cmin, cmax);
 
         % Overlay pass line (beacon style)
-        polarplot(pax, deg2rad(Result.heading(mask)), Result.elevation(mask), ...
+        polarplot(pax, deg2rad(result.heading(mask)), result.elevation(mask), ...
             "g-", "LineWidth", 2, "DisplayName","Pass");
 
         localFormatPolarAxes(pax);
@@ -268,8 +285,8 @@ switch lower(string(options.PolarOverlay))
         localApplyColorbarRange(cb, cmin, cmax);
 
         % Overlay pass using EXACT same coordinate mapping as polarpcolor
-        heading = Result.heading(mask);
-        elev    = Result.elevation(mask);
+        heading = result.heading(mask);
+        elev    = result.elevation(mask);
 
         theta_plot = map.ThetaOffsetDeg + heading;    % 90 + heading
         r_norm = map.normaliseR(elev);
@@ -289,7 +306,7 @@ end
 % 3D orbit surface 
 axes(axTileSurf);
 cla(axTileSurf, "reset");
-plots.plotOrbitSurface(Result, ...
+plots.plotOrbitSurface(result, ...
     Mask = options.Mask, ...
     Metric = options.SurfaceMetric, ...
     XAxis = "heading", ...
@@ -332,16 +349,16 @@ pd = lower(string(polarData));
 
 switch pd
     case {"transmittance","attenuation"}
-        vals = Env.Interp("attenuation", headingsDeg, elevationsDeg, wl_nm);
+        vals = Env.interp("attenuation", headingsDeg, elevationsDeg, wl_nm);
         label = "Transmittance @ " + wl_nm + " nm";
 
     case "attenuation db"
-        t = Env.Interp("attenuation", headingsDeg, elevationsDeg, wl_nm);
+        t = Env.interp("attenuation", headingsDeg, elevationsDeg, wl_nm);
         vals = -10*log10(t); % loss in dB
         label = "Atmospheric loss (dB) @ " + wl_nm + " nm";
 
     case "spectral_radiance"
-        vals = Env.Interp("spectral_radiance", headingsDeg, elevationsDeg, wl_nm);
+        vals = Env.interp("spectral_radiance", headingsDeg, elevationsDeg, wl_nm);
         label = "Spectral radiance (W/m^2 sr nm) @ " + wl_nm + " nm";
 
     otherwise

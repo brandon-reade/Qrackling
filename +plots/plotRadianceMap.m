@@ -48,7 +48,7 @@ function plotRadianceMap(Env, wavelength_nm, options)
     nW = numel(wavelength_nm);
     R = zeros(size(AZ,1), size(AZ,2), nW);
     for iw = 1:nW
-        R(:,:,iw) = Env.Interp("spectral_radiance", AZ, EL, wavelength_nm(iw));
+        R(:,:,iw) = Env.interp("spectral_radiance", AZ, EL, wavelength_nm(iw));
     end
 
     % transform: log or linear radiance base
@@ -66,7 +66,7 @@ function plotRadianceMap(Env, wavelength_nm, options)
         % If ref wavelength not exactly in list, compute it explicitly
         if ~any(abs(wavelength_nm - options.ReferenceWavelength) < 1e-9)
             % Compute radiance at reference wavelength on the same grid
-            Rref = Env.Interp("spectral_radiance", AZ, EL, options.ReferenceWavelength);
+            Rref = Env.interp("spectral_radiance", AZ, EL, options.ReferenceWavelength);
             if options.UseLogZ
                 refBase = log10(max(Rref, eps));
             else

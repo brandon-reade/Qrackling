@@ -1,5 +1,6 @@
 % Author: Brandon Reade
 % Date: 19/04/2026
+% Updated: 01/07/2026 
 % % 3D plot of orbit pass metric vs angles.
 
 function [ax, h] = plotOrbitSurface(Result, options)
@@ -31,6 +32,12 @@ arguments
 end
 
 mask = localMask(Result, options.Mask);
+if ~any(mask)
+    warning("Selected mask contains no points.");
+    ax = [];
+    h = [];
+    return
+end
 
 % X (heading/azimuthal)
 switch options.XAxis
@@ -55,6 +62,13 @@ end
 % Ensure column vectors for delaunay/trisurf consistency
 x = x(:); y = y(:); z = z(:);
 
+if options.UseLogZ
+    zPlot = z;
+    zPlot(zPlot <= 0) = NaN;
+else
+    zPlot = z;
+end
+
 % Axes
 if isempty(options.Axes)
     ax = axes;
@@ -71,26 +85,33 @@ switch options.PlotType
     case "scatter"
         switch options.ColorBy
             case "z"
-                c = z;
+                c = zPlot;
             case "time"
-                t0 = Result.time(find(mask, 1, "first"));
-                c = seconds(Result.time(mask) - t0);
+                t = Result.time(mask);
+                t0 = t(1);
+                c = seconds(t - t0);
             case "none"
                 c = [];
         end
 
         if isempty(c)
-            h = scatter3(ax, x, y, z, options.PointSize, "filled");
+            h = scatter3(ax, x, y, zPlot, options.PointSize, "filled");
         else
-            h = scatter3(ax, x, y, z, options.PointSize, c(:), "filled");
+            h = scatter3(ax, x, y, zPlot, options.PointSize, c(:), "filled");
             cb = colorbar(ax);
             cb.Label.String = cLabel;
         end
 
     case "trisurf"
         % surface from scattered points
-        tri = delaunay(x, y);
-        h = trisurf(tri, x, y, z, "Parent", ax, "EdgeColor", "none");
+        tri = delaunay(x,y);
+        h = trisurf(tri,x,y,zPlot,...
+            "Parent",ax,...
+            "EdgeColor","none");
+        
+        h.CData = zPlot;
+        h.FaceColor = "interp";
+        
         cb = colorbar(ax);
         cb.Label.String = cLabel;
 end
@@ -100,7 +121,7 @@ ylabel(ax, ylab);
 zlabel(ax, zlab);
 
 if options.UseLogZ
-    set(ax, "ZScale", "log");
+    set(ax,"ZScale","log")
 end
 
 if options.Title ~= ""
@@ -137,7 +158,7 @@ function [z, zlab, cLabel] = localMetric(R, metric, mask)
     elseif m == "sifted"
         z = R.sifted_key_rate(mask);
         zlab = "Sifted key rate (bps)";
-        cLabel = "Sifted ket rate (bps)";
+        cLabel = "Sifted key rate (bps)";
         return
     elseif m == "qber"
         z = 100*R.qber(mask);
@@ -145,24 +166,29 @@ function [z, zlab, cLabel] = localMetric(R, metric, mask)
         cLabel = "QBER (%)";
         return
     elseif m == "total_loss_db"
-        lossObj = R.loss.TotalLoss();          % nodes.LossResult method -> units.Loss
-        lossDb = localLossToDbArray(lossObj);  % numeric array
+        lossObj = R.loss.total_loss;                                        % nodes.LossResult method giving units.Loss
+        lossDb = localLossToDbArray(lossObj);                               % numeric array
         z = lossDb(mask);
         zlab = "Total loss (dB)";
         cLabel = "Total loss (dB)";
         return
-    elseif startsWith(m, "loss:")
-        name = extractAfter(m, "loss:");
-        if isprop(R.loss, name)
-            lossObj = R.loss.(name);               % units.Loss
-            lossDb = localLossToDbArray(lossObj);  % numeric array
-            z = lossDb(mask);
-            zlab = name + " loss (dB)";
-            cLabel = name + " loss (dB)";
-            return
-        else
-            error("Unknown loss component '%s'.", name);
+    elseif startsWith(m,"loss:")
+        name = lower(extractAfter(m,"loss:"));
+        try
+            lossObj = R.loss.get(char(name));
+            lossObj = lossObj{1};
+        catch
+            error("Unknown loss component '%s'.",name);
         end
+            
+            lossDb = localLossToDbArray(lossObj);
+    
+        z = lossDb(mask);
+    
+        zlab = name + " loss (dB)";
+        cLabel = zlab;
+    
+        return
     else
         error("Unknown Metric '%s'.", metric);
     end

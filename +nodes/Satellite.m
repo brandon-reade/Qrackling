@@ -117,10 +117,10 @@ classdef Satellite < nodes.LocatedObject & nodes.QKDReceiver & nodes.QKDTransmit
             satellite.kepler_elements = kepler_elements;
 
             % check that one correct orbit description has been provided
-            assert(any([~isnan(options.OrbitDataFileLocation), ...
+            assert(any([~isempty(options.OrbitDataFileLocation), ...
                        ~isempty(options.LLAT),...
-                       ~isnan(options.TLE), ...
-                       ~isnan(kepler_elements), ...
+                       ~isempty(options.TLE), ...
+                       ~isempty(kepler_elements), ...
                        ~isempty(options.LLAT)]),...
                        ['Must provide one of: OrbitDataFileLocation,' ...
                          'TLE, or KeplerElements'])
@@ -293,24 +293,57 @@ classdef Satellite < nodes.LocatedObject & nodes.QKDReceiver & nodes.QKDTransmit
             arguments
                 Satellite
                 options.satCommsSatellite = nan
-                options.scenario = nan
-                options.TLE = nan
-                options.KeplerElements = nan
+                options.scenario = []
+                options.TLE = []
+                options.KeplerElements = []
             end
 
-            if ~isempty(options.scenario) && isnan(options.TLE) && ...
+            if ~isempty(options.scenario) && isempty(options.TLE) && ...
                     isempty(options.KeplerElements)
                 [position, velocity, t] = states(options.satCommsSatellite, ...
                     'CoordinateFrame', 'geographic');
                 Satellite.name = options.satCommsSatellite.Name;
 
-            elseif ~isempty(options.scenario) && ~isnan(options.TLE)
-                sc_sat = satellite(options.scenario, options.TLE, ...
-                    "Name", Satellite.name, ...
-                    "OrbitPropagator", "two-body-keplerian");
 
+                %% TLEEEEE
+            elseif ~isempty(options.scenario) && ~isempty(options.TLE)
+                tleIn = options.TLE;
+            
+                if (ischar(tleIn) || (isstring(tleIn) && isscalar(tleIn))) && isfile(tleIn)
+                    tleFile = char(tleIn);
+                else
+                    % two TLE lines passed so create a temp file and use it
+                    tleLines = tleIn;
+                
+                    if ischar(tleLines)
+                        tleLines = string(tleLines);
+                    elseif iscell(tleLines)
+                        tleLines = string(tleLines);
+                    end
+                    tleLines = tleLines(:);
+                
+                    % If supplied as one multiline string, split into lines
+                    if isstring(tleLines) && isscalar(tleLines) && contains(tleLines, newline)
+                        tleLines = splitlines(tleLines);
+                        tleLines = tleLines(tleLines ~= "");
+                        tleLines = tleLines(:);
+                    end
+                
+                    assert(isstring(tleLines) && numel(tleLines) == 2, ...
+                        "TLE must be a 2-line string/cellstr, or a path to a .tle file.");
+                
+                    % Write a temporary TLE file
+                    tleFile = fullfile(tempdir, "qrackling_temp.tle");
+                    fid = fopen(tleFile, "w");
+                    assert(fid > 0, "Failed to create temp TLE file: %s", tleFile);
+                    fprintf(fid, "%s\n", tleLines(1));
+                    fprintf(fid, "%s\n", tleLines(2));
+                    fclose(fid);
+                end
+            
+                sc_sat = satellite(options.scenario, tleFile, "Name", Satellite.name);
                 [position, velocity, t] = states(sc_sat, 'CoordinateFrame', 'geographic');
-                Satellite.name = sc_sat.satellite(1).Name;
+                Satellite.name = sc_sat.Name;
 
             elseif ~isempty(options.scenario) && ~isempty(options.KeplerElements)
                 ke = options.KeplerElements;
