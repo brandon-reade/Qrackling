@@ -9,7 +9,7 @@
 function counts = countRateFromRadiance(radiance, FOV, receiver_diameter, ...
     filter_width, integration_time, wavelengths, unit)
     arguments
-        radiance {mustBeNumeric}
+        radiance {mustBeNumeric}                                            % radiance given in W m-2 sr-1 nm -1
         FOV (1, 1) {mustBeNumeric}
         receiver_diameter (1, 1) {mustBeNumeric}
         filter_width (1, 1) {mustBeNumeric}
@@ -23,23 +23,27 @@ function counts = countRateFromRadiance(radiance, FOV, receiver_diameter, ...
 
     assert(n_wavelengths == size_radiance(1), ...
         ['Incompatible sizes for radiance and wavelength. ', ...
-         'Must be size(radiance) = (A, B) with size(wavelengths) = (1, A)']);
+         'Must be size(radiance) = (A, B) with size(wavelengths) = (A, 1)']);
 
-    % wavelengths_nm = units.Magnitude.convert(unit, "nano", wavelengths);
-    % filter_width_nm = units.Magnitude.convert(unit, "nano", filter_width);
-
-    wavelengths_nm = units.Magnitude.convert(unit, "none", wavelengths);
-    filter_width_nm = units.Magnitude.convert(unit, "none", filter_width);
+    % CONVERSION TO nm
+    %wavelengths_nm = units.Magnitude.convert(unit, "nano", wavelengths);
+    filter_width_nm = units.Magnitude.convert(unit, "nano", filter_width);     % using filter width in nm means we can keep radiance to nm^-1
+    
+    % CONVERSION TO m
+    wavelengths_m = units.Magnitude.convert(unit, "none", wavelengths);
+    %filter_width_m = units.Magnitude.convert(unit, "none", filter_width);
 
     h = 6.62607015*10^-34; % plank's constant
     c = 299792458; % speed of light
 
-    solid_angle = pi * FOV^2 / 4;
+    solid_angle = pi * FOV^2 / 4;                                           % FOV is the full-angle acceptance of the receiver
     area = pi * receiver_diameter^2 / 4;
 
+    % we have radiance and spectral filter width in nm so they cancel
+    % wavelength must be given in terms of m to be compatible with Planck's
     counts = ( ...
         radiance .* solid_angle .* area ...
-        .* wavelengths_nm ...
+        .* wavelengths_m ...
         .* filter_width_nm ...
         .* integration_time ) ...
         / ( h * c);
