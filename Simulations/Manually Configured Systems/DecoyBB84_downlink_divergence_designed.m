@@ -46,9 +46,9 @@ plot_link_loss_comparison   = false;
 plot_background_counts      = false;
 plot_orbit_summary          = false;
 plot_detectors              = false;
-plot_trans_rad              = false;
-plot_2D_spectral_map        = false;
-plot_3D_spectral_map        = false;
+plot_trans_rad              = true;
+plot_2D_spectral_map        = true;
+plot_3D_spectral_map        = true;
 plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 
