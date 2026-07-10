@@ -3,6 +3,9 @@
 % Analytical approximation of the far-field divergence of a Truncated
 % Gaussian beam (ref: https://doi.org/10.1364/AO.39.004918)
 
+% 1.58 and 1.75 have been touted as optimal for single photon regimes:
+% https://doi.org/10.1364/AO.27.004470
+
 classdef TruncGaussTelescope
     % Telescope
     %
