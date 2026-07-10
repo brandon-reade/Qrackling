@@ -13,6 +13,7 @@ pointing_jitter = 1E-3;                                                     % cl
 
 % Preallocate
 theta_airy      = zeros(size(lambda_nm));
+theta_airy_1e   = zeros(size(lambda_nm));
 theta_diff_lim  = zeros(size(lambda_nm));
 theta_trunc     = zeros(size(lambda_nm));
 
@@ -36,6 +37,7 @@ for k = 1:numel(lambda_nm)
     telT = telT.setWavelength(wav, "Wavelength_Scale", "nano"); 
 
     theta_airy(k)     = telA.fov; 
+    theta_airy_1e(k)     = 0.668 * telA.fov;
     theta_trunc(k)    = telT.fov;
     theta_diff_lim(k) = 2.44 * (wav*1e-9) / tx_diameter;   % explicit diffraction limit
 
@@ -56,14 +58,14 @@ end
 % Plot 1: Divergence
 figure('Color','w');
 plot(lambda_nm, theta_trunc*1e6, 'LineWidth', 2); hold on;
-%plot(lambda_nm, theta_airy*1e6,  '--', 'LineWidth', 2);
-plot(lambda_nm, theta_diff_lim*1e6, ':', 'LineWidth', 2);
+plot(lambda_nm, theta_airy*1e6, ':', 'LineWidth', 2);
+plot(lambda_nm, theta_airy_1e*1e6,  '--', 'LineWidth', 2);
 grid on;
 xlabel('Wavelength [nm]');
 ylabel('Divergence angle [\murad]');
 title(sprintf('Far-field divergence vs wavelength (aperture = %.3f m)', tx_diameter));
-legend('Truncated Gaussian Diffraction limit', 'Airy Diffraction limit', ...
-    'Location','northwest');
+legend('Truncated Gaussian', 'Airy Disk', ...
+    'Airy 1/e field');
 
 % Plot 2: Spot size
 figure('Color','w');
