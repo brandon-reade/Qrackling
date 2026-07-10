@@ -14,7 +14,7 @@ saveDir = fullfile(repo_root, "+modtran", "JSON_Cases");
 % ----------------------------
 % Location 1: HOGS (Edinburgh)
 % ----------------------------
-utcDT = datetime(2026,6,21,13,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second) - summer solstice 21st of June (~4:30 sunrise - for this location in summer UTC = LOCAL - 1)
+utcDT = datetime(2026,6,21,3,0,0,"TimeZone","UTC");                          % (year, month, day, hr, min, second) - summer solstice 21st of June (~4:30 sunrise - for this location in summer UTC = LOCAL - 1)
 
 % Create the HOGS preset
 hogs = modtran.locations.HOGS(); 
@@ -39,7 +39,7 @@ hogs.source = "sun";
 % hogs.lun_phase_deg = [];                                                 % (only if LocationPreset/geometry supports it)
 
 % Aerosol / clouds (summer scenario)
-hogs.visib_km = 5;                                                          % MODTRAN uses 2% contrast visibility
+hogs.visib_km = 10;                                                          % MODTRAN uses 2% contrast visibility
 hogs.clouds = "none";
 hogs.aerosol_model = "urban";
 hogs.strato_model = "background";
