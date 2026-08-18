@@ -11,13 +11,13 @@ modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_moon_May15_03h05_10kmvis_300to10000_zenstep10_azistep30');
 
 % dawn
-modtran_dir1 = fullfile(repo_root,...
+modtran_dir = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am                                          
 modtran_dir1  = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 5am summer
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
-modtran_dir = fullfile(repo_root,...
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_04h00_10kmvis_300to10000_zenstep10_azistep30');
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_04h00_10kmvis_cirrus_300to10000_zenstep10_azistep30');
@@ -43,10 +43,10 @@ plot_each_pass              = false;
 plot_compare                = true;
 plot_loss_comparison        = true;
 plot_link_loss_comparison   = false;
-plot_background_counts      = false;
+plot_background_counts      = true;
 plot_orbit_summary          = false;
 plot_detectors              = false;
-plot_trans_rad              = false;
+plot_trans_rad              = true;
 plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
@@ -68,7 +68,7 @@ tle = [
 if small_sat
     Transmitter_Telescope_Diameter=0.35;                                        % diameters in m
 else
-    Transmitter_Telescope_Diameter=0.1;
+    Transmitter_Telescope_Diameter=0.15;
 end
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 0.7;
@@ -85,15 +85,15 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2210, 2310, 3703}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
-    'DetectorPreset', { 'mod_QuantumOpus1550_RoomTempAmplifier', ...                  % dead-time according to: https://doi.org/10.48550/arXiv.2103.14086 for 1550nm
-                        'SNSPD_NbTiN_2um', ...
-                        'SNSPD_NbTiN_2um',...
-                        'mod_SNSPD_NbTiN_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter},...     % transmitter telescope diameter (0.08m for SPOQC)
+    'Wavelength', {1550, 2036, 2310, 3703}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'DetectorPreset', { 'SingleQuantum_specs_telecom', ...                  % dead-time according to: https://doi.org/10.48550/arXiv.2103.14086 for 1550nm
+                        'SingleQuantum_specs_2um', ...
+                        'mod_SingleQuantum_specs_2um',...
+                        'mod_SingleQuantum_specs_2um'}, ... %mod_SNSPD_NbTiN_2um
+    'txDiam', {Transmitter_Telescope_Diameter/1.32, Transmitter_Telescope_Diameter/1.006, Transmitter_Telescope_Diameter,Transmitter_Telescope_Diameter*1.32},...     % transmitter telescope diameter (0.08m for SPOQC)
     'rxDiam', {0.7, 0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
     'rxFOV', {37E-6, 37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
-    'TimeGateWidth', {352E-12, 28.6E-12, 28.6E-12, 28.6E-12}...
+    'TimeGateWidth', {100E-12, 100E-12, 100E-12, 100E-12}...
                         );
 
 % Preallocate results and objects
