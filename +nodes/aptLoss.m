@@ -39,10 +39,21 @@ function loss = aptLoss(kind, receiver, transmitter)
             loss = transmitter.beacon.aptLoss(receiver.camera);
 
         case "qkd"
+            % Use emission divergence (full-angle) for transmitter pointing loss
+            if isprop(transmitter, 'source') && ~isempty(transmitter.source)
+                try
+                    tx_div = transmitter.source.getEmissionDivergence(transmitter.telescope);
+                catch
+                    tx_div = transmitter.telescope.fov;
+                end
+            else
+                tx_div = transmitter.telescope.fov;
+            end
+
             % Transmitter pointing loss (Gaussian beam)
-            loss_tx = transmitter.telescope.fov ^ 2 ...
-                / (transmitter.telescope.pointing_jitter ^ 2 ...
-                   + transmitter.telescope.fov ^ 2);
+            loss_tx = tx_div ^ 2 ...
+                / ((4*transmitter.telescope.pointing_jitter ^ 2) ...
+                   + tx_div ^ 2);
 
             % Receiver pointing loss (flat-top FOV)
             loss_rx = 1 - exp( ...

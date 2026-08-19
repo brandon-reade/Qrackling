@@ -41,6 +41,12 @@ classdef Source
 
         % Loss between source and local receiver for entanglement protocols.
         local_loss {mustBeInRange(local_loss, 0, 1)} = 1
+
+        % Per-source emission properties (overrides for beam modelling)
+        emission_divergence = []          % full-angle divergence (radians). empty => use model/telescope fallback
+        emission_beam_model = ""          % '' | 'airy' | 'truncated_gaussian' | 'flat_top'
+        emission_truncation_ratio = []    % radius / waist (unitless), used for truncated_gaussian
+        emission_beam_waist = []          % beam waist in metres (used as alternative to truncation ratio)
     end
 
     properties(Dependent)
@@ -82,19 +88,67 @@ classdef Source
                     mustBeNonnegative, ...
                     mustBeLessThanOrEqual(options.Probability_Decoy, 1)}
                 options.Local_Loss {mustBeInRange(options.Local_Loss, 0, 1)} = 1
+
+                % emission settings (optional)
+                options.Emission_Divergence = []
+                options.Emission_Beam_Model = ""
+                options.Emission_Truncation_Ratio = []
+                options.Emission_Beam_Waist = []
             end
 
+            % Map options into object properties
             for option = fieldnames(options)'
                 opt = option{1};
+                propName = matlab.lang.makeValidName(lower(opt));  % canonical property name
+        
                 switch opt
                     case 'Wavelength_Scale'
-                        obj = obj.setWavelength(wavelength, ...
-                            "Wavelength_Scale", options.Wavelength_Scale);
+                        obj = obj.setWavelength(wavelength, "Wavelength_Scale", options.Wavelength_Scale);
+                        continue
                     case 'Repetition_Rate'
                         obj = obj.setRepetitionRate(options.Repetition_Rate);
-                    otherwise
-                        obj.(matlab.lang.makeValidName(lower(opt))) = ...
-                            options.(opt);
+                        continue
+                end
+
+                % explicit mapping for emission options
+                switch opt
+                    case 'Emission_Divergence'
+                        obj.emission_divergence = options.(opt);
+                    case 'Emission_Beam_Model'
+                        obj.emission_beam_model = options.(opt);
+                    case 'Emission_Truncation_Ratio'
+                        obj.emission_truncation_ratio = options.(opt);
+                    case 'Emission_Beam_Waist'
+                        obj.emission_beam_waist = options.(opt);
+                end
+
+               % generic mapping for other options: try lowercased property name
+                if isprop(obj, propName)
+                    obj.(propName) = options.(opt);
+                else
+                    % unknown option: ignore (preserves previous tolerant behaviour)
+                end
+            end
+           
+            % Validate emission options
+            if ~isempty(obj.emission_divergence)
+                if ~(isnumeric(obj.emission_divergence) && isreal(obj.emission_divergence) && obj.emission_divergence >= 0)
+                    error('components.Source:BadEmissionDivergence', 'Emission_Divergence must be a nonnegative real scalar.');
+                end
+            end
+            if ~isempty(obj.emission_truncation_ratio)
+                if ~(isnumeric(obj.emission_truncation_ratio) && isreal(obj.emission_truncation_ratio) && obj.emission_truncation_ratio > 0)
+                    error('components.Source:BadTruncationRatio', 'Emission_Truncation_Ratio must be a positive real scalar.');
+                end
+            end
+            if ~isempty(obj.emission_beam_waist)
+                if ~(isnumeric(obj.emission_beam_waist) && isreal(obj.emission_beam_waist) && obj.emission_beam_waist > 0)
+                    error('components.Source:BadBeamWaist', 'Emission_Beam_Waist must be a positive real scalar.');
+                end
+            end
+            if ~isempty(obj.emission_beam_model) && obj.emission_beam_model ~= ""
+                if ~ismember(obj.emission_beam_model, ["airy","truncated_gaussian","flat_top",""])
+                    error('components.Source:BadBeamModel', 'Emission_Beam_Model must be one of: "" | airy | truncated_gaussian | flat_top');
                 end
             end
         end
@@ -254,6 +308,74 @@ classdef Source
             % Set the probability of preparing a quantum state incorrectly.
 
             obj.state_prep_error = state_prep_error;
+        end
+
+        function obj = setEmissionBeamModel(obj, model)
+            arguments
+                obj
+                model {mustBeMember(model, ["", "airy", "truncated_gaussian", "flat_top"])}
+            end
+            obj.emission_beam_model = model;
+        end
+
+        function obj = setEmissionTruncationRatio(obj, tr)
+            arguments
+                obj
+                tr {mustBeNonnegative}
+            end
+            obj.emission_truncation_ratio = tr;
+        end
+
+        function obj = setEmissionBeamWaist(obj, w)
+            arguments
+                obj
+                w {mustBeNonnegative}
+            end
+            obj.emission_beam_waist = w;
+        end
+
+        function div = getEmissionDivergence(obj, telescope)
+            % getEmissionDivergence Return full-angle divergence in radians
+            %   1) explicit emission_divergence (full-angle)
+            %   2) emission_beam_model == 'truncated_gaussian' (uses telescope helper)
+            %   3) fallback to telescope.FOV
+            arguments
+                obj components.Source
+                telescope components.Telescope
+            end
+
+            % 1) explicitdivergence override
+            if ~isempty(obj.emission_divergence) && ~isnan(obj.emission_divergence)
+                div = obj.emission_divergence;
+                return
+            end
+
+            % 2) model-based calculations
+            if ~isempty(obj.emission_beam_model) && obj.emission_beam_model ~= ""
+                switch char(obj.emission_beam_model)
+                    case 'truncated_gaussian'
+                        if ~isempty(obj.emission_beam_waist) && ~isnan(obj.emission_beam_waist)
+                            div = telescope.ComputeDivergenceForModel('truncated_gaussian', 'BeamWaist', obj.emission_beam_waist);
+                            return
+                        elseif ~isempty(obj.emission_truncation_ratio) && ~isnan(obj.emission_truncation_ratio)
+                            div = telescope.ComputeDivergenceForModel('truncated_gaussian', 'TruncationRatio', obj.emission_truncation_ratio);
+                            return
+                        else
+                            error('components.Source:MissingTruncation', 'Set emission_truncation_ratio or emission_beam_waist for truncated_gaussian.');
+                        end
+                    case 'airy'
+                        div = telescope.ComputeDivergenceForModel('airy');
+                        return
+                    case 'flat_top'
+                        div = telescope.ComputeDivergenceForModel('flat_top');
+                        return
+                    otherwise
+                        error('components.Source:UnknownBeamModel', 'Unknown emission_beam_model "%s".', obj.emission_beam_model);
+                end
+            end
+
+            % 3) fallback to telescope FOV
+            div = telescope.fov;
         end
     
     end

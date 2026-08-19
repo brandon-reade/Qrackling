@@ -83,7 +83,7 @@ function [losses, extras] = linkLoss(kind, receiver, transmitter, options)
 
     %% Transmitter telescope efficiency
     if options.transmitter_telescope_efficiency
-        res = transmitter.telescope.optical_efficiency;
+        res = transmitter.telescope.effectiveOpticalEfficiencyForSource(transmitter.source);    % includes truncation effect on gaussian beams for relevant sources
         losses = losses.addLoss(units.Loss(res,'transmitter telescope efficiency'));
     end
 

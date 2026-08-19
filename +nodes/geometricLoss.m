@@ -47,8 +47,19 @@ function [loss, spot_size, link_length] = geometricLoss(kind, receiver, transmit
             [loss, spot_size] = transmitter.beacon.geoLoss(link_length, receiver.camera);
 
         case "qkd"
+            if isprop(transmitter,'source') && ~isempty(transmitter.source)
+                try
+                    tx_div = transmitter.source.getEmissionDivergence(transmitter.telescope);
+                catch ME
+                    % fallback to telescope FOV if source-based calc fails
+                    tx_div = transmitter.telescope.fov;
+                end
+            else
+                tx_div = transmitter.telescope.fov;
+            end
+
             spot_size = (ones(size(link_length)) * transmitter.telescope.diameter ...
-                + link_length * transmitter.telescope.fov);
+                + link_length * tx_div);
 
             loss = (1/2) * (receiver.telescope.diameter ./ spot_size) .^ 2;
             loss = min(loss, 1);  % Ensure loss does not exceed 1
