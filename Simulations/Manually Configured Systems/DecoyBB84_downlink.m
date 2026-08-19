@@ -11,8 +11,10 @@ modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_moon_May15_03h05_10kmvis_300to10000_zenstep10_azistep30');
 
 % dawn
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn winter 8am (vis 1km)   
 modtran_dir = fullfile(repo_root,...
-    '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn 8am                                          
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_03h00_1kmvis_300to10000_zenstep10_azistep30');  % dawn summer 3am (vis 1km)
 modtran_dir1  = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 5am summer
 modtran_dir1 = fullfile(repo_root,...
@@ -43,7 +45,7 @@ plot_each_pass              = false;
 plot_compare                = true;
 plot_loss_comparison        = true;
 plot_link_loss_comparison   = false;
-plot_background_counts      = true;
+plot_background_counts      = false;
 plot_orbit_summary          = false;
 plot_detectors              = false;
 plot_trans_rad              = true;
@@ -51,6 +53,7 @@ plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
 LOS_at_time                 = false;
+tx_debug                    = false;
 
 % system configuration
 small_sat                   = false;                                        % false for cubesat settings
@@ -75,7 +78,7 @@ Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 1E-6;
 Rep_Rate                    = 1E9;
 %Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
-Spectral_Filter_Width       = 0.1;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
+Spectral_Filter_Width       = 0.12;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -85,15 +88,15 @@ state_prep_error = 0.0025;
 
 % Choosing which wavelengths and detector presets to use
 QKDsystems = struct( ...
-    'Wavelength', {1550, 2036, 2310, 3703}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
+    'Wavelength', {1550, 2036, 2310, 3420}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'SingleQuantum_specs_telecom', ...                  % dead-time according to: https://doi.org/10.48550/arXiv.2103.14086 for 1550nm
                         'SingleQuantum_specs_2um', ...
                         'mod_SingleQuantum_specs_2um',...
                         'mod_SingleQuantum_specs_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'txDiam', {Transmitter_Telescope_Diameter/1.32, Transmitter_Telescope_Diameter/1.006, Transmitter_Telescope_Diameter,Transmitter_Telescope_Diameter*1.32},...     % transmitter telescope diameter (0.08m for SPOQC)
+    'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter*1.5},...     % transmitter telescope diameter (0.08m for SPOQC)
     'rxDiam', {0.7, 0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
     'rxFOV', {37E-6, 37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
-    'TimeGateWidth', {100E-12, 100E-12, 100E-12, 100E-12}...
+    'TimeGateWidth', {100E-12, 100E-12, 100E-12, 30E-12}...
                         );
 
 % Preallocate results and objects
@@ -128,6 +131,11 @@ for i = 1:nQKDSystems
     
     % TX TELESCOPE DEBUG
     fprintf("TX: FOV = %.3g urad\n", Sat{i}.telescope.fov*1e6);
+    fprintf("TX: DIV = %.3g urad\n", Sat{i}.source.getEmissionDivergence(Sat{i}.telescope)*1e6);
+    if tx_debug
+        print_tx_debug(Sat, i);
+    end 
+
 
     % Run simulation
     Results{i} = nodes.qkdPassSimulation(GS{i}, Sat{i}, protocol.DecoyBB84);
@@ -303,7 +311,7 @@ function Env = buildEnvironment(env_dir)
         try
             envPath = createMODTRANEnv(char(env_dir));
             if exist(envPath, 'file')
-                Env = environment.Environment.Load(envPath);
+                Env = environment.Environment.load(envPath);
             end
         catch ME
             warning('Failed to generate environment from CSVs in %s: %s', env_dir, ME.message);
@@ -330,7 +338,13 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
         'Probability_Signal', SPs(1), ...
         'Probability_Decoy',  SPs(2), ...
         'State_Prep_Error', state_prep_error);     
+    % --- set truncated gaussian emission for quantum channel
+    Src = Src.setEmissionBeamModel('truncated_gaussian'); 
+    Src = Src.setEmissionTruncationRatio(1.12);                             % typical truncation ratio (radius/waist)
+    %Src = Src.setEmissionBeamWaist(beam_waist_m);                          % alternatively set the beam waist radius
+
     TxTelescope = components.Telescope(TxDia);                              % transmitter telescope
+    %TxTelescope = TxTelescope.setWavelength(Wavelength);
 
     % using LLAT
     if pass_type
@@ -461,6 +475,31 @@ function printResultAtOffset(res, Env, wl_nm, offset, options)
     tt.Format = 'dd-MMM-uuuu HH:mm:ss';
     fprintf("offset=%s | t=%s | az=%.2f | el=%.2f | rad=%.3g | bg=%.3g cps | dark=%.3g cps\n", ...
         string(t(idx) - t0), string(tt), az, el, rad, bg, dk);
+end
+
+
+function print_tx_debug(Sat, i)
+        try src = Sat{i}.source; tel = Sat{i}.telescope;
+            fprintf("DEBUG: src class = %s\n", class(src));
+            fprintf("DEBUG: src.emission_beam_model = %s\n", string(src.emission_beam_model));
+            fprintf("DEBUG: src.emission_divergence = %s (rad)\n", string(src.emission_divergence));
+            fprintf("DEBUG: src.emission_truncation_ratio = %s\n", string(src.emission_truncation_ratio));
+            fprintf("DEBUG: src.emission_beam_waist = %s (m)\n", string(src.emission_beam_waist));
+            
+            fprintf("DEBUG: tel.wavelength = %g nm, tel.diameter = %g m, tel.truncation_ratio = %g, tel.fov = %.3g µrad\n", ...
+                tel.wavelength, tel.diameter, tel.truncation_ratio, tel.fov*1e6);
+            
+            % compute divergences
+            div_src = src.getEmissionDivergence(tel); % full-angle (rad)
+            div_trunc_explicit = tel.ComputeDivergenceForModel('truncated_gaussian', 'TruncationRatio', double(src.emission_truncation_ratio));
+            div_airy = tel.ComputeDivergenceForModel('airy');
+            
+            fprintf("DEBUG: div_src = %.6e rad (%.6g µrad)\n", div_src, div_src*1e6);
+            fprintf("DEBUG: div_trunc_explicit = %.6e rad (%.6g µrad)\n", div_trunc_explicit, div_trunc_explicit*1e6);
+            fprintf("DEBUG: div_airy = %.6e rad (%.6g µrad)\n", div_airy, div_airy*1e6);
+        catch ME
+            fprintf("DEBUG: failed to compute debug values: %s\n", ME.message);
+        end 
 end
 
 

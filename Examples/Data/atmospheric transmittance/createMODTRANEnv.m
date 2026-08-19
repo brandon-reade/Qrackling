@@ -217,7 +217,7 @@ Env = environment.Environment(Headings, Elevation, Wavelength, SR, Trep, "attenu
 origDir = pwd;
 cleanup = onCleanup(@() cd(origDir));
 cd(modtran_dir);
-Env.Save(outEnvName);
+Env.save(outEnvName);
 envPath = fullfile(modtran_dir, [outEnvName, '.mat']);
 
 % Validation printout
