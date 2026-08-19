@@ -39,7 +39,7 @@ hogs.source = "sun";
 % hogs.lun_phase_deg = [];                                                 % (only if LocationPreset/geometry supports it)
 
 % Aerosol / clouds (summer scenario)
-hogs.visib_km = 10;                                                          % MODTRAN uses 2% contrast visibility
+hogs.visib_km = 1;                                                          % MODTRAN uses 2% contrast visibility
 hogs.clouds = "none";
 hogs.aerosol_model = "urban";
 hogs.strato_model = "background";
