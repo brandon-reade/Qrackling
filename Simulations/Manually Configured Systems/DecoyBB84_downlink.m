@@ -13,8 +13,8 @@ modtran_dir1 = fullfile(repo_root,...
 % dawn
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn winter 8am (vis 1km)   
-modtran_dir = fullfile(repo_root,...
-    '+modtran\Data\HOGS\HOGS_sun_Jun21_03h00_1kmvis_300to10000_zenstep10_azistep30');  % dawn summer 3am (vis 1km)
+modtran_dir1 = fullfile(repo_root,...
+    '+modtran\Data\HOGS\HOGS_sun_Jun21_03h00_1kmvis_300to10000_zenstep10_azistep30');  % dawn summer 4am (vis 1km)
 modtran_dir1  = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 5am summer
 modtran_dir1 = fullfile(repo_root,...
@@ -26,7 +26,7 @@ modtran_dir1 = fullfile(repo_root,...
 
 
 % daytime
-modtran_dir1 = fullfile(repo_root,...
+modtran_dir = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_2pm_23kmvis_300to10000_zenstep10_azistep30');
 
 % goldstone
@@ -42,13 +42,14 @@ addpath(fullfile(repo_root));
 %% 1. Choose parameters
 % plotting options
 plot_each_pass              = false;
-plot_compare                = true;
-plot_loss_comparison        = true;
+plot_compare                = false;
+plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
 plot_background_counts      = false;
 plot_orbit_summary          = false;
-plot_detectors              = false;
-plot_trans_rad              = true;
+plot_detectors              = true;
+plot_doppler_shift          = false;
+plot_trans_rad              = false;
 plot_2D_spectral_map        = false;
 plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
@@ -78,7 +79,7 @@ Receiver_Telescope_Diameter = 0.7;
 Receiver_Jitter             = 1E-6;
 Rep_Rate                    = 1E9;
 %Time_Gate_Width             = 100E-12;                                      % times in s (@1GHz: ~200ps best for 1550, ~35 best for 2140)
-Spectral_Filter_Width       = 0.12;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
+Spectral_Filter_Width       = 0.16;                                          % spectral width in nm (0.1nm possible but difficult, 1nm possible, 10-12nm standard)
 
 % decoy state parameters
 % as per: https://opg.optica.org/oe/fulltext.cfm?uri=oe-32-15-26776
@@ -90,13 +91,13 @@ state_prep_error = 0.0025;
 QKDsystems = struct( ...
     'Wavelength', {1550, 2036, 2310, 3420}, ...                                   % in nanmometers such as: 850, 1550, 2140, 2210, 3400
     'DetectorPreset', { 'SingleQuantum_specs_telecom', ...                  % dead-time according to: https://doi.org/10.48550/arXiv.2103.14086 for 1550nm
-                        'SingleQuantum_specs_2um', ...
+                        'mod_SingleQuantum_specs_2um', ...
                         'mod_SingleQuantum_specs_2um',...
                         'mod_SingleQuantum_specs_2um'}, ... %mod_SNSPD_NbTiN_2um
     'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter*1.5},...     % transmitter telescope diameter (0.08m for SPOQC)
     'rxDiam', {0.7, 0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
     'rxFOV', {37E-6, 37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
-    'TimeGateWidth', {100E-12, 100E-12, 100E-12, 30E-12}...
+    'TimeGateWidth', {100E-12, 100E-12, 100E-12, 100E-12}...
                         );
 
 % Preallocate results and objects
@@ -150,15 +151,15 @@ for i = 1:nQKDSystems
     end
 
     if plot_detectors
-        Det{i}.Plot;
+        Det{i}.plot;
         fwhm = detectorJitterFWHM(Det{i});
-        Trep = 1 / Det{i}.Repetition_Rate;
+        Trep = 1 / Det{i}.repetition_rate;
         fprintf("(%dnm) Detector jitter FWHM: %.2f ps\n", QKDsystems(i).Wavelength, fwhm*1e12);
         k = 2; % gate = 2×FWHM is a decent starting point
         gate = min(k * fwhm, 0.5 * Trep);
 
         fprintf("(%dnm) RepRate=%.2g Hz (T=%.2f ps), choose gate≈%.2f ps (k=%g)\n", ...
-        QKDsystems(i).Wavelength, Det{i}.Repetition_Rate, Trep*1e12, gate*1e12, k);
+        QKDsystems(i).Wavelength, Det{i}.repetition_rate, Trep*1e12, gate*1e12, k);
     end
 
     if LOS_at_time
@@ -186,21 +187,24 @@ if plot_compare
     plots.compare.QKDComparison(Results, ...
         'Wavelengths', [QKDsystems.Wavelength], ...
         'MaskMode', "active", ...                 
-        'FigureName', "Decoy-state BB84 QKD Comparison (Vis 1km)");
+        'FigureName', "Decoy-state BB84 QKD Comparison");
 end
 
 if plot_loss_comparison
     plots.compare.LossComparison(Results, ...
         'Wavelengths', [QKDsystems.Wavelength], ...
         'MaskMode', "active", ...
-        'FigureName', "Loss Components Comparison (Vis 1km)");
+        'FigureName', "Loss Components Comparison");
 end
 
 if plot_background_counts
     plots.compare.BackgroundCountsComparison(Results, ...
         'Wavelengths', [QKDsystems.Wavelength], ...
         'MaskMode', "active", ...
-        'FigureName', "Background Counts Comparison (Vis 1km)");
+        'HideZeroContributors', true, ...
+        'ZeroTolerance', 0, ...
+        'CommonYLimits',  true, ...
+        'FigureName', "Background Counts Comparison");
 end
 %% Plot Radiance and Transmittance Profiles
 % compare transmittance and radiance at different wavelengths and zeniths
@@ -279,15 +283,15 @@ if plot_link_loss_comparison
         'PlotSifted', false, ...
         'PlotQBER', false, ...
         'SplitBranches', true);
-    
-    % PLOB vs loss in bits/s
-    plots.compare.TheoreticalLimitComparison(Results, ...
-        'Wavelengths', [QKDsystems.Wavelength], ...
-        'RepRates', Rep_Rate, ...
-        'X', "LossdB", ...
-        'Mask', "Line of sight", ...
-        'YUnit', "bits_per_second", ...
-        'FigureName', "Achieved SKR vs PLOB (vs loss)");
+end
+
+%% Doppler shift impact
+if plot_doppler_shift
+    for i = 1:numel(Results)
+        plots.plotDopplerImpact(Results{i}, ...
+            'Mask', "Line of sight", ...
+            'FigureName', sprintf("Doppler + Filter + Gate Impact (%dnm)", QKDsystems(i).Wavelength));
+    end
 end
 
 %% Visualize satellite
@@ -352,8 +356,12 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
             'OrbitDataFileLocation', OrbitDataFileLocation);
     else
         % Using start/stop time
-        StartTime = datetime(2026,6,23,3,0,0,'TimeZone','UTC');
-        StopTime  = datetime(2026,6,23,5,0,0,'TimeZone','UTC'); 
+        StartTime = datetime(2026,7,21,13,40,0,'TimeZone','UTC');
+        StopTime  = datetime(2026,7,21,14,0,0,'TimeZone','UTC');
+        %StartTime = datetime(2026,7,21,3,0,0,'TimeZone','UTC');
+        %StopTime  = datetime(2026,7,21,3,15,0,'TimeZone','UTC');
+        %StartTime = datetime(2026,6,23,3,0,0,'TimeZone','UTC');
+        %StopTime  = datetime(2026,6,23,3,20,0,'TimeZone','UTC'); 
         %StartTime = datetime(2026,5,8,3,0,0,'TimeZone','UTC');
         %StopTime  = datetime(2026,5,8,4,0,0,'TimeZone','UTC');
         
@@ -399,17 +407,17 @@ end
 %% Other helpers
 function fwhm_s = detectorJitterFWHM(det)
     % Returns FWHM in seconds (NaN if unavailable)
-    if ~isempty(det.PDF)
-        y = det.PDF;
-    elseif ~isempty(det.Jitter_Histogram)
-        y = det.Jitter_Histogram;
+    if ~isempty(det.pdf)
+        y = det.pdf;
+    elseif ~isempty(det.jitter_histogram)
+        y = det.jitter_histogram;
     else
         fwhm_s = NaN;
         return;
     end
 
     [~, i0] = max(y);
-    t = ((1:numel(y)) - i0) * det.Histogram_Bin_Width; % seconds
+    t = ((1:numel(y)) - i0) * det.histogram_bin_width; % seconds
     y = y ./ max(y);
 
     mask = (y >= 0.5);
