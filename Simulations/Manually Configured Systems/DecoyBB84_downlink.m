@@ -41,13 +41,13 @@ addpath(fullfile(repo_root));
 
 %% 1. Choose parameters
 % plotting options
-plot_each_pass              = false;
-plot_compare                = false;
+plot_each_pass              = true;
+plot_compare                = true;
 plot_loss_comparison        = false;
 plot_link_loss_comparison   = false;
-plot_background_counts      = false;
+plot_background_counts      = true;
 plot_orbit_summary          = false;
-plot_detectors              = true;
+plot_detectors              = false;
 plot_doppler_shift          = false;
 plot_trans_rad              = false;
 plot_2D_spectral_map        = false;
@@ -72,7 +72,7 @@ tle = [
 if small_sat
     Transmitter_Telescope_Diameter=0.35;                                        % diameters in m
 else
-    Transmitter_Telescope_Diameter=0.15;
+    Transmitter_Telescope_Diameter=0.2;
 end
 OrbitDataFileLocation='500kmSSOrbitLLAT.txt';                              
 Receiver_Telescope_Diameter = 0.7;
@@ -93,8 +93,8 @@ QKDsystems = struct( ...
     'DetectorPreset', { 'SingleQuantum_specs_telecom', ...                  % dead-time according to: https://doi.org/10.48550/arXiv.2103.14086 for 1550nm
                         'mod_SingleQuantum_specs_2um', ...
                         'mod_SingleQuantum_specs_2um',...
-                        'mod_SingleQuantum_specs_2um'}, ... %mod_SNSPD_NbTiN_2um
-    'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter*1.5},...     % transmitter telescope diameter (0.08m for SPOQC)
+                        'mod_SingleQuantum_specs_3um'}, ... %mod_SNSPD_NbTiN_2um
+    'txDiam', {Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter, Transmitter_Telescope_Diameter},...     % transmitter telescope diameter (0.08m for SPOQC)
     'rxDiam', {0.7, 0.7, 0.7, 0.7},...                                         % receiever telescope diameter (0.7m for HOGS)
     'rxFOV', {37E-6, 37E-6, 37E-6, 37E-6},...                                         % acceptance angle "FOV" (not diffraction limit or geometric FOV) - this is 37u for HOGS. We can use diffraction limit by setting this arbitrarily small
     'TimeGateWidth', {100E-12, 100E-12, 100E-12, 100E-12}...
