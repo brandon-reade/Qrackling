@@ -40,6 +40,9 @@ function [losses, extras] = linkLoss(kind, receiver, transmitter, options)
         options.camera_efficiency (1,1) logical = true
         options.beacon_efficiency (1,1) logical = true
 
+        % spectral filter pulse broadening impact
+        options.time_gate_overlap (1,1) logical = true
+
         % do you want the output in dB?
         options.dB (1,1) logical = false
     end
@@ -114,10 +117,16 @@ function [losses, extras] = linkLoss(kind, receiver, transmitter, options)
         end
 
         %% Filter efficiency
+        % Spectral detuning
         if options.filter_efficiency
             shifted_wavelength = nodes.dopplerShift(receiver, transmitter);
             res = receiver.detector.spectral_filter.computeTransmission(shifted_wavelength)';
-            losses = losses.addLoss(units.Loss(res,'filter efficency'));
+            losses = losses.addLoss(units.Loss(res,'filter efficency'));   
+        end
+        % Time-gate overlap loss (spectral-temporal coupling)
+        if options.time_gate_overlap
+            gate_efficiency = localTimeGateOverlapEfficiency(receiver, transmitter);
+            losses = losses.addLoss(units.Loss(gate_efficiency, 'time gate overlap'));
         end
     end
 
@@ -142,4 +151,80 @@ function [losses, extras] = linkLoss(kind, receiver, transmitter, options)
     extras.turbulent_beam_width = beam_width;
     extras.r0 = r0;
     extras.total_loss = losses.totalLoss;
+end
+
+function eta = localTimeGateOverlapEfficiency(receiver, transmitter)
+    % Compute gate overlap efficiency due to doppler shift time-bandwidth effect
+    %
+    % Uses detector spectral filter width for minimum transform-limited
+    % pulse duration, combines with detector timing jitter, and integrates a
+    % Gaussian pulse over the detector gate duration.
+    %
+    % Gaussian FHWM assumptions used:
+    %   TBP: Δν * Δt >= 0.441
+    %   FWHM_eff = sqrt(FWHM_pulse^2 + FWHM_jitter^2)
+    %   η_gate = erf( sqrt(log(2)) * T_gate / FWHM_eff )
+    det = receiver.detector;
+
+    % Detector gate width
+    if isprop(det, "time_gate_width")
+        time_gate_width = double(det.time_gate_width);
+    elseif isprop(det, "Time_Gate_Width")
+        time_gate_width = double(det.Time_Gate_Width);
+    else
+        error("Detector time gate width not found.");
+    end
+    if ~isscalar(time_gate_width) || ~isfinite(time_gate_width) || time_gate_width <= 0
+        error("Detector time gate width must be a positive scalar in seconds.");
+    end
+
+    % Detector jitter FWHM
+    if isprop(det, "jitter")
+        jitter_fwhm = double(det.jitter);
+    elseif isprop(det, "Jitter")
+        jitter_fwhm = double(det.Jitter);
+    else
+        % if not jitter assume no additional timing broadening from detector
+        jitter_fwhm = 0;
+    end
+    if ~isscalar(jitter_fwhm) || ~isfinite(jitter_fwhm) || jitter_fwhm < 0
+        jitter_fwhm = 0;
+    end
+
+    % Center wavelength is now Doppler-shifted signal wavelength
+    lambda_nm = nodes.dopplerShift(receiver, transmitter);
+    lambda_m = double(lambda_nm) * 1e-9;
+
+    % Filter width [m], estimated from non-zero transmission span
+    spectral_filter = det.spectral_filter;
+    if ~isprop(spectral_filter, "wavelengths") || ~isprop(spectral_filter, "transmission")
+        error("Detector spectral_filter must provide wavelengths and transmission.");
+    end
+    w_nm = double(spectral_filter.wavelengths(:));
+    t = double(spectral_filter.transmission(:));
+    support = (t ~= 0);
+    if ~any(support)
+        % no passband means zero signal transmission.
+        eta = zeros(size(lambda_m));
+        return;
+    end
+    filter_bw_m = (max(w_nm(support)) - min(w_nm(support))) * 1e-9;         % find the bandwidth in nm from the supported wavelength range
+    if ~(isfinite(filter_bw_m) && filter_bw_m > 0)
+        error("Spectral filter width inferred as non-positive.");
+    end
+
+    % Transform-limited pulse FWHM from TBP (Gaussian)
+    c = 299792458; % m/s
+    filter_bw_hz = c * filter_bw_m ./ (lambda_m.^2); % Hz                   % find the bandwidth in hz for the supported wavelength range
+    pulse_fwhm = 0.441 ./ filter_bw_hz;         % s                         % apply the Gaussian time-bandwidth product (for FWHM., not 1/e^2 Gaussian)
+
+    % Combine pulse broadening with detector jitter (Gaussian beam FWHM)
+    fwhm_eff = sqrt(pulse_fwhm.^2 + jitter_fwhm.^2);                        % calculate the full effective FWHM pulse seen at detector (based on Gaussian stats jitter, not 1/e^2)
+
+    % Gate overlap for centered Gaussian pulse
+    eta = erf(sqrt(log(2)) .* (time_gate_width ./ fwhm_eff));                         % compute an efficiency for the applied time-gate
+
+    % Clamp numerical noise and ensure row vector shape for consistency with other per-step losses
+    eta = max(0, min(1, eta));
+    eta = eta(:).';
 end
