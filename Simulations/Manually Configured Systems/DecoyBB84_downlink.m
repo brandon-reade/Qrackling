@@ -15,7 +15,7 @@ modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jan3_8am_1kmvis_300to10000_zenstep10_azistep30');  % dawn winter 8am (vis 1km)   
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_03h00_1kmvis_300to10000_zenstep10_azistep30');  % dawn summer 4am (vis 1km)
-modtran_dir1  = fullfile(repo_root,...
+modtran_dir  = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_5kmvis_300to10000_zenstep10_azistep30');  % dawn 5am summer
 modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_5am_500mvis_fog_radiative_300to10000_zenstep10_azistep30');  % dawn 4am summer radiative fog
@@ -26,7 +26,7 @@ modtran_dir1 = fullfile(repo_root,...
 
 
 % daytime
-modtran_dir = fullfile(repo_root,...
+modtran_dir1 = fullfile(repo_root,...
     '+modtran\Data\HOGS\HOGS_sun_Jun21_2pm_23kmvis_300to10000_zenstep10_azistep30');
 
 % goldstone
@@ -43,7 +43,7 @@ addpath(fullfile(repo_root));
 % plotting options
 plot_each_pass              = true;
 plot_compare                = true;
-plot_loss_comparison        = false;
+plot_loss_comparison        = true;
 plot_link_loss_comparison   = false;
 plot_background_counts      = true;
 plot_orbit_summary          = false;
@@ -55,6 +55,7 @@ plot_3D_spectral_map        = false;
 plot_spectral_comparison    = false;
 LOS_at_time                 = false;
 tx_debug                    = false;
+export_results              = true;
 
 % system configuration
 small_sat                   = false;                                        % false for cubesat settings
@@ -186,7 +187,7 @@ end
 if plot_compare
     plots.compare.QKDComparison(Results, ...
         'Wavelengths', [QKDsystems.Wavelength], ...
-        'MaskMode', "active", ...                 
+        'MaskMode', "active", ...       
         'FigureName', "Decoy-state BB84 QKD Comparison");
 end
 
@@ -194,6 +195,8 @@ if plot_loss_comparison
     plots.compare.LossComparison(Results, ...
         'Wavelengths', [QKDsystems.Wavelength], ...
         'MaskMode', "active", ...
+        'MaxSubplotsPerFigure', 4, ...
+        'OneLossPerFigure', false, ...
         'FigureName', "Loss Components Comparison");
 end
 
@@ -294,6 +297,20 @@ if plot_doppler_shift
     end
 end
 
+%% Export results
+if export_results        
+    out_dir = fullfile(repo_root, "Simulations", "Outputs");
+    if ~isfolder(out_dir), mkdir(out_dir); end
+    
+    T = plots.compare.PassSummaryReport(Results, ...
+        'Wavelengths', [QKDsystems.Wavelength], ...
+        'MaskMode', "active", ...
+        'TxtFile', fullfile(out_dir, "pass_summary.txt"), ...
+        'CsvFile', fullfile(out_dir, "pass_summary.csv"));
+
+    disp(fullfile(out_dir, "pass_summary.txt"))
+    disp(fullfile(out_dir, "pass_summary.csv"))
+end
 %% Visualize satellite
 
 
@@ -356,10 +373,10 @@ function SimSat = createSatellite(Wavelength, OrbitDataFileLocation, RepetitionR
             'OrbitDataFileLocation', OrbitDataFileLocation);
     else
         % Using start/stop time
-        StartTime = datetime(2026,7,21,13,40,0,'TimeZone','UTC');
-        StopTime  = datetime(2026,7,21,14,0,0,'TimeZone','UTC');
-        %StartTime = datetime(2026,7,21,3,0,0,'TimeZone','UTC');
-        %StopTime  = datetime(2026,7,21,3,15,0,'TimeZone','UTC');
+        %StartTime = datetime(2026,7,21,13,40,0,'TimeZone','UTC');
+        %StopTime  = datetime(2026,7,21,14,0,0,'TimeZone','UTC');
+        StartTime = datetime(2026,7,21,3,0,0,'TimeZone','UTC');
+        StopTime  = datetime(2026,7,21,3,15,0,'TimeZone','UTC');
         %StartTime = datetime(2026,6,23,3,0,0,'TimeZone','UTC');
         %StopTime  = datetime(2026,6,23,3,20,0,'TimeZone','UTC'); 
         %StartTime = datetime(2026,5,8,3,0,0,'TimeZone','UTC');
